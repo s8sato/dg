@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea Title</title>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../index.html">All notes</a> <a href="../graph.html?focus=test">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>test</code> <button type="button" class="copy-id" data-copy="test">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="test" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1787871414000">2026-08-27 22:56 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>Idea Title</h1>
+<p>A brief summary of the idea.</p>
+<ul>
+<li></li>
+</ul>
+<hr />
+<pre class="hljs"><code>
+<span class="hljs-keyword">trait</span> <span class="hljs-title">Repository</span> {
+    <span class="hljs-keyword">type</span> <span class="hljs-title">K</span>;
+    <span class="hljs-keyword">type</span> <span class="hljs-title">V</span>;
+
+    <span class="hljs-comment">/// Description.</span>
+    <span class="hljs-keyword">fn</span> <span class="hljs-title">get</span>(&amp;<span class="hljs-keyword">self</span>, key: K) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Option</span>&lt;&amp;V&gt;;
+}
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title">RepositoryImpl</span>;
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title">Repository</span> <span class="hljs-keyword">for</span> <span class="hljs-title">RepositoryImpl</span> {
+    <span class="hljs-keyword">type</span> <span class="hljs-title">K</span> = <span class="hljs-type">u32</span>;
+    <span class="hljs-keyword">type</span> <span class="hljs-title">V</span> = <span class="hljs-type">String</span>;
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title">get</span>(&amp;<span class="hljs-keyword">self</span>, key: K) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Option</span>&lt;&amp;V&gt; {
+        <span class="hljs-built_in">unimplemented!</span>()
+    }
+}
+
+</code></pre>
+<h2>Item</h2>
+<p>A detailed description of the idea.</p>
+<p><span class="broken-link">../assets/public/images/sample-diagram.svg</span></p>
+</article>
+
+<script type="module" src="../assets/copy-id.mjs"></script>
+<script type="module" src="../assets/local-time.mjs"></script>
+</body>
+</html>

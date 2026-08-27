@@ -14,6 +14,13 @@
     "modifiedAt": "2026-08-27 20:39 UTC"
   },
   {
+    "id": "test",
+    "title": "Idea Title",
+    "tags": [],
+    "text": "Idea Title A brief summary of the idea. trait Repository { type K ; type V ; /// Description. fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt;; } struct RepositoryImpl ; impl Repository for RepositoryImpl { type K = u32 ; type V = String ; fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt; { unimplemented! () } } Item A detailed description of the idea. ../assets/public/images/sample-diagram.svg",
+    "modifiedAt": "2026-08-27 22:56 UTC"
+  },
+  {
     "id": "仮説思考とTDD（テスト駆動開発）",
     "title": "仮説思考とTDD（テスト駆動開発）",
     "tags": [],
