@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIの台頭で、開発・デザインの役割はどこへ移るか</title>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../index.html">All notes</a> <a href="../graph.html?focus=AI%E3%81%AE%E5%8F%B0%E9%A0%AD%E3%81%A7%E3%80%81%E9%96%8B%E7%99%BA%E3%83%BB%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E5%BD%B9%E5%89%B2%E3%81%AF%E3%81%A9%E3%81%93%E3%81%B8%E7%A7%BB%E3%82%8B%E3%81%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>AIの台頭で、開発・デザインの役割はどこへ移るか</code> <button type="button" class="copy-id" data-copy="AIの台頭で、開発・デザインの役割はどこへ移るか">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="AIの台頭で、開発・デザインの役割はどこへ移るか" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>AIの台頭で、開発・デザインの役割はどこへ移るか</h1>
+<p>AIによって実装や制作のコストが下がると、各職種の価値は「成果物を作ること」から「何を成立させる責任を持つか」へ移る。</p>
+<h2>Webフロントエンド</h2>
+<p>Webフロントエンドは、画面実装の担当から、<strong>ユーザー体験を技術的に成立させる役割</strong>へ移る。</p>
+<p>重心は、コンポーネントの作成から次のような判断へ移る。</p>
+<ul>
+<li>状態遷移や非同期処理をどう見せるか</li>
+<li>エラー、待機、権限制約をどう体験に組み込むか</li>
+<li>アクセシビリティや性能をどこまで保証するか</li>
+<li>AI生成コードをデザインシステムの一貫性に収めるか</li>
+</ul>
+<p>AIによってデザインから画面を起こす能力は一般化する。そのため、フロントエンドの差は、画面を作れることではなく、<strong>プロダクトとして自然に振る舞わせられること</strong>に現れる。</p>
+<h2>Webバックエンド</h2>
+<p>Webバックエンドは、APIや業務ロジックの実装担当から、<strong>業務ルールとデータの正しさを保証する役割</strong>へ移る。</p>
+<p>特に重要になるのは、コード化される前の判断である。</p>
+<ul>
+<li>何を不変条件とするか</li>
+<li>どのデータを正とするか</li>
+<li>二重実行、競合、部分失敗をどう扱うか</li>
+<li>権限、監査、履歴をどの単位で残すか</li>
+<li>仕様変更時に既存データとの整合性をどう保つか</li>
+</ul>
+<p>AIは局所的な実装を高速化するが、誤った前提も同じ速度で実装する。</p>
+<p>そのため、バックエンドの中心は、コードを書くことよりも、<strong>システムが壊れてはいけない条件を定義すること</strong>になる。</p>
+<h2>モバイル開発</h2>
+<p>モバイル開発は、アプリ実装の担当から、<strong>端末、OS、ネットワーク、現実環境を含む体験の統合者</strong>へ移る。</p>
+<p>画面や通信処理の生成が容易になる一方、価値が残るのは不安定な現実との接点である。</p>
+<ul>
+<li>通信断やオフライン時にも成立するか</li>
+<li>バックグラウンド移行や復帰をどう扱うか</li>
+<li>権限拒否や通知遅延にどう耐えるか</li>
+<li>OS更新や端末差でどこが壊れるか</li>
+<li>バッテリー、メモリ、センサー制約をどう吸収するか</li>
+</ul>
+<p>クロスプラットフォーム開発が進むほど、ネイティブ層まで降りて問題を特定できる能力の価値は高まる。</p>
+<p>モバイルエンジニアは、アプリを作る人というより、<strong>不完全な実行環境でも体験を継続させる人</strong>になる。</p>
+<h2>デザイン</h2>
+<p>デザイナーは、画面や素材の制作担当から、<strong>体験の意味と品質基準を定義する役割</strong>へ移る。</p>
+<p>AIによって案を作ること自体は安価になる。希少になるのは、案の生成ではなく評価である。</p>
+<ul>
+<li>どの問題を解くべきか</li>
+<li>どの案を採用し、どれを捨てるか</li>
+<li>どの違和感を許容しないか</li>
+<li>プロダクト全体の一貫性をどう保つか</li>
+<li>AIらしい均質さをどう避けるか</li>
+<li>不確実なAIの挙動をどうユーザーに理解させるか</li>
+</ul>
+<p>今後は、デザイナーだけが画面を作るわけではない。エンジニアや企画担当もAIで案を作る。</p>
+<p>そのためデザイナーの価値は、制作物の独占ではなく、<strong>チーム全体のアウトプットに対して品質基準を与えること</strong>に移る。</p>
+<h2>職種の境界は「作業」ではなく「責任」で分かれる</h2>
+<p>AIによって、コードを書く、画面を作る、プロトタイプを作るといった作業は職種を越えて共有される。</p>
+<p>その結果、役割は使用ツールではなく、最終的に何へ責任を持つかで分かれる。</p>
+<table>
+<thead>
+<tr>
+<th>分野</th>
+<th>中心となる責任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webフロントエンド</td>
+<td>ユーザー体験と画面上の振る舞い</td>
+</tr>
+<tr>
+<td>Webバックエンド</td>
+<td>業務ルール、データ、整合性</td>
+</tr>
+<tr>
+<td>モバイル開発</td>
+<td>端末・OS・現実環境を含む継続性</td>
+</tr>
+<tr>
+<td>デザイン</td>
+<td>体験の意味、一貫性、品質基準</td>
+</tr>
+</tbody>
+</table>
+<h2>シニアの役割も変わる</h2>
+<p>シニアは、難しい実装を多く引き受ける人から、<strong>人間とAIを含む開発システムを設計する人</strong>へ移る。</p>
+<p>具体的には次のような役割が増える。</p>
+<ul>
+<li>AIに渡す前提情報を整える</li>
+<li>要求、制約、設計判断を明文化する</li>
+<li>AIが変更してよい範囲を決める</li>
+<li>自動テストや静的解析で検証可能にする</li>
+<li>レビュー基準をチームで共有する</li>
+<li>AI生成物の責任境界を明確にする</li>
+</ul>
+<p>AI活用の差は、個人のプロンプト技術よりも、<strong>組織としてどれだけ検証可能な開発環境を作れるか</strong>で決まる。</p>
+<h2>まとめ</h2>
+<p>AI時代の役割シフトは、次のように整理できる。</p>
+<pre class="hljs"><code>Webフロントエンド
+画面を作る
+→ 体験を成立させる
+
+Webバックエンド
+処理を実装する
+→ 正しさを保証する
+
+モバイル開発
+アプリを作る
+→ 不安定な実行環境を統合する
+
+デザイン
+案を作る
+→ 意味と品質基準を定義する
+</code></pre>
+<p>共通して価値が上がるのは、生成能力ではなく、問題設定、設計、評価、検証、意思決定である。</p>
+<p>AIによってHowのコストが下がるほど、WhyとWhatを定義し、その結果に責任を持つ役割が重くなる。</p>
+</article>
+
+<script type="module" src="../assets/copy-id.mjs"></script>
+<script type="module" src="../assets/local-time.mjs"></script>
+</body>
+</html>

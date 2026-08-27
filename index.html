@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>s8sato.out</title>
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><span aria-current="page">All notes</span> <a href="graph.html">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="assets/theme-switcher.mjs"></script>
+<header class="index-header">
+<h1>s8sato.out</h1>
+<input type="search" id="search-box" placeholder="Search notes...">
+<div id="tag-filters"></div>
+</header>
+<p id="no-results" hidden>No notes match the current search/filter.</p>
+<ul id="note-list"><li data-id="AIの台頭で、開発・デザインの役割はどこへ移るか"><a href="notes/AIの台頭で、開発・デザインの役割はどこへ移るか.html">AIの台頭で、開発・デザインの役割はどこへ移るか</a></li><li data-id="ISO 29148 から学ぶ要求の仕様化"><a href="notes/ISO 29148 から学ぶ要求の仕様化.html">ISO 29148 から学ぶ要求の仕様化</a></li><li data-id="仮説思考とTDD（テスト駆動開発）"><a href="notes/仮説思考とTDD（テスト駆動開発）.html">仮説思考とTDD（テスト駆動開発）</a></li></ul>
+<script type="module" src="assets/search.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,1324 @@
+/* enastro static site stylesheet — "starfield catalog" theme.
+ * Applies to both the note view (index.html / notes/*.html) and the Graph UI
+ * (graph.html, REQ-UX-009/010). Kept as a single small stylesheet (no build
+ * step, no external font/asset requests) to preserve the "portable static
+ * artifact" requirement (REQ-UX-004). Background is a flat solid color so
+ * it never competes visually with the Graph UI's own rendered content.
+ *
+ * Design language: enastro publishes a personal knowledge graph, so the
+ * visual vocabulary borrows from star catalogs and celestial cartography —
+ * every note is treated like a catalog entry, and the note's content-hash
+ * id is set as a "designation" rather than a raw code string.
+ */
+
+:root {
+  color-scheme: dark;
+
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius: 0.5rem;
+  --transition: 160ms ease;
+
+  /* Fixed, theme-independent severity tokens (unlike --bg/--accent/--nebula
+   * above, these do NOT vary per `data-theme` — a warning should read the
+   * same amber regardless of which of the 12 themes is active). Used by
+   * the exploration History drawer's warning/notice boxes and by the
+   * Prune/Reset destructive-action buttons. */
+  --warn: #e0a84f;
+  --danger: #ff6b6b;
+}
+
+/* --- Theme tokens (REQ-UX-011) ---
+ * Each of the 12 themes below defines exactly 3 primitives: `--bg`
+ * (background), `--accent` (the one loud color — links, headings, focus)
+ * and `--nebula` (secondary — tags, graph UI, backlinks). Every other
+ * color token is derived from those 3 via `color-mix()` in the
+ * theme-independent block further down, so adding/adjusting a theme can
+ * never desync a hand-maintained pair of tokens.
+ *
+ * "moon" is the default (applies both when `data-theme` is absent and
+ * when explicitly set to "moon") — it matches enastro's original,
+ * hand-tuned palette as closely as color-mix derivation allows. Theme
+ * switching itself is entirely client-side (theme-switcher.mjs); the
+ * build never bakes in a specific theme (REQ-BUILD-001).
+ */
+:root,
+:root[data-theme="moon"] {
+  --bg: #06071a;
+  --accent: #f2c879;
+  --nebula: #9d8cf2;
+}
+
+:root[data-theme="aurora"] {
+  --bg: #03120c;
+  --accent: #7dffb3;
+  --nebula: #9d8cf2;
+}
+
+:root[data-theme="corona"] {
+  --bg: #0a0c10;
+  --accent: #eaf5f0;
+  --nebula: #8de6b0;
+}
+
+:root[data-theme="ether"] {
+  --bg: #10141c;
+  --accent: #dff5ff;
+  --nebula: #f5d9ff;
+}
+
+:root[data-theme="flare"] {
+  --bg: #140904;
+  --accent: #ff7a45;
+  --nebula: #ffce6b;
+}
+
+:root[data-theme="graviton"] {
+  --bg: #020208;
+  --accent: #6a5cff;
+  --nebula: #e8e6ff;
+}
+
+:root[data-theme="nebula"] {
+  --bg: #0c0616;
+  --accent: #ff8fc7;
+  --nebula: #4fd8e0;
+}
+
+:root[data-theme="nova"] {
+  --bg: #08060a;
+  --accent: #eaf2ff;
+  --nebula: #ff5f6d;
+}
+
+:root[data-theme="pulser"] {
+  --bg: #050a14;
+  --accent: #7ffcff;
+  --nebula: #7b8cff;
+}
+
+:root[data-theme="sirius"] {
+  --bg: #0b1226;
+  --accent: #b8d4ff;
+  --nebula: #5fd9c4;
+}
+
+:root[data-theme="venus"] {
+  --bg: #120d08;
+  --accent: #ffe9b8;
+  --nebula: #e0a86b;
+}
+
+:root[data-theme="void"] {
+  --bg: #020204;
+  --accent: #9aa0b8;
+  --nebula: #5c6280;
+}
+
+/* Tokens derived uniformly from the 3 primitives above, for every theme
+ * (defined once here — never hand-tuned per theme). `var()` resolves
+ * against each element's actual (possibly theme-overridden) --bg/--accent/
+ * --nebula at used-value time, regardless of which rule this block's
+ * selector specificity compares to, so this stays correct under any
+ * `data-theme` value. */
+:root {
+  --bg-elevated: color-mix(in srgb, var(--bg) 82%, white 18%);
+  --bg-card: color-mix(in srgb, var(--bg) 88%, white 12%);
+  --fg: color-mix(in srgb, white 92%, var(--bg));
+  --fg-muted: color-mix(in srgb, var(--nebula) 55%, var(--bg) 45%);
+  --accent-dim: color-mix(in srgb, var(--accent) 78%, var(--bg));
+  --nebula-dim: color-mix(in srgb, var(--nebula) 78%, var(--bg));
+  --border: color-mix(in srgb, var(--bg) 78%, white 22%);
+  --border-soft: color-mix(in srgb, var(--bg) 88%, white 12%);
+  /* Tag pill text color: `--nebula` alone reads too dim against the pill
+     background for some themes (e.g. Void, Pulser — WCAG AA contrast
+     failure), so pill text uses this lightened derivative instead of
+     `--nebula` directly. */
+  --nebula-text: color-mix(in srgb, white 32%, var(--nebula));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0ms;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-color: var(--border) var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+
+  background-color: var(--bg);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent-dim);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.85rem 1.25rem;
+  background: rgba(6, 7, 26, 0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--fg-muted);
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Non-clickable "you are here" nav item (page.ts's `renderNavItem()`) for
+   the page kind matching the current page — rendered in the same slot a
+   link would occupy so All notes/Graph view/HISTORY stay in the same
+   position across all three page kinds, rather than shifting when a page
+   omits its own self-link. `filter: grayscale(1)` on top of `--fg-muted`
+   (rather than `--fg-muted` alone) because `--fg-muted` is
+   `color-mix(..., var(--nebula), ...)` (site.css's `:root` block) — it
+   still carries each theme's secondary hue, not a true neutral gray — so
+   it alone wouldn't read as clearly inert/non-interactive next to the
+   colored `nav a`/`nav a:hover` links either side of it. */
+nav [aria-current="page"] {
+  color: var(--fg-muted);
+  filter: grayscale(1);
+  cursor: default;
+}
+
+/* index.html renders nav / h1 / #search-box / #tag-filters / #no-results /
+   #note-list directly as children of <body> — there's no wrapping
+   <main>/.page the way note pages have <article>. `nav` is kept as a direct
+   child of <body> (rather than nested inside .index-header) so its sticky
+   containing block spans the *entire* page height — nesting it inside the
+   short .index-header block would make it stop sticking as soon as that
+   block's own (short) box scrolled out of view, well before the note list
+   below it finished scrolling. Give the body itself the side padding, and
+   pull the nav bar back out so it stays a full-bleed bar instead of
+   getting inset along with the content. */
+body:has(#note-list) {
+  padding-inline: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+body:has(#note-list) > nav {
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+  border-bottom-color: var(--border-soft);
+}
+
+body:has(#note-list) > .index-header > h1 {
+  margin-top: 1.75rem;
+}
+
+body:has(#note-list) > .index-header > #tag-filters {
+  max-width: 72rem;
+}
+
+body:has(#note-list) > #no-results,
+body:has(#note-list) > #note-list {
+  max-width: 72rem;
+}
+
+main,
+article,
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 6rem;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.3rem;
+}
+
+article {
+  font-size: 1.02rem;
+  /* Slightly dim the body prose relative to full --fg (used for headings,
+     nav, UI chrome) so the contrast against the dark background reads as
+     comfortable rather than glaring. */
+  color: color-mix(in srgb, var(--fg) 90%, var(--bg));
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  font-family: var(--font-display);
+  color: var(--fg);
+}
+
+article :first-child {
+  margin-top: 0;
+}
+
+/* Inline code and fenced code blocks: give them a visible background/border
+   so they read as distinct "code" rather than blending into the body text. */
+article code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+article pre {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  line-height: 1.55;
+}
+
+article pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.88em;
+}
+
+/* highlight.js theme (build-time server-side highlighting, see
+ * src/render/render-note.ts) — colors chosen to sit alongside the
+ * starfield accent/nebula palette rather than a generic hljs theme. */
+.hljs-comment,
+.hljs-quote {
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-subst {
+  color: var(--nebula);
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp,
+.hljs-addition {
+  color: var(--accent);
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-built_in,
+.hljs-name {
+  color: var(--accent-dim);
+  font-weight: 600;
+}
+
+.hljs-number,
+.hljs-meta,
+.hljs-symbol,
+.hljs-attr {
+  color: var(--nebula-dim);
+}
+
+.hljs-deletion {
+  color: #e2707a;
+}
+
+blockquote {
+  margin: 1.25rem 0;
+  padding: 0.15rem 1.1rem;
+  border-left: 3px solid var(--nebula);
+  color: var(--fg-muted);
+}
+
+blockquote :first-child {
+  margin-top: 0;
+}
+
+blockquote :last-child {
+  margin-bottom: 0;
+}
+
+article table {
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+article th,
+article td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+article th {
+  background: var(--bg-elevated);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* Note id: a flat, globally-unique identifier — not a hierarchical path,
+ * so it must not look like a breadcrumb, and not like a tag pill either
+ * (ul.tags li a). Plain monospace text, no border/background. */
+.note-id {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  margin: 1.25rem auto 0;
+  max-width: 42rem;
+  padding: 0 1.25rem;
+}
+
+.note-id code {
+  color: var(--nebula);
+}
+
+.copy-id {
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0; /* hides the literal "Copy ID" label visually only —
+                   it stays in the DOM as the button's accessible name */
+  transition: border-color var(--transition);
+}
+
+/* The icon itself is drawn with a CSS mask rather than a hardcoded-color
+ * SVG data URI `background-image`, so its color follows the active theme
+ * (`--fg-muted` / `--accent-dim` on hover) instead of being frozen to the
+ * Moon theme's original hex values. */
+.copy-id::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--fg-muted);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 0.85rem;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 0.85rem;
+  transition: background-color var(--transition);
+}
+
+.copy-id:hover {
+  border-color: var(--accent-dim);
+}
+
+.copy-id:hover::before {
+  background-color: var(--accent-dim);
+}
+
+.copy-id-feedback {
+  font-size: 0.78rem;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.copy-id-feedback.visible {
+  opacity: 1;
+}
+
+/* Updated/Read date line: both timestamps share one monospace row so
+ * their fonts/sizes never drift apart, and the timezone is shown once at
+ * the end of the line (`.date-tz`) instead of being repeated after every
+ * single value. "Updated" (build-time last-modified) is always shown;
+ * "Read" only appears while the note is marked read. */
+.note-dates {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  max-width: 42rem;
+  margin: 0.35rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.date-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+/* `.date-group`'s `display: flex` would otherwise override the `hidden`
+ * attribute's UA-stylesheet `display: none` (same specificity, author
+ * rule wins) — restore it explicitly so the Read date-group can actually
+ * be hidden while unread. */
+.date-group[hidden] {
+  display: none;
+}
+
+.date-label {
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.date-value {
+  color: var(--fg-muted);
+}
+
+.date-sep {
+  color: var(--border);
+}
+
+.date-tz {
+  margin-left: auto;
+  color: var(--fg-muted);
+  opacity: 0.7;
+}
+
+ul.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  margin: 1rem auto 0;
+  max-width: 42rem;
+}
+
+ul.tags li a {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--nebula) 14%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--nebula) 35%, var(--border));
+  color: var(--nebula-text);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+ul.tags li a:hover {
+  color: var(--fg);
+  border-color: var(--nebula);
+}
+
+.backlinks {
+  max-width: 42rem;
+  margin: 2.5rem auto 0;
+  padding: 1.25rem 1.25rem 6rem;
+  border-top: 1px solid var(--border);
+}
+
+.backlinks h2 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.backlinks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.backlinks li::before {
+  content: "→ ";
+  color: var(--nebula);
+}
+
+span.broken-link {
+  color: var(--fg-muted);
+  text-decoration: line-through dotted;
+}
+
+/* --- Index page --- */
+
+#search-box {
+  width: 100%;
+  max-width: 32rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  font-size: 1rem;
+  transition: border-color var(--transition);
+}
+
+#search-box::placeholder {
+  color: var(--fg-muted);
+}
+
+#search-box:focus-visible {
+  border-color: var(--accent-dim);
+}
+
+#tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.85rem 0;
+}
+
+/* search.mjs populates #tag-filters client-side with clickable tag
+   toggles; style whatever it inserts (button or a) as a pill chip
+   matching the tag style on note pages, and give it a visible "active"
+   state for whichever attribute/class search.mjs marks selection with. */
+#tag-filters button,
+#tag-filters a {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--nebula) 14%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--nebula) 35%, var(--border));
+  color: var(--nebula-text);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+#tag-filters button:hover,
+#tag-filters a:hover {
+  color: var(--fg);
+  border-color: var(--nebula);
+}
+
+#tag-filters [aria-pressed="true"],
+#tag-filters .active,
+#tag-filters .selected {
+  background: var(--nebula);
+  color: var(--bg);
+  border-color: var(--nebula);
+}
+
+#no-results {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+#note-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.6rem;
+}
+
+#note-list li {
+  position: relative;
+  padding: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+#note-list li::before {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  top: 1.15rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 5px 1px color-mix(in srgb, var(--accent) 70%, transparent);
+  pointer-events: none;
+}
+
+#note-list li:hover {
+  border-color: var(--border);
+  background: var(--bg-elevated);
+}
+
+/* The whole card (li) is the clickable/tappable area, not just the title
+   text: the link fills the card's full box rather than just wrapping the
+   title string. */
+#note-list a {
+  display: block;
+  padding: 0.75rem 0.9rem 0.75rem 1.6rem;
+  color: var(--fg);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+}
+
+#note-list a:hover {
+  color: var(--accent);
+}
+
+/* Exploration status (REQ-EXPLORE-005): a note marked "read" (tracked
+ * client-side only, see exploration.mjs) dims/desaturates its list bullet
+ * so read notes visually recede without being hidden. */
+#note-list li.explored::before {
+  background: var(--fg-muted);
+  box-shadow: none;
+}
+
+#note-list li.explored a {
+  color: var(--fg-muted);
+}
+
+/* Shared "Mark as read" toggle button on note pages — icon-only (same
+ * visually-hidden-label technique as .copy-id) so it doesn't compete with
+ * the note id for attention; state is conveyed by opacity/color rather
+ * than a text label, with the label surfacing as a hover tooltip instead.
+ * The icon itself is drawn with a CSS mask (same technique as .copy-id)
+ * rather than a hardcoded-color SVG data URI `background-image`, so its
+ * color follows the active theme (`--fg-muted` unread / `--accent` read)
+ * instead of being frozen to the Moon theme's original hex values. */
+.mark-read-button {
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  position: relative;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0; /* hides the literal label visually only — it stays in the
+                   DOM as the button's accessible name */
+  opacity: 0.55;
+  transition: border-color var(--transition), opacity var(--transition);
+}
+
+.mark-read-button::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--fg-muted);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 0.95rem;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 0.95rem;
+  transition: background-color var(--transition);
+}
+
+.mark-read-button:hover {
+  border-color: var(--accent-dim);
+  opacity: 1;
+}
+
+.mark-read-button[aria-pressed="true"] {
+  opacity: 0.85;
+}
+
+.mark-read-button[aria-pressed="true"]::before {
+  background-color: var(--accent);
+}
+
+.mark-read-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Exploration History drawer (REQ-EXPLORE-003/008), shared across all
+ * three page kinds. The trigger button (`#exploration-rewind-toggle`)
+ * lives inside each page's `<nav>` (right-aligned via `margin-left: auto`)
+ * rather than floating — see `nav#exploration-rewind-toggle` below. The
+ * rest (`#exploration-bar`) is just a plain wrapper with no layout
+ * consequence of its own; every visual element inside it
+ * (`#exploration-drawer-scrim`, `#exploration-rewind-panel`) is
+ * independently `position: fixed`. */
+.exploration-bar {
+  /* Intentionally unstyled: a layout-inert wrapper. */
+}
+
+#exploration-rewind-toggle {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--fg-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+#exploration-rewind-toggle:hover {
+  color: var(--accent);
+}
+
+/* Semi-transparent scrim behind the drawer, letting the covered content
+ * (graph canvas, note body, etc.) show through — confirms the drawer is a
+ * translucent overlay rather than an opaque panel. Sits below the header
+ * (`top` is set by exploration.mjs to the header's measured bottom edge,
+ * matching `#exploration-rewind-panel`'s `top` exactly so neither a gap
+ * nor an overlap appears), so it never covers the nav bar itself. */
+#exploration-drawer-scrim {
+  position: fixed;
+  top: 3.4rem; /* fallback until exploration.mjs measures the real header height */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  background: color-mix(in srgb, black 35%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+#exploration-drawer-scrim.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The drawer itself: a right-edge sliding panel, translucent + blurred so
+ * the content behind it (including the header-adjacent graph canvas)
+ * stays visible, echoing the scrim above. Kept nearly transparent (a low
+ * `--bg-elevated` mix rather than a strong tint) since a heavier gray wash
+ * made text unreadable against several themes; a stronger blur compensates
+ * for the reduced tint by still legibly separating the drawer's own text
+ * from whatever is scrolling/animating behind it. */
+#exploration-rewind-panel {
+  position: fixed;
+  top: 3.4rem; /* fallback until exploration.mjs measures the real header height */
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  width: min(20rem, 88vw);
+  overflow-y: auto;
+  /* Generous top padding clears the absolutely-positioned close button
+   * (`#exploration-drawer-close`, ~2rem tall including its click target)
+   * so the first warning/notice/button never crowds against it. */
+  padding: 2.6rem 1rem 1.2rem;
+  background: color-mix(in srgb, var(--bg-elevated) 20%, transparent);
+  backdrop-filter: blur(22px);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform var(--transition);
+}
+
+#exploration-rewind-panel.open {
+  transform: translateX(0);
+}
+
+#exploration-drawer-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  background: none;
+  border: 0;
+  padding: 0.3rem;
+  color: var(--fg-muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#exploration-drawer-close:hover {
+  color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #exploration-drawer-scrim,
+  #exploration-rewind-panel {
+    transition: none;
+  }
+}
+
+/* Warning (storage quota) and notices (ID-mismatch / stale-read,
+ * REQ-EXPLORE-006/007) share one fixed, theme-independent amber tone
+ * (`--warn`) — severity coloring shouldn't shift with the active theme —
+ * plus a leading icon, both borrowed from the same visual language as the
+ * Prune/Reset buttons below. */
+.exploration-warning,
+.exploration-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0 0 0.7rem;
+  padding: 0.5rem 0.65rem;
+  background: color-mix(in srgb, var(--warn) 8%, var(--bg-elevated));
+  border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--border));
+  border-radius: var(--radius);
+  color: var(--warn);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* `display: flex` above has equal specificity to the `[hidden]` attribute
+ * selector but higher specificity than the UA stylesheet's `[hidden] {
+ * display: none }` rule (author styles always beat UA styles), so without
+ * this explicit override, `hidden = true` would never actually hide these
+ * boxes. */
+.exploration-warning[hidden],
+.exploration-notice[hidden] {
+  display: none;
+}
+
+.exploration-icon {
+  flex: 0 0 auto;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-top: 0.15rem;
+  background-color: var(--warn);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='8' x2='12' y2='13'/%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='8' x2='12' y2='13'/%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+/* The 3-tier rewind action buttons (REQ-EXPLORE-003/008), ordered by
+ * increasing risk: Return (safe, reversible) < Squash (destructive but
+ * preserves net read/unread effect) < Reset (destructive and can discard
+ * real
+ * history). Return stays theme-following/neutral; Squash/Reset borrow the
+ * same fixed severity tokens as the warning/notice boxes above
+ * (`--warn`/`--danger`) so risk level reads consistently across all 12
+ * themes. All 3 are always visible (never `hidden`); Return is always
+ * enabled (returning to "now" is safe/idempotent even while already
+ * live), while Squash/Reset are `disabled` (exploration.mjs's `update()`)
+ * until a past point is actually selected, since both require a rewound
+ * cursor to act on.
+ */
+#exploration-return-to-now {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  padding: 0.35rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+#exploration-squash-here {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  padding: 0.35rem 0.6rem;
+  background: color-mix(in srgb, var(--warn) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--border));
+  border-radius: var(--radius);
+  color: var(--warn);
+  cursor: pointer;
+}
+
+#exploration-reset-here {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  padding: 0.35rem 0.6rem;
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 45%, var(--border));
+  border-radius: var(--radius);
+  color: var(--danger);
+  cursor: pointer;
+}
+
+/* Squash/Reset only (Return has no disabled state, see above) — dimmed and
+ * inert while no past point is selected, same pattern as
+ * `.mark-read-button:disabled`. */
+#exploration-squash-here:disabled,
+#exploration-reset-here:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#exploration-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+#exploration-history-list button {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  background: none;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  color: var(--fg-muted);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+#exploration-history-list button:hover {
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+/* The entry currently being viewed via rewind (REQ-EXPLORE-003) — set by
+ * exploration.mjs's renderHistoryList(). */
+#exploration-history-list button.active {
+  color: var(--fg);
+  border-color: var(--accent-dim);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Each row: a leading verb icon, the verb label, the note id (ellipsized
+ * if too long to fit), and the timestamp pinned to the row's right edge.
+ * Monospace is reserved for the id and the timestamp only — every other
+ * label/message in the drawer uses the site's default sans font. */
+#exploration-history-list .verb-icon {
+  flex: 0 0 auto;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+#exploration-history-list .verb-icon.is-read {
+  background-color: var(--fg-muted);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+#exploration-history-list .verb-icon.is-unread {
+  background-color: var(--nebula);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+#exploration-history-list .verb-icon.is-snapshot {
+  background-color: var(--accent-dim);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2 L14 9 L21 9 L15.5 13.5 L17.5 21 L12 16.5 L6.5 21 L8.5 13.5 L3 9 L10 9 Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2 L14 9 L21 9 L15.5 13.5 L17.5 21 L12 16.5 L6.5 21 L8.5 13.5 L3 9 L10 9 Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+#exploration-history-list .subject {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}
+
+#exploration-history-list .time {
+  flex: 0 0 auto;
+  margin-left: auto;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+
+/* Theme switcher (REQ-UX-011), shared across all three page kinds — a
+ * small floating widget fixed to the bottom-left corner, so it doesn't
+ * compete with the nav/tag-filter chrome (the History drawer now lives in
+ * the nav bar itself, so there's no longer a bottom-right widget to stay
+ * symmetric with). */
+.theme-switcher {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+#theme-trigger {
+  padding: 0.4rem 0.8rem;
+  background: rgba(13, 15, 38, 0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+#theme-trigger:hover {
+  color: var(--fg);
+  border-color: var(--accent-dim);
+}
+
+#theme-dialog {
+  position: absolute;
+  left: 0;
+  bottom: 2.5rem;
+  padding: 0.75rem;
+  background: rgba(13, 15, 38, 0.96);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* The accessible source of truth (REQ-UX-011) — kept in the DOM,
+ * focusable, and readable by screen readers, but visually replaced by the
+ * rotary dial theme-switcher.mjs builds alongside it. Standard
+ * visually-hidden-but-focusable technique (not `display:none`/`hidden`,
+ * which would remove it from the accessibility tree and tab order). */
+.theme-select-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.theme-dial {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+}
+
+.theme-dial-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.theme-dial-point-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--dial-accent, var(--accent));
+}
+
+.theme-dial-point[aria-current="true"] {
+  color: var(--fg);
+}
+
+.theme-dial-point[data-preview="true"] {
+  color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-dial-point {
+    transition: none;
+  }
+}
+
+/* Graph UI (graph.html, REQ-UX-009/010) shell — full-viewport canvas host
+ * with a floating nav bar so the WebGL renderer can size to the whole
+ * screen while still being reachable from/to the note view. */
+.graph-shell {
+  position: fixed;
+  inset: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.graph-shell .graph-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-shell .graph-header nav {
+  background: rgba(6, 7, 26, 0.75);
+  backdrop-filter: blur(6px);
+  border-bottom-color: var(--border-soft);
+}
+
+/* Reuse the same #tag-filters pill styling as the All Notes page, but as a
+   continuation of the header bar (translucent + blurred, no top border so
+   it visually joins the nav above it) rather than inset page content. */
+.graph-shell .graph-header #tag-filters {
+  margin: 0;
+  padding: 0.65rem 1.25rem;
+  background: rgba(6, 7, 26, 0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.graph-shell .graph-header #tag-filters:empty {
+  display: none;
+}
+
+/* Particle direction toggle (REQ-UX-012): a small floating widget fixed to
+   the bottom-right corner — the mirror image of `.theme-switcher`'s
+   bottom-left placement — so it no longer needs to be JS-stacked above
+   `#theme-trigger` (an earlier layout that required measuring
+   `#theme-switcher`'s live `getBoundingClientRect()` at runtime just to
+   avoid overlapping it; see graph-view.mjs's git history for that).
+   `white-space: pre` is required for its width to stay constant across its
+   two labels: graph-view.mjs pads the shorter label with trailing spaces
+   to match the longer one's character count (relying on `--font-mono`
+   giving every character, including a space, the same column width) —
+   without `pre`, normal HTML whitespace collapsing would discard that
+   padding and the button would shrink back down anyway. */
+#particle-direction-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  padding: 0.4rem 0.8rem;
+  background: rgba(13, 15, 38, 0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  white-space: pre;
+  cursor: pointer;
+}
+
+#particle-direction-toggle:hover {
+  color: var(--fg);
+  border-color: var(--accent-dim);
+}
+
+#graph-canvas-container {
+  position: absolute;
+  inset: 0;
+  touch-action: none; /* renderer owns pan/zoom/pinch gestures (REQ-UX-010) */
+}
+
+.graph-status {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  background: rgba(6, 7, 26, 0.75);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+}
+
+.graph-status:empty {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  main,
+  article,
+  .page {
+    padding: 1.1rem 1rem 4rem;
+  }
+
+  .note-id,
+  .note-dates,
+  ul.tags {
+    padding: 0 1rem;
+  }
+
+  #search-box {
+    font-size: 0.95rem;
+  }
+
+  #note-list {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    padding: 0.7rem 1rem;
+    font-size: 0.78rem;
+  }
+
+  body:has(#note-list) {
+    padding-inline: 1rem;
+  }
+
+  body:has(#note-list) > nav {
+    /* Must also override the desktop `body:has(#note-list) > nav` rule's
+       `padding-inline: 1.25rem` here — `:has()`'s specificity equals that
+       of its argument, so `:has(#note-list)` carries ID-level specificity
+       and is NOT overridden by the plain `nav { padding: 0.7rem 1rem; }`
+       rule above despite appearing later in this same media query. Without
+       this, All Notes' nav sits 0.25rem further from the edge than the
+       note/graph pages' nav on mobile (2026-08-26 fix). */
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 26rem) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}

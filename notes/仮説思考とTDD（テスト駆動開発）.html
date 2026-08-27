@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>仮説思考とTDD（テスト駆動開発）</title>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../index.html">All notes</a> <a href="../graph.html?focus=%E4%BB%AE%E8%AA%AC%E6%80%9D%E8%80%83%E3%81%A8TDD%EF%BC%88%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%EF%BC%89">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>仮説思考とTDD（テスト駆動開発）</code> <button type="button" class="copy-id" data-copy="仮説思考とTDD（テスト駆動開発）">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="仮説思考とTDD（テスト駆動開発）" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>仮説思考とTDD（テスト駆動開発）</h1>
+<p>どことなく似ている気がするのは何故？</p>
+<ul>
+<li><a href="https://amzn.asia/d/0gKf8sCb">仮説思考</a></li>
+<li><a href="https://amzn.asia/d/07woDf1o">テスト駆動開発</a></li>
+</ul>
+<h2>それぞれの特徴</h2>
+<h3>TDD（テスト駆動開発）</h3>
+<ul>
+<li>期待される振る舞いを先に書く（BDD）</li>
+<li>実装が済んでいないオブジェクトでも構わず呼び出す</li>
+<li>最小限の辻褄合わせ（仮実装）をしてから一般化に向かう</li>
+<li>精神的な不安をなくすことを重視する</li>
+</ul>
+<h3>仮説思考</h3>
+<ul>
+<li>情報が少ない段階から結論を立てる</li>
+<li>その意外性が他人を刺激し創造が生まれる</li>
+<li>結論を早い段階で検証・軌道修正することになる</li>
+<li>そのフィードバックループにより仮説構築の精度が向上していく</li>
+</ul>
+<h2>一方から他方へ搬入できる考え方</h2>
+<h3>TDD -&gt; 仮説思考</h3>
+<ul>
+<li>詳細に踏み込まず高い抽象度で答えを出す</li>
+<li>大枠を設定してから細部を詰めていく</li>
+<li>粗削りでも早期に結論を立てておくと安心</li>
+</ul>
+<h3>仮説思考 -&gt; TDD</h3>
+<ul>
+<li>設計の見当がつかなくても要件定義を公開する</li>
+<li>初期にレビューを受けることで初期の構想のスジが鍛えられる</li>
+</ul>
+<h2>両者の類似点</h2>
+<ul>
+<li>不確実性に耐えること、いわゆる negative capability</li>
+<li>高回転なループ構造</li>
+<li>慣れればむしろ安心をもたらすらしい</li>
+</ul>
+</article>
+
+<script type="module" src="../assets/copy-id.mjs"></script>
+<script type="module" src="../assets/local-time.mjs"></script>
+</body>
+</html>

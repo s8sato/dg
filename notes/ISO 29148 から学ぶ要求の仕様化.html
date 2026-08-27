@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISO 29148 から学ぶ要求の仕様化</title>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../index.html">All notes</a> <a href="../graph.html?focus=ISO%2029148%20%E3%81%8B%E3%82%89%E5%AD%A6%E3%81%B6%E8%A6%81%E6%B1%82%E3%81%AE%E4%BB%95%E6%A7%98%E5%8C%96">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ISO 29148 から学ぶ要求の仕様化</code> <button type="button" class="copy-id" data-copy="ISO 29148 から学ぶ要求の仕様化">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ISO 29148 から学ぶ要求の仕様化" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>ISO 29148 から学ぶ要求の仕様化</h1>
+<blockquote>
+<p>Requirements まわりを個人的に学習するだけでなく勉強会での発表の題材としたい
+私自身、ヒアリングと要件定義の初心者
+勉強会参加者のなかでも、上流工程に関わるメンバーが増えつつある
+準備期間は1週間、発表枠は30分
+構成を提案して</p>
+</blockquote>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+
+<h2>全体構造:入れ子(スコープの階層)</h2>
+<pre class="hljs"><code>graph TB
+    subgraph BOK["知識体系 (Bodies of Knowledge) ─ 参照地図"]
+        SWEBOK["SWEBOK&lt;br/&gt;ソフト工学の全知識"]
+        BABOK["★ BABOK&lt;br/&gt;ビジネス分析・要求の実務"]
+    end
+
+    subgraph STD["プロセス規格 (ISO/IEC/IEEE) ─ 実施基準"]
+        S15288["15288&lt;br/&gt;システムライフサイクル"]
+        S12207["12207&lt;br/&gt;ソフトライフサイクル"]
+        S29148["★ 29148&lt;br/&gt;要求工学"]
+        S42010["42010&lt;br/&gt;アーキテクチャ記述"]
+    end
+
+    S15288 --&gt;|システムの一部としてソフトを詳細化| S12207
+    S15288 -.要求プロセスを特化.-&gt; S29148
+    S12207 -.要求プロセスを特化.-&gt; S29148
+    S15288 -.設計記述を特化.-&gt; S42010
+    S12207 -.設計記述を特化.-&gt; S42010
+
+    SWEBOK -.全体像を俯瞰.-&gt; STD
+    BABOK -.要求実務を補完.-&gt; S29148
+
+    classDef hi fill:#ffd966,stroke:#bf9000,stroke-width:3px,color:#000;
+    classDef dim fill:#f2f2f2,stroke:#bbb,color:#666;
+    class BABOK,S29148 hi;
+    class SWEBOK,S15288,S12207,S42010 dim;
+</code></pre>
+<h2>スコープの広さ(同心円)</h2>
+<pre class="hljs"><code>graph TB
+    subgraph L1["■ システム全体 = 15288"]
+        subgraph L2["■ ソフトウェア = 12207"]
+            subgraph L3["★ 要求 = 29148"]
+                R["StRS / SyRS / SRS"]
+            end
+            subgraph L4["■ 設計記述 = 42010"]
+                A["viewpoint / view"]
+            end
+        end
+    end
+
+    classDef hi fill:#ffd966,stroke:#bf9000,stroke-width:3px,color:#000;
+    class R hi;
+</code></pre>
+<h2>タイムライン上の守備範囲(Requirements)</h2>
+<pre class="hljs"><code>graph LR
+    subgraph 要求の流れ
+        E["引き出し&lt;br/&gt;Elicitation"] --&gt; AN["分析&lt;br/&gt;Analysis"] --&gt; SP["仕様化&lt;br/&gt;Specification"] --&gt; V["検証・妥当性確認&lt;br/&gt;Verification/Validation"] --&gt; M["管理・変更&lt;br/&gt;Management"]
+    end
+
+    BABOK["★ BABOK"] -.カバー.-&gt; E
+    BABOK -.カバー.-&gt; AN
+    BABOK -.カバー.-&gt; M
+    S29148["★ 29148"] -.カバー.-&gt; AN
+    S29148 -.カバー.-&gt; SP
+    S29148 -.カバー.-&gt; V
+    SWEBOK["SWEBOK&lt;br/&gt;(要求の章のみ)"] -.要約.-&gt; AN
+
+    classDef hi fill:#ffd966,stroke:#bf9000,stroke-width:3px,color:#000;
+    classDef dim fill:#f2f2f2,stroke:#bbb,color:#666;
+    class BABOK,S29148 hi;
+    class SWEBOK dim;
+</code></pre>
+
+</article>
+
+<script type="module" src="../assets/copy-id.mjs"></script>
+<script type="module" src="../assets/local-time.mjs"></script>
+</body>
+</html>
