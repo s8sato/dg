@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テストの配分はピラミッドではなく文脈で決める</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E9%85%8D%E5%88%86%E3%81%AF%E3%83%94%E3%83%A9%E3%83%9F%E3%83%83%E3%83%89%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E6%96%87%E8%84%88%E3%81%A7%E6%B1%BA%E3%82%81%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>テストの配分はピラミッドではなく文脈で決める</code> <button type="button" class="copy-id" data-copy="テストの配分はピラミッドではなく文脈で決める">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="テストの配分はピラミッドではなく文脈で決める" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844434000">2026-09-19 19:00 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>テストの配分はピラミッドではなく文脈で決める</h1>
+<p>Mike Cohn のテストピラミッドは、三種類のテストをどの割合で持つべきかの視覚的な指針を与える。<strong>だが実際の本数は、複雑さ・技術スタック・アプリケーションの重要度によって変わる。</strong></p>
+<h2>三層とその代償</h2>
+<p>ピラミッドの構造は、テストにおける根本的なトレードオフに基づいている。<strong>上に行くほど遅く、維持が高くつき、壊れやすくなる。</strong></p>
+<p><strong>単体テスト</strong>は土台であり最大の部分を占める。個々の部品を隔離して調べる、コードが果たすべき契約だ。機能的な変更があれば落ちて問題を知らせる。速く、落ちたときは特定の関数や行を指すのでデバッグが素直になる。</p>
+<p><strong>結合テスト</strong>は、個別にテストされた部品を組み合わせたときにだけ現れる問題を捕まえる。単体より遅く、落ちたときはどの相互作用が原因かを突き止める調査が要る。</p>
+<p><strong>E2E テスト</strong>は UI からバックエンドまで全体を覆い、実際の利用シナリオを模す。遅く、資源を食い、脆い。UI 要素の些細な変更で落ちることがあり、<strong>偽陰性に弱い</strong>。それでも、全体が滞りなく噛み合うという高い確信を与える。</p>
+<p>単体テストがマイクロ秒で終わるのに対し、E2E は数分かかりうる。数百、数千のテストがあれば、この差は劇的に効いてくる。</p>
+<h2>何をテストしないか</h2>
+<p>網羅的なテストは重要だが、<strong>何をテストしないかについても戦略的である</strong>必要がある。</p>
+<ul>
+<li>言語機能やフレームワークのコードをテストしない。それらの保守者の責任であって、こちらの責任ではない</li>
+<li>getter、setter、ビルダー、自動生成された DTO のような生成コードをテストしない</li>
+<li>private メソッドを直接テストしない。それを呼ぶ公開インタフェースに焦点を当てる</li>
+<li>外部サービスに依存するテストを書かない。単体ではモック、結合ではテストダブルを使う</li>
+</ul>
+<h2>モックは隔離の道具である</h2>
+<p>モックとは、依存の模造品を作って<strong>コードを隔離して試す</strong>技法だ。アヒルのように見えて鳴くが、アヒルではない。データベースへの永続化のような実際の業務ロジックは行わず、こちらが指示したとおりに振る舞う。</p>
+<p><code>UserRepository</code> と <code>EmailService</code> に依存する <code>UserService</code> を考える。両方を本物のまま使えば、それはもう単体テストではない。依存はそれぞれの単体テストで検証されるので、ここではモックに差し替えて <code>UserService</code> だけに集中する。</p>
+<p>裏を返せば、<strong>結合テストではこれが難しさになる</strong>。依存が協働することこそ検証したいので、複数の依存を管理し、正しい状態に保ち、相互作用を扱うことになる。いくつもの球を同時にお手玉するようなものだ。</p>
+<h2>カバレッジは地図の明かりである</h2>
+<p>カバレッジは、テスト実行時にコードのどれだけが実行されたかを測る。ゲームの地図に似ている。最初は全体が暗く、動き回った領域が見えるようになる。<strong>高いカバレッジは地図の大半を探索したことを、低いカバレッジはバグが潜みうる死角があることを意味する。</strong></p>
+<p>80〜90%の下限を課す組織もある。善意から出ているが、逆効果を生みうる。意味のある振る舞いを検証せずにコードを実行するだけのテストを書けば、<strong>指標を出し抜ける</strong>。</p>
+<p>100%を目指すのは虚栄の指標になりやすい。そうではなく、<strong>自分が書いているテストへのフィードバック機構として使う</strong>。事業の中核となるロジックのカバレッジが低ければ、注意を要する領域だという合図だ。データ運搬クラスや設定のカバレッジが高ければ、不要なものをテストしている合図かもしれない。目的は任意の数字に到達することではなく、本番に出すコードへの確信を築くことである（<a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E8%85%90%E3%82%89%E3%81%AA%E3%81%84%E5%94%AF%E4%B8%80%E3%81%AE%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A7%E3%81%82%E3%82%8B/">テストは腐らない唯一のドキュメントである</a>）。</p>
+<h2>効く条件</h2>
+<ul>
+<li>テスト戦略を立てるとき。ピラミッドは出発点であって、規範ではない</li>
+<li>E2E が増えすぎてビルドが遅いとき。同じ確信をより下の層で得られないかを問う</li>
+<li>カバレッジの下限が制度化されているとき。数字ではなく、低い箇所の中身を見る</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>業務ロジックが薄く、価値の大半が結合部にあるシステム。単体テストを厚くしても守られる範囲は小さい</li>
+<li>モックを過剰に使った場合。本物と乖離したモックは、通るのに本番で壊れるテストを生む</li>
+<li>テストを書く人と運用する人が分かれている組織。配分の判断に必要な障害の情報が、書く側に届かない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

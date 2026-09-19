@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI の能力と限界を分けて理解する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=AI%E3%81%AE%E8%83%BD%E5%8A%9B%E3%81%A8%E9%99%90%E7%95%8C%E3%82%92%E5%88%86%E3%81%91%E3%81%A6%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>AIの能力と限界を分けて理解する</code> <button type="button" class="copy-id" data-copy="AIの能力と限界を分けて理解する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="AIの能力と限界を分けて理解する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846223000">2026-09-19 19:30 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>AI の能力と限界を分けて理解する</h1>
+<p>AI の研究者になる必要はない。だが<strong>中核の概念を理解しておくことが、能力を応用に組み込み、専門家と話すことを可能にする。</strong></p>
+<h2>規則を書くか、例を与えるか</h2>
+<p><strong>機械学習</strong>は現代の AI の土台である。あらゆる判断を明示的にプログラムする代わりに、<strong>アルゴリズムがデータから型を学ぶ</strong>。</p>
+<p>従来のプログラミングは「入力＋プログラム＝出力」で、明示的な規則を書く。機械学習はこれを反転させ、**「入力＋出力＝プログラム」**にする。入力と正しい出力の例を与え、規則は自動的に見つけさせる。</p>
+<p>この方式は、<strong>人間には容易に判別できるが明示的にプログラムするのが難しい</strong>問題でうまくいく。迷惑メールの判別は、開いて読めば経験からすぐ分かる。だがその型をコードでどう書くか。何千もの要因に規則を立てても、送り手は戦術を進化させてすり抜ける。<strong>機械学習はこの複雑さを、例から学び新しい型に自動で適応することで回避する。</strong></p>
+<p>出会うのは主に三種類だ。<strong>分類</strong>（これは何か）、<strong>回帰</strong>（どれくらいか）、<strong>クラスタリング</strong>（どんな自然な群があるか──事前に群を教えずに発見させる）。</p>
+<p><strong>深層学習</strong>は、層を複数持つニューラルネットワークを使う機械学習の一種である。顔認識なら、最初の層が縁と線を検出し、次の層が形を認識し、深い層が目や顔の構造を特定する。<strong>従来の機械学習が型の認識を教えるなら、深層学習は機微と文脈を捉える能力を与える。</strong></p>
+<p><strong>生成 AI</strong> は、既存データの分析と分類ではなく、<strong>存在しなかった新しい内容を作る</strong>。<strong>大規模言語モデル</strong>はこれらを組み合わせたもので、語句の認識ではなく<strong>意味を理解し、会話を保ち、含意すら汲む</strong>。</p>
+<p>開発者は、アルゴリズムを一から作るのではなく、<strong>API と訓練済みモデルを通じて使う</strong>のが普通である。</p>
+<h2>限界はモデルの側にある</h2>
+<p>限界を見るときは、<strong>モデルと製品を区別する</strong>ことが決定的に重要だ。チャットボットを使うとき、相手は特定のモデルの上に乗って通信する製品である。以下の限界は主にモデルの水準に存在し、<strong>製品はしばしばそれを補う機能を足している</strong>。株価を訊いても訓練の期日までしか知らないが、製品は道具を呼んで Web を検索できる。</p>
+<p><strong>実時間の知識がない。</strong> 最新の文書、新しい道具やフレームワーク、実時間の出来事に触れられない。</p>
+<p><strong>幻覚。</strong> 最も危険な限界の一つ。意図的に誤るのではなく、<strong>事前訓練されたデータと与えられた文脈だけに基づいて応答を生成する</strong>。もっともらしく聞こえるが誤った答えを、自信を持って返しうる。事実を知っているのではなく、訓練データの型に基づいて生成しているからだ。</p>
+<p><strong>自分のコードベースの文脈を欠く。</strong> アーキテクチャ、既存の慣例、業務規則を理解できない。<strong>その文脈なしに孤立してコードを生成する</strong>ので、既存のシステムに適切に統合されず、チームの規約にも沿わない。</p>
+<p><strong>訓練データに埋め込まれた偏り。</strong> 既存のリポジトリと文書で訓練されており、そこには古びた実践、文化的な偏り、<strong>アクセシビリティや包摂を考慮しない</strong>やり方が含まれうる。</p>
+<p><strong>業務要件を理解できない。</strong> 性能と保守性のトレードオフを比較検討することも、規制への適合を理解することも、自分の業界や利用者についての領域知識を要する判断もできない。</p>
+<p><strong>領域によって性能が一貫しない。</strong> 人気のある言語では優れているが、<strong>訓練データが限られる新しいフレームワークや専門領域では苦戦する</strong>。</p>
+<p><strong>プライバシーと安全の危険。</strong> 多くの基盤が会話履歴を保存し、入力をモデルの改善に使う。<strong>独自コード、API 鍵、スキーマを共有すること</strong>は、脆弱性と知的財産の懸念を生む。</p>
+<p><strong>AI が生成したコードは、人間が書いたコードと同じ厳格な手順で扱う。</strong> 徹底的なテスト、レビュー、慎重な統合計画を要する初稿と見なす。<strong>生成で節約した時間は、検証に再投資する。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>AI を応用に組み込む設計をするとき。分類・回帰・クラスタリングの区別が、何を期待できるかを決める</li>
+<li>生成された答えを鵜呑みにしそうなとき。限界の一覧が、どこを疑うべきかを教える</li>
+<li>機密情報を貼り付けようとしたとき。プライバシーの危険は、モデルではなく自分の責任で管理する</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>限界の一覧が古びる場合。製品側の補完は速く進み、「できない」は数ヶ月で変わりうる</li>
+<li>訓練データの偏りの検出。原理的に、自分が知らない偏りは自分では見つけられない</li>
+<li>「検証に再投資する」が守られない場合。速度の利益が可視で、検証の費用が不可視なぶん、圧力は常に検証を削る側に働く</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

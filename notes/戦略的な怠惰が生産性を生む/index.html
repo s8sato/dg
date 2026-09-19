@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>戦略的な怠惰が生産性を生む</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E6%88%A6%E7%95%A5%E7%9A%84%E3%81%AA%E6%80%A0%E6%83%B0%E3%81%8C%E7%94%9F%E7%94%A3%E6%80%A7%E3%82%92%E7%94%9F%E3%82%80">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>戦略的な怠惰が生産性を生む</code> <button type="button" class="copy-id" data-copy="戦略的な怠惰が生産性を生む">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="戦略的な怠惰が生産性を生む" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>戦略的な怠惰が生産性を生む</h1>
+<p>怠惰なプログラマの気風（lazy programmer ethos）とは、サボることではなく<strong>効率に焦点を置く哲学</strong>である。手を動かす前に考える時間を自分に与えることが、結果として速い。</p>
+<h2>反射としての実装</h2>
+<p>新人エンジニアの多くは、問題領域を検討する一拍を置かずに、反射的にコードを書き始める。これは勤勉に見えるが、実際には最も高くつくやり方になりうる。戦略的に怠けることは、考える時間を確保することであり、それがより良い解と高い生産性につながる。</p>
+<p>馬術家 Pat Parelli の言い回しが効く。かかるだけの時間をかければ、結果的に短い時間で済む。総当たり（brute force）から始めるのは構わないが、そこで止まらず設計を反復すること。計算量の見積もりが役に立つのはこういう場面だ。バブルソートを書けることと、それが最善でないと知っていることは別で、エンジニアなら最良・最悪・平均のケースを考えたうえで選ぶ。</p>
+<h2>自分が最初の一人である確率は低い</h2>
+<p>この気風の実践的な核は、<strong>探す時間を惜しまない</strong>ことにある。ある問題を解こうとしている自分が、その問題を解く最初の人間である確率は低い。10分の検索が数日の作業を省くことは珍しくない。「もっと簡単なやり方があるはずだ」と感じたなら、たいていある。</p>
+<p>Nate がキャリアの初期に受けた仕事は単純だった。請求書を印刷・郵送する際に郵便局側で表記が揃うよう、データベース上の請求先住所を大文字化する。テックリードは、どこを直すか、すでに退職した誰かが書いた大文字化関数をどう呼ぶかまで、手取り足取り教えてくれた。</p>
+<p>ところがその関数を開いてみると、不自然に複雑だった。大文字化したい文字列という引数が一つあれば済むはずが、引数は十数個ある。理解するだけで何時間もかかりそうだった。これは言語側が解決しているはずの種類の問題に見えた。少し調べると、案の定、言語には組み込みの大文字化関数があった。Nate はそちらを使った。</p>
+<p>翌週のチーム会議で作業の話題になり、同僚が「Joe の大文字化関数は使った？」と訊いた。いいえ、と答えた瞬間、部屋中の視線が集まった。<strong>その場で最も経験の浅い人間以外、誰もその組み込み関数の存在を知らなかった</strong>。社内関数が書かれた当時には言語機能がなかったのかもしれない。真相は分からない。ただ、誰も確かめ直していなかった。</p>
+<h2>継承した前提を検算する</h2>
+<p>この逸話が示すのは検索技術の話ではない。<strong>既存の手段は、それが書かれた時点の制約を凍結している</strong>ということだ。制約は変わる。言語は機能を足し、ライブラリは成熟する。にもかかわらず、既存の手段はレビューされないまま再利用され続ける。</p>
+<p>つまり戦略的な怠惰とは、書く量を減らすことであると同時に、継承した前提を一度だけ検算することでもある。数時間の調査が数週間を節約しうるのは、節約されるのが実装時間ではなく、間違った土台の上に積み上げた分の保守時間だからだ。</p>
+<p>同じ構えは、コードの再利用だけでなく <a href="../%E8%A7%A3%E6%B1%BA%E7%AD%96%E3%81%AB%E9%A3%9B%E3%81%B3%E3%81%A4%E3%81%8F%E5%89%8D%E3%81%AB%E5%95%8F%E9%A1%8C%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B/">解決策に飛びつく前に問題を定義する</a> ことにも及ぶ。手段を疑うのと、そもそも解くべき問題を疑うのは、同じ一拍から生まれる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>目の前のタスクが「よくある問題」に見えるとき。標準ライブラリ・言語機能・枯れた OSS がすでに解いている可能性が高い</li>
+<li>社内の共通関数やユーティリティを渡されたが、不自然に複雑に見えるとき。それが書かれた時点の制約を疑う合図</li>
+<li>見積もりに対して実装が長引き始めたとき。手段そのものが間違っている兆候でありうる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>調査コストが実装コストを超える規模の問題。数行で書けるものを30分探すのは逆転している</li>
+<li>依存を増やすこと自体のコストが高い文脈（組込み、厳しい監査、サプライチェーンリスクを重く見る組織）。「既存の解決策がある」ことと「それを採用してよい」ことは別の判断である</li>
+<li>探索に終わりがない問題。選択肢が過剰な領域では、探すこと自体が先延ばしに転化する。時間箱を切る必要がある</li>
+<li>学習が目的の場合。車輪の再発明は、車輪の構造を知るための最短経路でもある</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../未知のコードは履歴と実行から読む/">未知のコードは履歴と実行から読む</a></li><li><a href="../良いコードは「少ない」コードである/">良いコードは「少ない」コードである</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

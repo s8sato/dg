@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テストは腐らない唯一のドキュメントである</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E8%85%90%E3%82%89%E3%81%AA%E3%81%84%E5%94%AF%E4%B8%80%E3%81%AE%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>テストは腐らない唯一のドキュメントである</code> <button type="button" class="copy-id" data-copy="テストは腐らない唯一のドキュメントである">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="テストは腐らない唯一のドキュメントである" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>テストは腐らない唯一のドキュメントである</h1>
+<p>文書は古びる。テストは古びない。<strong>継続的インテグレーションを通すために動き続けねばならない</strong>からだ。</p>
+<h2>how と supposed to の違い</h2>
+<p>コードは何かが<strong>どう動くか</strong>を教える。テストは<strong>どう動くべきか</strong>を教える。だから未知のコードベースでは、実装より先にテストを読むとよい。何をするはずかを掴んでから、実際にどうやっているかに降りる。</p>
+<p>一定額を超える注文に1割の大口割引が適用されることを確かめるテストがあれば、そこには「割引が顧客種別ではなく注文規模で決まる」という仕様が書かれている。</p>
+<pre class="hljs"><code><span class="hljs-meta">@Test</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title">shouldApplyBulkDiscountForLargeOrders</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">Customer</span> <span class="hljs-variable">regularCustomer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title">Customer</span>(CustomerType.REGULAR);
+    <span class="hljs-type">Order</span> <span class="hljs-variable">bulkOrder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title">Order</span>(regularCustomer, <span class="hljs-number">500.00</span>);
+    <span class="hljs-type">double</span> <span class="hljs-variable">finalPrice</span> <span class="hljs-operator">=</span> pricingService.calculateFinalPrice(bulkOrder);
+    assertEquals(<span class="hljs-number">450.00</span>, finalPrice, <span class="hljs-number">0.01</span>);
+}
+</code></pre>
+<h2>三つの読み方</h2>
+<p><strong>業務プロセスを読む。</strong> テストはしばしばユーザーストーリーに対応する。結合テストまで視野を広げれば、コンポーネントが協調して要件を満たす全体像が見える。始点から終点までを検証するテストの準備コードは、本番でシステムがどう振る舞うかの文脈をくれる。</p>
+<p><strong>境界を読む。</strong> エッジケースとは、入力や動作条件の極端な縁で<strong>想定が崩れる場所</strong>だ。<code>shouldHandleEmptyList</code>、<code>shouldRejectInvalidInput</code>、<code>shouldTimeoutAfterTenSeconds</code> といった名前には特に注意を払う。システムの能力の限界と破綻の地点を示している。有効期限切れのカードが穏当に拒否されることを確かめるテストは、実装を読むだけでは気づきにくい振る舞いを一行で教える。</p>
+<p><strong>実行可能な文書として書く。</strong> 文書とコードの乖離は宿命ではない。テストを文書として読めるかどうかは、テストを文書として書いたかどうかで決まる。</p>
+<h2>数字は嘘をつく</h2>
+<p>リリースのたびに退行が出るプロジェクトがあった。テストの有無を尋ねられたテックリードは誇らしげに答えた。カバレッジは92%ある、と。</p>
+<p>テストコードを見ると奇妙なパターンがあり、それはコードベース全体に蔓延していた。テックリードのもとへ戻って告げる──<strong>テストにアサーションが一つもない</strong>。返ってきたのは、カバレッジの数字の繰り返しだった。</p>
+<p>教訓は二重だ。<strong>指標は誤誘導しうる</strong>。そして、<strong>実践の価値と目的を見失うな</strong>。儀式でしかないなら、期待した効用は得られない。</p>
+<h2>効く条件</h2>
+<ul>
+<li>未知のコードベースに入ったとき。テストは <a href="../%E6%9C%AA%E7%9F%A5%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E5%B1%A5%E6%AD%B4%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80/">未知のコードは履歴と実行から読む</a> 際の最良の入口の一つになる</li>
+<li>仕様書が存在しない、または古いプロジェクト。テストが唯一の生きた仕様である可能性が高い</li>
+<li>実装が複雑で意図が読み取れないとき。「どう動くべきか」を先に得れば読解の負荷が下がる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>テストが実装の写像でしかない場合。実装を見ながら書かれたテストは仕様ではなく現状を固定しており、読んでも「べき」は出てこない</li>
+<li>アサーションのないテスト、モックの検証しかしないテスト。カバレッジは上がるが仕様は記述されていない</li>
+<li>テスト名が内容を語らない場合。名前が仕様の見出しである以上、名前が死んでいれば文書としても死んでいる</li>
+<li>網羅的なパラメータ化テスト。機械的な組み合わせの列挙は、意図ではなく入力空間を記述している</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../テストの配分はピラミッドではなく文脈で決める/">テストの配分はピラミッドではなく文脈で決める</a></li><li><a href="../良いコードは「少ない」コードである/">良いコードは「少ない」コードである</a></li><li><a href="../賢いコードは事故的複雑さである/">賢いコードは事故的複雑さである</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

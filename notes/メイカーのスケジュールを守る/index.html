@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メイカーのスケジュールを守る</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%A1%E3%82%A4%E3%82%AB%E3%83%BC%E3%81%AE%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92%E5%AE%88%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>メイカーのスケジュールを守る</code> <button type="button" class="copy-id" data-copy="メイカーのスケジュールを守る">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="メイカーのスケジュールを守る" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845889000">2026-09-19 19:24 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>メイカーのスケジュールを守る</h1>
+<p><strong>時間は再生しない資源である。</strong> 増えず、規模を変えられない。そして自分の予定への需要が尽きることはない。<strong>自分の時間の番人は自分しかいない。</strong></p>
+<h2>作る人と管理する人では単位が違う</h2>
+<p>ソフトウェアは科学よりも手仕事に近く、Paul Graham の言う<strong>メイカーのスケジュール</strong>を要する。</p>
+<p><strong>マネージャのスケジュール</strong>は一時間の枠が並んだものだ。どの時間も他の時間と同じなので、「予定表の空きを見つける」という発想で組まれる。意思決定の合意を取るにも、予算案を詰めるにも、それで機能する。<strong>だがソフトウェアを作るのには、うまく機能しない。</strong></p>
+<p>エンジニアとして、自分は普段どの時間単位で考えているだろうか。一日か。半日か。<strong>一日は一時間の枠の列ではない。</strong> 午前10時の30分の会議は、午前中をまるごと壊しうる。意味のあることができないほど小さな塊に時間を割ってしまうからだ。難しいことに着手する意味がない。どうせ途中で置いて、間の悪い会議へ文脈を切り替えることになる。</p>
+<p>ソフトウェアは結局のところ、問題を頭に読み込み、応用のメンタルモデルを作る営みである。デバッグを考えてみればいい。停止点を置き、再実行し、問題を再現し、内部状態を辿り、そして──<strong>誰かが割り込む。</strong> 心の中に積み上げた石は消えている。あの地点に戻るのにどれだけかかるだろうか。</p>
+<h2>守る手立てはある</h2>
+<p>技術を味方にする。<strong>割り込みを切ることを恐れない。</strong> 誘惑に抗えないなら、メールとメッセージを閉じる。通知を調整し、集中したいときは応答不可の設定を使う。</p>
+<p>週の構造を組み直すことも考える。<strong>会議のない時間帯、あるいは曜日を設けている組織もある。</strong> 会議を週に一日か二日に集めれば、混乱を集約して集中できる時間を増やせる。自分の会社にそれがないなら、<strong>実験として提案する</strong>。</p>
+<p>自分の律動にも留意する。<strong>朝型か、午後の早い時間に最も冴えるか。</strong> できる限り、自分が最良の状態にある時間に合わせて予定を組み、冴えないと分かっている時間には機械的な作業を置く。柔軟である必要はあるが、自分の周期に合わせ、妥当な期待を設定することが、幸福と生産性の両方を高める。</p>
+<h2>考える時間は最も安いバグ修正である</h2>
+<p><strong>自分に考える余地を与えることが、機能の完成や欠陥の修正を分ける。</strong> 本番で見つかったバグの修正が最も高くつくのは明らかだ。だから自動テストを書き、品質保証の工程を置く。<strong>だが最も安い解は、そもそもバグを入れないことである。</strong></p>
+<p>誤解の問題はソフトウェアに蔓延している。語はしばしば多義的で、同義に見えて決定的な機微で分かれる。<strong>予定を確保することが、設計の帰結を考え抜く決定的な時間を与える。</strong> かかるだけの時間をかければ、結果的に短い時間で済む（<a href="../%E8%A7%A3%E6%B1%BA%E7%AD%96%E3%81%AB%E9%A3%9B%E3%81%B3%E3%81%A4%E3%81%8F%E5%89%8D%E3%81%AB%E5%95%8F%E9%A1%8C%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B/">解決策に飛びつく前に問題を定義する</a>）。</p>
+<h2>集中は習慣にできる</h2>
+<p>集中し続けることは非常に難しい。メールと即時メッセージの絶え間ない洪水があり、インターネットの無限の気散じがある。</p>
+<p>ときにその精神的な戦いは、<strong>それが後回しにできる作業だという合図</strong>でもある。だが、やることの完了に構造を持ち込むことを恐れない。<strong>計画や手順があれば認知の負荷が下がり、最終的には集中が習慣になる。</strong> 無作為な方向へ引っ張られる代わりに、仕事を片付けるための枠組みを自分に与えることになる。</p>
+<p>ポモドーロ技法は、ごく微細な尺度でのアジャイル開発だと言える。取り組む作業を一つ選び、25分の計時を始め、それに取り組む。<strong>別にやるべきことを思いついたら書き留めて、目の前の作業に戻る。</strong> 時間が来たら文脈を切り替えて休む。四つ終えたら長めの休憩で自分に報いる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>予定表が会議で断片化しているとき。メイカーのスケジュールという語が、交渉の根拠になる</li>
+<li>一日の終わりに何も進んでいないと感じるとき。割り込みの構造を疑う</li>
+<li>難しい設計判断を前にしたとき。考える時間の確保は、最も安い欠陥対策である</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>運用当番や障害対応の期間。割り込みへの応答そのものが職務になる</li>
+<li>自分の予定を自分で決められない立場。交渉の余地がなければ、守る対象がない</li>
+<li>集中を守ることが孤立に転じる場合。応答しないことは、チームにとっての割り込みになりうる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>品質特性がアーキテクチャを決める</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%93%81%E8%B3%AA%E7%89%B9%E6%80%A7%E3%81%8C%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>品質特性がアーキテクチャを決める</code> <button type="button" class="copy-id" data-copy="品質特性がアーキテクチャを決める">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="品質特性がアーキテクチャを決める" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845234000">2026-09-19 19:13 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>品質特性がアーキテクチャを決める</h1>
+<p>アーキテクトの焦点は機能より広い。<strong>完全な解を届けるために必要な品質特性</strong>を考える必要がある。そして品質特性が決まれば、様式は半ば決まる。</p>
+<h2>「非機能」と呼ばない</h2>
+<p>品質特性（quality attributes）は、非機能要件、アーキテクチャ特性、品質目標などと呼ばれてきた。俗に「〜性」（illities）とも言う。</p>
+<p>ここで語を選ぶ理由がある。<strong>ステークホルダーに「非機能的なこと」を話すと、彼らはしばしば聞くのをやめる。</strong> 意識的にせよ無意識にせよ「非機能なものは要らない、業務要件に集中してくれ」と考えるからだ。</p>
+<p>彼らが何をさせたいかは重要で、満たす必要がある。だが<strong>彼らが考えていない大きな絵</strong>も見なければならない。「品質特性」と呼び換えると会話の調子が変わる。<strong>品質の話なら、ほとんどの顧客は喜んで議論する。</strong></p>
+<h2>つまみは全部 11 にはできない</h2>
+<p>保守性、拡張性、信頼性、安全性、配置容易性、単純性、使いやすさ、互換性、耐障害性──一覧は長い。どれが最も重要かは<strong>場合による</strong>。デバイスドライバなら保守性より性能がはるかに重要かもしれないし、EC 基盤なら可用性と拡張性が優先される。</p>
+<p>厄介なのは、<strong>一部の品質特性が互いに反比例する</strong>ことだ。一つを最大化すると別のものが最小化される。安全性と使いやすさはしばしば対立する。網から切り離し施錠した部屋で動かし、ログイン画面すら持たないシステムは完全に安全だが、まるで使えない。</p>
+<p>課題は、品質特性を特定し、<strong>互いに正しい緊張関係のもとに配置すること</strong>である。そして往々にして、目に見えにくい品質特性の価値をステークホルダーに納得させる必要がある。</p>
+<h2>要求の言葉から拾う</h2>
+<p>どの品質特性が効くかは、<strong>特定の語句が合図になる</strong>。</p>
+<p>人気公演のチケット販売サイトを考える。数千の同時利用者、発売時には毎秒1万に達する突発。同じ座席を二度売らない。残席の概観を見せる。</p>
+<p>ここから読み取れるのは<strong>高い拡張性と回復性</strong>を要する解であり、最初の殺到のあとはほぼゼロまで縮小できることだ。座席を確保する仕組みが要るが、個人が数百席を押さえられてはならない。そして要求には書かれていないが、<strong>ボットをどう排除するのか。</strong></p>
+<p>重要な品質特性の見当がついたら、<strong>順位を付ける</strong>。マインドマップでも表でも番号付きの一覧でもよい。できたらステークホルダーに共有し、意見を受けて反復する。</p>
+<h2>様式は品質特性の帰結である</h2>
+<p>品質特性が決まると、様式の分析ができる。大きくは<strong>モノリシック</strong>（単一の配置単位）と<strong>分散</strong>（複数の配置単位）に分かれる。</p>
+<p>モノリスは保守不能だと揶揄されがちだが、<strong>罪は配置の形ではなく構造の悪さにある</strong>。保守可能なモジュラーモノリスは作れるし、規律を欠けば高度に分散したシステムこそ進化させにくい。</p>
+<p>マイクロサービスは優れた弾力性と拡張性を与えるが、網越しの往復が性能を損ない、複雑さと費用が増す。監視と可観測性が要り、誤りの追跡が難しくなる。<strong>拡張性と弾力性が鍵でないなら、他の様式のほうがよい。</strong></p>
+<p>様式ごとに各特性への「星の数」があると言えるが、<strong>分析は星が最も多いものを選ぶことではない</strong>。ある特性が自分の用途で重要なら、一見よく見えない様式へ導かれる。学術的に完璧なアーキテクチャを作ろうとして失敗するプロジェクトは多い。<strong>良いアーキテクトは、締切を守りながら可能な限り最良の決定をする。</strong></p>
+<h2>見えにくい価値は説得が要る</h2>
+<p>課題の半分は技術の外にある。目に見えにくい品質特性の価値を、<strong>相手に関係のある言葉と例で</strong>説明しなければならない。純粋に技術的な枠組みで語らない。共通の土台を見つけ、相手の懸念について会話する。重要でないと思っても聞く。<strong>掘るに値するものはほぼ必ずある。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>要求のヒアリング直後。書かれた語句から品質特性を拾い、順位を付けて返す</li>
+<li>ステークホルダーが機能にしか関心を示さないとき。「非機能」を「品質」と言い換える</li>
+<li>様式の選定に入るとき。品質特性の順位が決まっていれば、流行ではなく要求で選べる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>品質特性の順位が組織内で合意されない場合。技術的な分析では解けず、意思決定の所在の問題になる</li>
+<li>星の数の比較に終始する場合。様式の一覧表は、自分の用途での重みを与えてくれない</li>
+<li>要求が極端に薄い段階。拾うべき語句がなければ、品質特性は推測になる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../アーキテクチャとはトレードオフの選択である/">アーキテクチャとはトレードオフの選択である</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賢いコードは事故的複雑さである</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E8%B3%A2%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E4%BA%8B%E6%95%85%E7%9A%84%E8%A4%87%E9%9B%91%E3%81%95%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>賢いコードは事故的複雑さである</code> <button type="button" class="copy-id" data-copy="賢いコードは事故的複雑さである">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="賢いコードは事故的複雑さである" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>賢いコードは事故的複雑さである</h1>
+<p>ソフトウェアは難しく、扱うドメインは複雑だ。だが<strong>すべての複雑さが等価ではない</strong>。</p>
+<h2>二種類の複雑さ</h2>
+<p>Fred Brooks は「銀の弾丸はない」で、本質的複雑さ（essential complexity）と事故的複雑さ（accidental complexity）を分けた。</p>
+<p><strong>本質的複雑さ</strong>はソフトウェアに内在する。業務規則の機微、チームとの意思疎通、コードベースが絶えず変わるという性質。取り除く手立てはない。給料に含まれている。</p>
+<p><strong>事故的複雑さ</strong>は、開発者が物事を必要以上に難しくするやり方だ。騒々しい技術、重量級の道具立て。そして自分の賢さを示すコード。迷ったら単純にしておく。</p>
+<h2>事故を誘う書き方</h2>
+<p>言語には<strong>誤りを誘発する形式</strong>がある。</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> (condition)
+    doFoo();
+    doBar();
+</code></pre>
+<p>波括弧の省略を好む開発者はいる。冗長でないから、と。では別の開発者が二つ目の文を足したとき、波括弧を足すことを思い出すか、それともインデントに誘惑されるか。われわれのうちの一人は、この形式のデバッグに二週間近くを費やした。</p>
+<p><strong>自分がはっきり理解していることは、チーム全体に行き渡っていることを保証しない。</strong> 規約を更新し、静的解析をパイプラインに組み込む。</p>
+<h2>コメントは重複である</h2>
+<p>コメントは DRY 原則に違反する。多くの場合、コードを書き、振り返ってそのコードについて書いている。保守の頭痛の種にもなる。コードを直したとき、コメントも直す時間を取るだろうか。やがて両者は乖離し、数年後に来る開発者にとって堆積層が一枚増える。</p>
+<p><strong>何をしたかを文書化するより、コードを読みやすくすることに時間を使うほうがよい。</strong> 良い名前はコメントに勝る。コメントを書きたくなったら、まずメソッドか変数の改名を試す。ほぼ必ず、コメントは不要になる。</p>
+<p>最も役に立たないのは、ファイル冒頭を数百行占める変更履歴のブロックだ。ソース管理ツールに仕事をさせればよい。</p>
+<h2>それでも書くとき</h2>
+<p>教条主義は正しい道であることが稀だ。自明でないことをしていて単純化の方法が見つからなかったなら、コメントは役に立つ。ただし<strong>何をしたかではなく、なぜそうしたか</strong>に焦点を当てる。それでも、説明を要するコードなら書き直すほうがいい。</p>
+<p>未来の自分への覚書や、この手当ては動くがなぜ動くかまだ分かっていない、という警告としても機能する。次の保守担当者に向けて「このルーチンを『最適化』しようと試み、それがいかにひどい過ちだったかを悟ったら、無駄にした時間のカウンタを増やしてほしい」と書き残す開発者もいる。良し悪しは場合によるが、避ける理由はない。</p>
+<h2>コメントの代わりにテストを書く</h2>
+<p>流暢なスタイルで書かれたテストは、<strong>本番コードと一緒に進化する実行可能な仕様</strong>になる（<a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E8%85%90%E3%82%89%E3%81%AA%E3%81%84%E5%94%AF%E4%B8%80%E3%81%AE%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A7%E3%81%82%E3%82%8B/">テストは腐らない唯一のドキュメントである</a>）。既存コードにテストを足すことは、学んだことを捕まえて他の開発者に渡す行為でもある。</p>
+<p>公開するサービスについても、大量のコメントより<strong>消費者駆動契約</strong>（consumer-driven contract）のほうが頑健だ。契約を破っていない限り、下流を壊す心配から解放されて進化させられる。利用者の側も、実行できるテスト一式を持つことで確信を得る。</p>
+<h2>効く条件</h2>
+<ul>
+<li>レビューで「賢い」書き方に出会ったとき。本質的か事故的かという分類が、好みの議論を判断の議論に変える</li>
+<li>コメントを書きたくなったとき。まず改名を試すという順序が、ほぼ常に短く正確な結果を生む</li>
+<li>言語の暗部（省略可能な波括弧、暗黙の型変換）に依存した書き方を見つけたとき</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>技巧が必然である層。暗号実装、数値計算、ホットパスでは「賢い」ことが要件でありうる。その場合こそ、なぜそう書いたかのコメントが要る</li>
+<li>事故的と本質的の切り分けが当人の熟達度に依存する場合。ある人の事故的複雑さは、別の人にとっては言語の慣用表現である</li>
+<li>規約や監査でコメントが義務づけられている場合。DRY の議論は制度の前では通らない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../コードレビューが機能する条件は信頼である/">コードレビューが機能する条件は信頼である</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

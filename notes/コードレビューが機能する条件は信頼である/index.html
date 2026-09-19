@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コードレビューが機能する条件は信頼である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%B3%E3%83%BC%E3%83%89%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E6%A9%9F%E8%83%BD%E3%81%99%E3%82%8B%E6%9D%A1%E4%BB%B6%E3%81%AF%E4%BF%A1%E9%A0%BC%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>コードレビューが機能する条件は信頼である</code> <button type="button" class="copy-id" data-copy="コードレビューが機能する条件は信頼である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="コードレビューが機能する条件は信頼である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>コードレビューが機能する条件は信頼である</h1>
+<p>レビューは、メソッド一つへの意見を同僚に求めることから、数時間の読み合わせまで幅がある。形式が何であれ、目的は<strong>学び、経験を共有し、知識を社会化すること</strong>にある。</p>
+<h2>計算機にできないことに時間を使う</h2>
+<p>書式やスタイルの指摘は自動化できるし、すべきだ。計算機に任せる。人間の時間は、計算機が検出できないものに使う。</p>
+<ul>
+<li>メソッド名と変数名は明瞭で簡潔か</li>
+<li>コードは読めるか。重複はないか</li>
+<li>ログ、トレース、メトリクスは適切か</li>
+<li>インタフェースはコードベースの他の部分と一貫しているか</li>
+<li>誤りを誘発する形式を使っていないか（<a href="../%E8%B3%A2%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E4%BA%8B%E6%95%85%E7%9A%84%E8%A4%87%E9%9B%91%E3%81%95%E3%81%A7%E3%81%82%E3%82%8B/">賢いコードは事故的複雑さである</a>）</li>
+<li>モデルは正しいか。抽象を選び間違えていないか</li>
+</ul>
+<h2>チェックボックスにしない</h2>
+<p>マージ前のレビューを全コードに義務づける組織は多い。目標は立派だが、往々にして「レビューして」と頼み合い、互いにチェックを入れるだけの儀式に終わる。善意から出ていても、これでは目的が潰れる。<strong>小さなバッチで作業すれば、レビューは簡単で効果的になる。</strong></p>
+<p>プルリクエストは、午後いっぱいビデオ会議でコードを争うより快適ではある。だが結束と信頼を育てるとは限らない。粗探しの機会、縄張り争いの場、決着済みの議論の再燃に使われることがある。「自分には問題なく見える」で流されることもあり、これもチェックボックスの一種だ。</p>
+<p>テキストには<strong>声の調子も身振りもない</strong>。刺々しいつもりのないコメントが、そう受け取られうる。特に経験の浅い同僚がプルリクエストを恐れていても驚くにあたらない。自分がどう扱われたいかを問い、そのとおりに振る舞う。<strong>上位の職位ほど、範を示す責任がある。</strong></p>
+<h2>批判されるのは難しい</h2>
+<p>開発者は自分の仕事に多くを注ぎ込むので、指摘を個人的に受け取らずにいるのは難しい。レビューは、新しい言語機能を知らなかったことや、より単純な解法にすぐ気づかなかったことで誰かに恥をかかせる機会ではない。<strong>コードについての議論であって、コーダーについての議論ではない。</strong></p>
+<p>皮肉を避ける。謙虚に、助けになる問いを立てる。良いところも指摘する。自分の経験を語る──個人的な物語は重く、変化への自然な抵抗を和らげる。<strong>断定には注意する。</strong> 「それは動かない」と宣言する前に、自分が知らない背景や制約がないか確かめる。</p>
+<p>誰かのコードが気になるなら、直接話すことを恐れない。集団の場では人は防御的になる。一対一の短い会話が答えであることは多い。<strong>待ち伏せはしない。あの種のやりとりで得をする人間はいない。</strong></p>
+<h2>信頼を育てる</h2>
+<p>チェックボックスでも空虚な承認でもないなら、何をすればよいか。目的を見失わないことだ。経験を共有し、学び、チームとして育ちながら、紛らわしい慣用表現や非推奨の手法を避ける。<strong>集団的なコードの所有と、チーム内の信頼を育てる。</strong></p>
+<p>週に一度、面白かった欠陥について話す場を設けるのは強力な学習手段になる。ある問題に出くわしたとき何をすべきかは全員が知っていると思い込みがちだが、話してみれば知識は広がる。金曜の朝会で少し時間を取るだけで配当がある。</p>
+<h2>効く条件</h2>
+<ul>
+<li>変更が小さいとき。大きなバッチは、丁寧なレビューを構造的に不可能にする</li>
+<li>チームに経験の幅があるとき。レビューが最も効くのは、教える機会としてである</li>
+<li>レビュー文化を作り直したいとき。自動化できるものを自動化するだけで、議論の質が変わる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>心理的安全性が低いチーム。信頼がレビューの前提である以上、レビューで信頼を作ろうとする順序は逆になる</li>
+<li>レビュー通過率やコメント数が評価指標になっている場合。儀式化が制度的に強制される</li>
+<li>非同期・多時間帯のチームで、一対一の会話に切り替える手段がない場合。テキストの限界を回避できない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../AIは道具でありあなたは責任の引受人である/">AI は道具であり、あなたは責任の引受人である</a></li><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

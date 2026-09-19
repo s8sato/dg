@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>勝ちを記録する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%8B%9D%E3%81%A1%E3%82%92%E8%A8%98%E9%8C%B2%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>勝ちを記録する</code> <button type="button" class="copy-id" data-copy="勝ちを記録する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="勝ちを記録する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846024000">2026-09-19 19:27 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>勝ちを記録する</h1>
+<p>ソフトウェアの世界は速く動く。<strong>一つの問題にすべてを注ぎ込み、すぐ次へ移る。</strong> だから、起きたその時に記録しないと残らない。</p>
+<h2>勝ちの記録は複数の仕事をする</h2>
+<p>複雑なバグを直したのでも、新機能を実装したのでも、同僚や共同体から肯定的な反応をもらったのでも、<strong>どんなに小さく見えても勝ちは勝ちである</strong>。</p>
+<p>記録は複数の役に立つ。インポスター症候群に襲われたときの<strong>強力な思い出し装置</strong>になる。苦しい時期の自信の支えになる。人事評価、履歴書の更新、面接での貴重な材料になる。そして<strong>自分が何を勝ちと見なしてきたかの型</strong>を教えてくれる。</p>
+<p>置き場所は問わない。複数端末で同期されクラウドに退避される電子的なものが理想だが、紙でもよい。専用の知識管理アプリである必要も、凝った構造も要らない。</p>
+<p>記録するもの──技術的な勝ち（実装した機能、解決したバグ）、自分が始めた工程の改善、同僚やステークホルダーや共同体からの肯定的な反応、新しく身につけた技能、主導した発表や知識共有の場。<strong>日付を含めると評価や履歴書の更新で極めて有用になる。</strong></p>
+<p><strong>網羅的であるより具体的であれ。</strong> 「主力製品の性能を改善した」ではなく「仮想スレッドを有効にして主力製品の性能を25%改善し、顧客体験を向上させた」と書く。後者ははるかに効く。<strong>具体的な成果は、そのまま履歴書に使える。</strong></p>
+<h2>疑いは健全である</h2>
+<p>「自分はここにいてよいのか」「本当にこれができるのか」「これをやるだけ賢いのか」。<strong>この疑いはキャリアを通じて付きまとうかもしれない。だがそれは完全に健全であり、成長の駆動力になりうる。</strong></p>
+<p>やがて気づく。最初のインポスター症候群の感覚は、<strong>自分がここに属していないからではなく、良い仕事をしたいと思っているから</strong>だった。そしてそれは、<strong>自分が知らないことの海がどれほど広いかを理解している</strong>という徴候でもある。</p>
+<p><strong>「すべてを知っている」人には警戒したほうがいい。</strong> 彼らは知らないし、プロジェクトでしばしば危険になる。ソフトウェアは専門化された領域で、あらゆる細部を知ることはできない。<strong>謙虚さと自信の両方が要る。知っていることがあり、知らないことがある。それで完全に構わない。</strong></p>
+<h2>疑いを燃料に変える</h2>
+<p>よくある徴候には、それぞれ返し方がある。</p>
+<p><strong>技術的な議論で発言をためらう。</strong> → <strong>自分の経験から話す。</strong> 誰も他人の個人的な経験を無効にはできない。間違っていたなら、そこから学ぶ。</p>
+<p><strong>貢献する前にすべてを知っていなければと感じる。</strong> → すべてを知ることは決してないと受け入れる。<strong>早く受け入れるほど早く成長する。</strong></p>
+<p><strong>より経験のある開発者と自分を比べる。</strong> → 常により詳しい誰かがいる。その人のそばにいることは<strong>学ぶ機会</strong>である。</p>
+<p><strong>成功を技能ではなく運に帰する。</strong> → <strong>運とは準備が機会に出会うことである。</strong> 失敗から学び改善を続けるなら、成功は偶然ではなく技能から来ている。</p>
+<p><strong>自分がここに属していないと「見破られる」ことを心配する。</strong> → <strong>あなたはここに属している。</strong> 早く信じるほど、早くキャリアを楽しめる。</p>
+<p>自信は、<strong>同じ問題に何度も出くわすことで</strong>得られる。最初は「どう直せばいい」と頭が空転し、完全に途方に暮れるかもしれない。</p>
+<p>そしてレビューでの指摘を歓迎する。<strong>レビューする人が自分より賢いとは限らない。似た問題に、より頻繁に出会ってきただけである。</strong> 終えたら軽い振り返りをする──何が効いたか、何が効かなかったか、次は何を変えるか。</p>
+<p>失敗を悪いこととしてではなく、<strong>学ぶ機会</strong>として見る。旅路に凹凸はあるが、それでよい。<strong>失敗を恐れなくなったとき、本当の成長が始まる。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>何かを成し遂げた直後。後から思い出して書くことはできない</li>
+<li>人事評価や面接の準備。具体的な数字を伴う記録が、そのまま材料になる</li>
+<li>自分を疑っているとき。記録は、疑いに対する事実の反証になる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>疑いが健全な水準を超えている場合。慢性的な不安は、心構えの問題ではなく支援を要する問題でありうる</li>
+<li>記録が自己宣伝の材料としてしか使われない場合。成長の型を読む用途を失う</li>
+<li>成果が個人に帰属しにくい仕事。基盤や運用の改善は、記録しても「何もなかった」ように見える</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

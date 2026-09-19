@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>良いコードは「少ない」コードである</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E3%80%8C%E5%B0%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>良いコードは「少ない」コードである</code> <button type="button" class="copy-id" data-copy="良いコードは「少ない」コードである">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="良いコードは「少ない」コードである" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>良いコードは「少ない」コードである</h1>
+<p>ソフトウェア設計の目的は、<strong>人間の頭に収まる塊に切り分けること</strong>にある。ソフトウェアは増え続けるが人間の頭には上限があるので、変更を続けたければ切り方を変え続けるほかない。</p>
+<h2>まず書かない</h2>
+<p>コードが少ないほど、脳に読み込むものが少ない。だから最初の問いは「どう書くか」ではなく「書かずに済むか」になる。同じことが現在のコードベースにないか、標準ライブラリやフレームワークが解いていないか、既存の依存が解いていないか。すべてに「いいえ」なら書けばよい（<a href="../%E6%88%A6%E7%95%A5%E7%9A%84%E3%81%AA%E6%80%A0%E6%83%B0%E3%81%8C%E7%94%9F%E7%94%A3%E6%80%A7%E3%82%92%E7%94%9F%E3%82%80/">戦略的な怠惰が生産性を生む</a>）。</p>
+<h2>第零法則</h2>
+<p>コードを飼い慣らす実践の多くは<strong>高凝集・低結合</strong>に帰着する。凝集は似たものが一緒にある度合い、結合はモジュール間の相互依存の量。通知サービスを変えて印字モジュールが壊れてはいけない。多くのパターンは、異なる抽象度でこれを達成する手段にすぎない。</p>
+<h2>短さの具体</h2>
+<p><strong>定型コードを警戒する。</strong> 自分で書かなくても、プロジェクトの生涯にわたって運ぶことになる。スクロールが必要なクラスは長すぎる。</p>
+<p><strong>継承より合成を選ぶ。</strong> 車とトラックの上位クラス <code>Vehicle</code> に内燃機関を定義すれば、すべての車がエンジンを持つと保証できる。そこへ電気自動車が来る。EV は vehicle ではあるが、他の vehicle とは違う。継承を再利用の機構として使う開発者がいるが、<strong>再利用は副産物であって根拠ではない</strong>。</p>
+<p><strong>短いメソッドを選ぶ。</strong> 一つのことだけをし、それをうまくやる。名前に接続詞（and、or、but）が入っていたらやりすぎの兆候だ。名前を付けにくいなら、分解してみる。</p>
+<h2>逆ピラミッドで書く</h2>
+<p>Martin Fowler の助言が要点を突いている──<strong>意図と実装の分離に注意を払え</strong>。メソッド本体を調べずに、名前を読んだだけで何をするか分かるべきだ。この原則はしばしば数行、ときに一行の関数を生む。</p>
+<p>コードは新聞記事のように書ける。クラス名が見出し、メソッドのシグネチャを拾い読みすれば大筋が掴め、追いたければ深部へ降りられる。<strong>リードを埋めるな。</strong></p>
+<p>名前には時間をかける。<code>foo</code> や <code>bar</code> が蔓延しているのは、意味のある名前を考えるのに時間がかかるからだ。最初に浮かんだ語が最良であることは稀なので、ドメインを考え抜く前は<strong>デタラメ語を置いておく</strong>手もある。ただし中核のドメイン概念を絶えず改名しているなら、それは誤解の問題の徴候である。</p>
+<h2>指標は文脈の中でしか意味を持たない</h2>
+<p>循環的複雑度や結合度は洞察を与えるが、無批判に追ってはならない。結合度の高いクラスが、実は一群のクラスを隠すファサードだったら？ <strong>どんな指標も文脈に置き直さねばならない</strong>（<a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E8%85%90%E3%82%89%E3%81%AA%E3%81%84%E5%94%AF%E4%B8%80%E3%81%AE%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A7%E3%81%82%E3%82%8B/">テストは腐らない唯一のドキュメントである</a>）。水準ではなく傾向を見る。</p>
+<p>逆に、観察されると人は振る舞いを変えるというホーソン効果は利用できる。Nate は、テストの大半が「落ち続けるから」とビルドから除外されていたプロジェクトで、一桁のカバレッジを掲示し、朝会と振り返りで繰り返し話題にした。数字が上がるたび同僚を称賛した。数ヶ月後、70%に近づいていた。</p>
+<p>既存プロジェクトに静的解析を入れるときは、<strong>全ルールを有効にしてはいけない</strong>。手に負えない数の警告はチームの士気を挫く。合意できる数個から始め、直しきってから足す。</p>
+<h2>効く条件</h2>
+<ul>
+<li>新機能に着手する直前。「書かずに済むか」を一度通す</li>
+<li>クラスやメソッドが伸び続けているとき。スクロールの有無、接続詞の有無という機械的な合図が効く</li>
+<li>継承階層を設計しようとしているとき。「再利用のためか、本当に is-a か」を問う</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>分割そのものにコストがある文脈。細かすぎるメソッドや多すぎるサービスは読む箇所を増やす。「少ない」はファイル数ではなく<strong>理解に要する総量</strong>で測る</li>
+<li>生成コードやスキーマ定義。人間が読む前提が崩れている場所に短さの規範は効かない</li>
+<li>指標を人事評価に接続した瞬間。ホーソン効果は逆向きにも働き、数字を作る振る舞いが最適化される</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../テストの本当の価値は変更する勇気である/">テストの本当の価値は変更する勇気である</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AF%E4%BD%9C%E3%82%8B%E4%BA%BA%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E5%88%A4%E6%96%AD%E3%81%AB%E8%B2%AC%E4%BB%BB%E3%82%92%E6%8C%81%E3%81%A4%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</code> <button type="button" class="copy-id" data-copy="ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</h1>
+<p>プログラマ（programmer）・デベロッパ（developer）・ソフトウェアエンジニア（software engineer）の違いは、扱う技術の量ではなく、<strong>ライフサイクル全体のどこまでに責任を持つか</strong>にある。</p>
+<h2>三つの呼称の段差</h2>
+<p>ソフトウェアの世界は転用された語に満ちていて、五人に定義を訊けば五通りの答えが返る。それでもこの三語は同義ではない。</p>
+<p><strong>プログラマ／コーダー</strong>は、コードを生成する作業に焦点がある。特定の言語やフレームワークには熟達しうるが、SDLC（software development lifecycle）全体は視野に入っていない。多くの人がここからキャリアを始めるが、昇進の道はバグ修正と機能実装の反復の先にある。</p>
+<p><strong>デベロッパ</strong>は、届けるまでの全体像をより掴んでいる。複数の言語と業務ドメインを経験し、経験の浅いメンバーのメンターやペア相手になれる。</p>
+<p><strong>ソフトウェアエンジニア</strong>は、SDLC 全体にエンジニアリングの規律を持ち込む。コードが書けることは前提で、その上でスケーラビリティ、信頼性、効率、セキュリティを考える。規則を知っているだけでなく、<strong>いつ曲げてよいか、いつ破らねばならないか</strong>を判断できる。最も複雑で重要なシステムを任されるのはこの層だ。</p>
+<p>段差は知識量ではなく、判断の射程にある。「規則をいつ破るか」を判断できるとは、その判断の結果を引き受ける立場にいるということだ。</p>
+<h2>教育が作るのは出発点まで</h2>
+<p>大学のカリキュラムもブートキャンプも、コードを書く機械的な側面に焦点を置く。学部の計算機科学は本来、大学院へ進む準備として設計されており、アルゴリズム・言語設計・コンパイラ理論・OS を扱う。ブートキャンプは逆に、その時々の言語とフレームワークを短期間で詰め込む。前者は長持ちするが実務に直結せず、後者は実践的だが流行とともに移ろう。</p>
+<p>どちらも「日々実在のアプリケーションと向き合う」ための準備ではない。学習環境の課題は小さく、数ヶ月で終わり、ほぼ必ずゼロから始まる。既存コードの負債がない。一人で書く。採点されて終わる。</p>
+<p>現場はその逆である。既存・レガシー・継承されたアプリケーションと、自分が来る前に下された決定の全てを相手にする。コードはリポジトリではなく本番にあり、実在の人間がそれに依存する。そして仕事は終わらない。コードは生涯の大半を保守フェーズで過ごす。ソフトウェアは明確な始点と終点を持つプロジェクトではなく、価値を出し続ける限り投資が続くプロダクトだ。</p>
+<p>だから<strong>経歴の種類は問題にならない</strong>。独学でも学位でもブートキャンプでも、身についているかどうかだけが問われる。自分の歩んだ道を弁解する必要はない。逆に言えば、どの経路も「エンジニアの手前」までしか運んでくれない。</p>
+<h2>数学ではなく言語である</h2>
+<p>初期の計算機科学の学位課程は数学に強く寄っていて、教授陣の多くが数学の学位を持っていた。その名残で「数学が得意でないとエンジニアになれない」という通念が今も生きている。</p>
+<p>これは誤りだ。コーディングは本質的にコミュニケーションであり、仕事の大半は計算機ではなく<strong>他の開発者との対話</strong>に費やされる。数学的素養よりも言語的素養のほうがはるかに効く。コードを書くことは数ではなく言語の営みであり、その帰結は <a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9C%AA%E6%9D%A5%E3%81%AE%E4%BB%96%E4%BA%BA%E3%81%AB%E5%AE%9B%E3%81%A6%E3%81%9F%E6%89%8B%E7%B4%99%E3%81%A7%E3%81%82%E3%82%8B/">コードは未来の他人に宛てた手紙である</a> という原則に直結する。</p>
+<h2>効く条件</h2>
+<ul>
+<li>昇進・スコープ拡大が「より多く書けること」ではなく「より広く判断できること」で評価される組織にいるとき</li>
+<li>既存システムの保守・進化が仕事の中心を占めるとき（つまりほとんどの現場）</li>
+<li>自分の経歴（独学・非情報系・転向組）に引け目を感じているとき。判断の射程だけが問われるなら、出発点は問題にならない</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>職種として実装の速度と正確さが商品になっている場合（受託の一部、コンテスト、短命なプロトタイプ）。ここでは「判断の射程」はコストにしかならない</li>
+<li>判断の権限が構造的に自分にない場合。責任だけ降りてきて権限が来ない環境で「エンジニアたれ」と唱えても消耗する。先に権限の所在を変える交渉が要る</li>
+<li>キャリア初期の数年。まず手が動かないと判断の材料が溜まらない。順序として実装の熟達が先に来る</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

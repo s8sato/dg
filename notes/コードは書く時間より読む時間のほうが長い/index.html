@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コードは書く時間より読む時間のほうが長い</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9B%B8%E3%81%8F%E6%99%82%E9%96%93%E3%82%88%E3%82%8A%E8%AA%AD%E3%82%80%E6%99%82%E9%96%93%E3%81%AE%E3%81%BB%E3%81%86%E3%81%8C%E9%95%B7%E3%81%84">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>コードは書く時間より読む時間のほうが長い</code> <button type="button" class="copy-id" data-copy="コードは書く時間より読む時間のほうが長い">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="コードは書く時間より読む時間のほうが長い" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>コードは書く時間より読む時間のほうが長い</h1>
+<p>プログラミングの教え方は順序が逆になっている。<strong>読むより先に書くことを学ぶ</strong>のに、キャリアの相当部分は他人が書いたコードを読むことに費やされる。</p>
+<h2>白紙から始まらない</h2>
+<p>入門講座はいきなりコードを書かせる。ポーランド語やポルトガル語を同じやり方で学ぶ人はいないのに、だ。学術的な課題はほぼ必ず白紙から始まる──以前の仕事の重荷を背負わないグリーンフィールド開発だ。</p>
+<p>職業生活で白紙のエディタから始める機会は驚くほど少ない。実務の大半はブラウンフィールド開発であり、既存コードベースの制約の中で日々レガシーコードと向き合う。エージェント型のプログラミングが広まるほど、<strong>自分が書いていないコードと働く</strong>量はむしろ増える。</p>
+<p>レガシーという語が褒め言葉として使われることはまずない。だが<strong>何年も事業価値を出し、投資の継続を正当化してきた</strong>アプリケーションを貶めるべきではない。継承コード（heritage code）という枠組みのほうが適切だ。</p>
+<h2>四つの問題が同時にある</h2>
+<p>既存コードにまつわる問題を解けと言われたとき、解くべき問題は四つある。</p>
+<ol>
+<li><strong>事業上の問題を理解すること。</strong> ソフトウェアが世界を飲み込むにつれ課題は複雑化し続け、低いところの果実はあらかた摘まれた</li>
+<li><strong>先に来た開発者の目を通して問題を見ること。</strong> これがしばしば最も難しい。前任者は自分の知らないスタイル、パターン、ライブラリを使ったかもしれない。賛成するかどうかとは別に、ある問題には多くの解き方がある</li>
+<li><strong>抽象度が適切でない可能性。</strong> 汎用に過ぎるか、ドメインの機微を捉え損ねているか。理解可能にするには大きなリファクタリングが要るかもしれない</li>
+<li><strong>技術的負債の層を一枚ずつ剥がすこと。</strong> 今日のベストプラクティスは明日のアンチパターンだ。コードは<strong>書かれた時点のレンズ</strong>を通して見る必要がある。使われている言語機能から年代測定できることさえある</li>
+</ol>
+<p>さらにパッチの上のパッチがある。前任者が問題を理解していなかったのかもしれないし、AI アシスタントで一日2万行を生成したのかもしれない。そこに「早く直せ」が加われば、一つのメソッドの解読に午後を使う。</p>
+<h2>自分のコードを高く見積もる二つのバイアス</h2>
+<p>既存コードが嫌われる理由は技術的な難しさだけではない。</p>
+<p><strong>IKEA 効果</strong>。自分が作ったものに高い価値を置く傾向で、ある研究では、自分で組み立てた製品に同一の完成品より63%高い額を払うという結果が出ている。ソフトウェアでは「正しいやり方」への強い意見として現れる。</p>
+<p><strong>単純接触効果</strong>。馴染みのあるものを好む傾向で、言語をめぐる独断論の温床になる。Java にラムダ式が入ったとき「この新奇なラムダとやらがなぜ必要か」と問うた人がいた。ラムダが Java の当初の計画に含まれていたことを知らないまま。</p>
+<p>Paul Graham はこれを Blub 言語という架空の例で描いた。Blub プログラマが能力の連続体の下を見ると、日常的に使う機能を欠いた言語しか見えない。上を見ると奇妙な機能の束しか見えず、Blub になくても生産的なのだから要るはずがないと考える。</p>
+<p>同僚の頑なさが理解できないとき、これらを疑ってみるとよい。そして当然、<strong>自分が同じ傾向を示していないか</strong>も省みる。</p>
+<h2>自分の古いコードに落胆してよい</h2>
+<p>ひどいコードに毒づき、犯人が自分だったと気づく。誰にでもある経験だ。数年前のコードに少し落胆するなら、それは成長の証である。</p>
+<h2>効く条件</h2>
+<ul>
+<li>転職・異動の直後。コードベースの難しさを自分の能力不足と取り違えないために、四つの問題という分解が効く</li>
+<li>技術選定の議論が感情的になったとき。バイアスに名前があるだけで、議論を人格から切り離せる</li>
+<li>古いコードを「書き直すべきだ」と言いたくなったとき。それが価値を出してきた事実を先に認める</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>本当に捨てると決まったコード。読解への投資は回収されない</li>
+<li>バイアスの名前を他人への攻撃に使う場合。「それは IKEA 効果ですね」は議論を終わらせる道具になりうる。自分に向けるときにだけ安全</li>
+<li>継承コードという言い換えが、変更の必要性から目を逸らす口実になる場合。敬意と現状維持は別物</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

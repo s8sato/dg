@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>図は聴衆によって選ぶ</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%9B%B3%E3%81%AF%E8%81%B4%E8%A1%86%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E9%81%B8%E3%81%B6">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>図は聴衆によって選ぶ</code> <button type="button" class="copy-id" data-copy="図は聴衆によって選ぶ">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="図は聴衆によって選ぶ" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844329000">2026-09-19 18:58 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>図は聴衆によって選ぶ</h1>
+<p>図の消費者は多い。ユーザー、テスター、他の開発者、セキュリティ、金を出す人、プロジェクトマネージャ、アーキテクト、そして自分。<strong>開発者に完璧な図が、技術担当役員にも効くとは限らない。</strong></p>
+<h2>形式性と聴衆の広さは反比例する</h2>
+<p><strong>形式的であるほど、読み手はより技術的でなければならない。</strong> つまり意図を理解できる人の集合は小さくなる。Z 記法を理解できるだろうか。仮に完璧に理解できるとして、それは組織内でどれだけ共有されているだろうか。</p>
+<p>逆に非形式的であるほど届く範囲は広がる。UML は1997年に標準として採択されたが、多くのエンジニアは（UML の要素を借りつつ）非形式的な図を選ぶ。塗りつぶされた菱形と白い菱形の違いを知っていても、聴衆が知らなければ意味がない。<strong>うまくいくものを軽んじない。単純なほうがほぼ常に良い。</strong></p>
+<h2>種類は答えたい問いで決まる</h2>
+<ul>
+<li><strong>コンテキスト図</strong>: 境界を定義する最もズームアウトした視点。何が含まれ何が含まれないかを早期に合意させる。読み手は経営・PM・プロダクトオーナーまで広い</li>
+<li><strong>コンポーネント図</strong>: 実行時の主要素と、その協調・情報の流れ・インタフェース。知識移転とオンボーディングに効く</li>
+<li><strong>クラス図</strong>: 継承と合成の関係。<strong>すぐ古びる</strong>ので必要に応じてコードから抽出する。読み手は非常に技術的</li>
+<li><strong>シーケンス図</strong>: ある流れに関わる実体だけを示す。全相互作用を書く合理的な方法はない。アーキテクチャ上重要なものだけを記録する</li>
+<li><strong>デプロイ図</strong>: ノードとその上で動くソフトウェア。論理か物理かをラベルで明示する。<strong>品質特性の検証に早期に使う</strong>。24時間365日の可用性を要するシステムは、そうでないものとまるで違う構成になる</li>
+<li><strong>データモデル</strong>: 概念・論理・物理と具体度が上がる</li>
+</ul>
+<p>イベントストーミングやユーザーストーリーマッピングのような図に近い成果物では、<strong>作る過程そのもの</strong>が理解を生む。往々にして、関係者が問題について共通の理解を持っていないことが判明する。</p>
+<h2>読み手に合わせる実践</h2>
+<p><strong>単純にする。</strong> 図は騒がしくなりやすい。聴衆を圧倒し当惑させるための図──文字が詰まりすぎたもの、線が四方に走るもの──は、混乱以外の何も伝えない。<strong>誰かが解読できないなら、その図は無価値だ。</strong> すべてを一枚に収める規則はない。分割して、一枚から別の一枚を指させばよい。</p>
+<p><strong>読み手を知る。</strong> コードを書くときと同じで、最良のエンジニアは消費する人に焦点を合わせる（<a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9C%AA%E6%9D%A5%E3%81%AE%E4%BB%96%E4%BA%BA%E3%81%AB%E5%AE%9B%E3%81%A6%E3%81%9F%E6%89%8B%E7%B4%99%E3%81%A7%E3%81%82%E3%82%8B/">コードは未来の他人に宛てた手紙である</a>）。</p>
+<p>Nate は新しい Web アプリの主担当だったとき、線が一本も交差しないクラス図を誇らしく思い、アーキテクトに見せた。返ってきたのは肩をすくめる仕草だけだった。当時は分からなかったが、<strong>アーキテクトにはその図を理解するだけの文脈がなかった</strong>。彼はその業務ドメインを Nate ほど知らず、明白でない誤りを指摘しようがなかった。正しいと信じるほかなかったのだ。図が役に立たないという話ではなく、<strong>限界を知れ</strong>という話である。</p>
+<p><strong>色に頼らない。</strong> 色を使うなら凡例を付ける。自分のチームが新規を緑で表すからといって、他もそうだとは限らない。誰かが必ず印刷しようとするし、グレースケールで意味を失う。聴衆に色覚の異なる人がいることも前提にする。色には代替を用意する。</p>
+<p><strong>標準と雛形を定める。ただし規定的にしすぎない。</strong> ユースケースを使わないアジャイルのプロジェクトで、雛形が要求するからという理由だけでユースケース図を描く必要はない。<strong>雛形に押し返すことを恐れない。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>同じ内容を技術者と非技術者の両方に説明するとき。形式性を落とした別バージョンを作る判断ができる</li>
+<li>設計レビューの前。誰が読むかを先に決めれば、描く図の種類が決まる</li>
+<li>品質特性（可用性、スケール、セキュリティ）を検証したいとき。デプロイ図が最も早く矛盾を露出させる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>聴衆が混在した場で一枚しか見せられない場合。妥協した図は誰にも刺さらない。場を分けるほうがよい</li>
+<li>ドメインの文脈を共有していない相手に詳細な図を見せる場合。Nate の逸話のとおり、レビューは成立しない</li>
+<li>組織が記法を標準化しており、逸脱が許されない場合。聴衆最適化より一貫性が優先される</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

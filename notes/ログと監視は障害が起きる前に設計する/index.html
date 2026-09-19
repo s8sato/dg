@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ログと監視は障害が起きる前に設計する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%AD%E3%82%B0%E3%81%A8%E7%9B%A3%E8%A6%96%E3%81%AF%E9%9A%9C%E5%AE%B3%E3%81%8C%E8%B5%B7%E3%81%8D%E3%82%8B%E5%89%8D%E3%81%AB%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ログと監視は障害が起きる前に設計する</code> <button type="button" class="copy-id" data-copy="ログと監視は障害が起きる前に設計する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ログと監視は障害が起きる前に設計する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845441000">2026-09-19 19:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>ログと監視は障害が起きる前に設計する</h1>
+<p>本番にアプリケーションを放り込んで最善を祈る開発者は多い。<strong>便りがないのは良い便りだと思っている。</strong> 実際には、<strong>利用者はおかしいと言ってこない。黙って去る。</strong></p>
+<h2>幸福な経路は仕事の2割</h2>
+<p>新機能に着手するとき、幸福な経路──すべてがうまくいく理想の筋道──に焦点を当てるのは自然なことだ。だがそれは考えるべきことのごく一部でしかない。</p>
+<p>パレートの法則に倣えば、<strong>幸福な経路がコードの20%だとしても、境界条件と誤りの処理には80%の時間と労力がかかる</strong>。開発時間の大半はここで費やされ、経験を積んだ開発者はここで違いを見せる。</p>
+<p>具体的な戦略はこうなる。</p>
+<ul>
+<li><strong>優雅な劣化</strong>: 機能が失敗したとき、まるごと壊れるのではなく簡素化された版を出す。天気 API が落ちているなら、古いかもしれないと断りを入れてキャッシュを見せる</li>
+<li><strong>意味のあるエラーメッセージ</strong>: 「データベース接続に失敗しました」ではなく「いまデータを読み込めていません。数分後にもう一度お試しください」</li>
+<li><strong>デバッグのためのログ</strong>: 背後で何が起きたかを記録する。<strong>開発者に要る技術的詳細を記録し、利用者には必要なものだけを見せる</strong></li>
+<li><strong>代替手段</strong>: 常に第二案を持つ。主たる決済が落ちたら自動的に予備に切り替え、顧客が購入を完了できるようにする</li>
+</ul>
+<h2>ログは多すぎても少なすぎても盲目にする</h2>
+<p>ログは本番の問題への洞察を与える。難しいのは<strong>均衡</strong>である。<strong>不足すれば暗闇に置かれ、過剰なら雑音が重要な情報を覆い隠す。</strong></p>
+<p>水準の概念は言語を問わず共通している。ERROR は即座の対応を要する深刻な問題、WARN は害になりうる状況、INFO は通常の業務事象、DEBUG は詳細な調査情報。</p>
+<p>記録してはならないものがある。</p>
+<ul>
+<li><strong>機微な情報</strong>（パスワード、API 鍵、認証トークン、秘密）</li>
+<li><strong>個人を識別しうる情報</strong></li>
+<li>大きなオブジェクトや応答の全体。代わりに問題の特定に役立つ情報を記録する</li>
+<li><strong>複数の層にまたがる同じ情報の重複</strong></li>
+</ul>
+<h2>二種類の監視</h2>
+<p><strong>実時間の監視</strong>は、いま何が起きているかを追う。応答時間は遅すぎないか。サーバーの負荷や処理量は高すぎないか。</p>
+<p>ただし<strong>個々の指標が全体像を語ることはない</strong>。300ミリ秒の応答は速く見えるかもしれないが、<strong>普段が50ミリ秒なら問題の兆候である</strong>。</p>
+<p><strong>ログ</strong>は歴史的な記録として働く。問題が起きたとき、良いログは何がいつ起きたかを再構成させてくれる。調査の文脈を与えるのはログだ。</p>
+<p>いくつもの重大な障害を経て定まった規則がある。</p>
+<ol>
+<li><strong>問題が起きたときに必要になる情報を記録する</strong></li>
+<li>常に時刻と利用者の識別子を含める</li>
+<li><strong>誤りは誤りとして記す。重要な警報を info に埋めない</strong></li>
+<li>個人情報をログの外に置く</li>
+<li>古いログは容量を食い尽くす前に消す</li>
+</ol>
+<p>最初は単純に保つ。<strong>応答時間、誤りの件数、サーバーの資源。始めるにはそれで十分である。</strong> 凝った道具は後でよい。</p>
+<h2>配置は旅の終わりではない</h2>
+<p>本番に出たところが始まりである。<strong>うまく動いているときほど保守を先延ばししたくなるが、それは誤りだ。</strong> 小さく安価だった問題が、大きく高価な問題へ急速に変わる。</p>
+<p>OS の更新と安全修正は第一の防衛線になる。<strong>機能の更新は待てることがあるが、安全修正は速やかに当てる。</strong></p>
+<p>依存関係の管理は、<strong>保守の中で最も見過ごされている側面</strong>だと言ってよい。アプリケーションは数十から数百の外部ライブラリに依存し、そのそれぞれが脆弱性を抱えうる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>機能の実装に入る前。誤りの処理を後回しにすると、8割の作業が見積もりから抜ける</li>
+<li>本番で原因が分からない障害に遭ったとき。五つの規則が、次の障害での調査可能性を決める</li>
+<li>監視を導入するとき。三つの指標から始める判断が、道具選びの泥沼を避ける</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>異常の基準が分からない立ち上げ期。「普段は50ミリ秒」が分かるには、普段の蓄積が要る</li>
+<li>ログが分散している場合。複数サービスにまたがる一つの要求は、相関 ID なしには再構成できない</li>
+<li>警報が多すぎる場合。鳴り続ける警報は、鳴らない警報と同じである</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

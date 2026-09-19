@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テストの本当の価値は変更する勇気である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%9C%AC%E5%BD%93%E3%81%AE%E4%BE%A1%E5%80%A4%E3%81%AF%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E5%8B%87%E6%B0%97%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>テストの本当の価値は変更する勇気である</code> <button type="button" class="copy-id" data-copy="テストの本当の価値は変更する勇気である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="テストの本当の価値は変更する勇気である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844434000">2026-09-19 19:00 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>テストの本当の価値は変更する勇気である</h1>
+<p>自動テストの利点は多いが、<strong>一つが際立っている。自由にコードを書く勇気</strong>だ。バグの検出はその副産物にすぎない。</p>
+<h2>ロープなしで登るか</h2>
+<p>ソフトウェア開発は本質的に反復的で、書き、試し、リファクタリングし続ける。</p>
+<p>テストがなければ、人は慎重に書く。壊すような変更を入れまいとする。新しい技法や創造的な解を試すことを恐れる。<strong>変更とリファクタリングは、それ自体がストレスの多い経験になる。</strong> アプリケーション全体を理解しているわけではないし、副作用は予測しにくい。</p>
+<p>テストなしで作業するのは、ロープなしで山を登るようなものだ。うまくいけばアドレナリンが出るが、一度の失敗が致命的になる。</p>
+<p>頑健なテスト一式は安全網になる。この自由が、コードへの向き合い方を根本から変える。変更し、新しい解を試し、確信を持ってリファクタリングできる。問題が出ればテストが捕まえると分かっているからだ。</p>
+<h2>テストは設計圧力である</h2>
+<p>テストを先に書くことは、話す前に考えるようなものだ。思考を整理し、構造を与える。初学者の第一目標はコードを動かすことだが、<strong>テストを書こうとすると改善すべき箇所に早く気づく。</strong></p>
+<pre class="hljs"><code><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BlogPostController</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title">publish</span><span class="hljs-params">(Post post)</span> {
+        <span class="hljs-comment">// 記事をデータベースに保存する（isPublished を true にする）</span>
+        <span class="hljs-comment">// 公開されたことをログに出す</span>
+        <span class="hljs-comment">// 購読者に新着メールを送る</span>
+    }
+}
+</code></pre>
+<p>一見すると問題ないように見える。だがこのメソッドのテストを書こうとした瞬間、やりすぎていることに気づく。データベースとの通信、ログ出力、メール送信。<strong>単一責任の原則──クラスが変更される理由は一つであるべき──に反している。</strong></p>
+<p>どうテストするかを考えることで、自然に欠陥が見つかる。あとは公開処理の各部分を別のクラスに分ければ、テストも保守も容易になる。<strong>テストは機能を検証するだけでなく、より良い設計へ導く</strong>（<a href="../%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E3%80%8C%E5%B0%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%82%E3%82%8B/">良いコードは「少ない」コードである</a>）。</p>
+<h2>人間は同じことを繰り返せない</h2>
+<p>かつて開発者は膨大な時間を手動テストに費やした。新機能に負荷をかける手順の一覧を作り、たいていはその台本どおりに動く。だが手動のやり方は誤りやすく、再現性がなく、労力と時間を食う。<strong>人間は本来、同じ作業を変動なく繰り返すことができない。</strong></p>
+<p>自動テストは一貫した再現可能な結果を出す。テストスクリプトは毎回まったく同じ手順を、抜けも誤りもなく踏む。回帰テストは、コードが変わっても既存の機能が動き続けることを検証する。<strong>一度直したバグが不思議と戻ってこない</strong>ことを保証し、変更が持ち込んだ新しいバグも見つける。</p>
+<h2>効く条件</h2>
+<ul>
+<li>リファクタリングに着手する直前。安全網の有無が、着手できるかどうかを決める</li>
+<li>設計に迷ったとき。「これをどうテストするか」という問いが、責務の切れ目を露出させる</li>
+<li>回帰が繰り返し起きているプロジェクト。手動の台本を自動化するだけで再現性が手に入る</li>
+<li>新機能に着手するとき。先にテストを書けば要件が明確になる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>テスト自体が脆い場合。実装の細部に結合したテストは、リファクタリングのたびに落ちる。安全網ではなく足枷になる</li>
+<li>探索的なプロトタイピング。捨てる前提のコードでは、設計圧力が邪魔になることがある</li>
+<li>テストの実行が遅すぎる場合。フィードバックが数十分単位なら、勇気は生まれない。速度は機能である</li>
+<li>仕様が固まっていない領域。テストが固定するのは仕様であり、動く的を固定しても意味がない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

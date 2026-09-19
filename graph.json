@@ -4,30 +4,816 @@
       "id": "AIの台頭で、開発・デザインの役割はどこへ移るか",
       "title": "AIの台頭で、開発・デザインの役割はどこへ移るか",
       "tags": [],
-      "x": 69.45798912104063,
-      "y": -27.878685226768365
+      "x": 197.2522579561418,
+      "y": -430.67485103398184
+    },
+    {
+      "id": "AIの能力と限界を分けて理解する",
+      "title": "AI の能力と限界を分けて理解する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -72.93123503040464,
+      "y": -8.141767157604608
+    },
+    {
+      "id": "AIは道具でありあなたは責任の引受人である",
+      "title": "AI は道具であり、あなたは責任の引受人である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 21.48463017809324,
+      "y": -57.596067386193326
+    },
+    {
+      "id": "Fundamentals of Software Engineering",
+      "title": "Fundamentals of Software Engineering",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 2.081353463563306,
+      "y": 30.820979171568716
     },
     {
       "id": "ISO 29148 から学ぶ要求の仕様化",
       "title": "ISO 29148 から学ぶ要求の仕様化",
       "tags": [],
-      "x": -106.09136832016999,
-      "y": 43.67330644739111
+      "x": -612.1315180300666,
+      "y": -239.29436829900797
     },
     {
       "id": "test",
       "title": "Idea Title",
       "tags": [],
-      "x": -25.911207787364496,
-      "y": -124.59181385344132
+      "x": 176.05509393147338,
+      "y": -559.2913230402442
+    },
+    {
+      "id": "アーキテクチャとはトレードオフの選択である",
+      "title": "アーキテクチャとはトレードオフの選択である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -86.86841904474782,
+      "y": 15.2010843808254
+    },
+    {
+      "id": "あなたはユーザーではない",
+      "title": "あなたはユーザーではない",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -28.754576562505086,
+      "y": -44.98232685820544
+    },
+    {
+      "id": "キャリアはゴールから逆算して設計する",
+      "title": "キャリアはゴールから逆算して設計する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 80.59633077985563,
+      "y": 77.36231700778245
+    },
+    {
+      "id": "クエリ性能はデータ量の成長を前提に設計する",
+      "title": "クエリ性能はデータ量の成長を前提に設計する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -86.95268682103978,
+      "y": 44.51720924423174
+    },
+    {
+      "id": "コードは書く時間より読む時間のほうが長い",
+      "title": "コードは書く時間より読む時間のほうが長い",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 47.60099947807866,
+      "y": -67.7936752388426
+    },
+    {
+      "id": "コードは未来の他人に宛てた手紙である",
+      "title": "コードは未来の他人に宛てた手紙である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -46.8881953942267,
+      "y": 36.07813246593709
+    },
+    {
+      "id": "コードレビューが機能する条件は信頼である",
+      "title": "コードレビューが機能する条件は信頼である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 63.45391853456638,
+      "y": -32.81581684915971
+    },
+    {
+      "id": "スキーマ変更は互換性を保ったまま段階的に行う",
+      "title": "スキーマ変更は互換性を保ったまま段階的に行う",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 19.46976544855941,
+      "y": 111.02234832917749
+    },
+    {
+      "id": "ステークホルダーは権力と関心で分ける",
+      "title": "ステークホルダーは権力と関心で分ける",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -40.972054507586066,
+      "y": 127.23426590096875
+    },
+    {
+      "id": "セキュリティは機能ではなく前提である",
+      "title": "セキュリティは機能ではなく前提である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -54.715478173403056,
+      "y": -62.36709773376869
+    },
+    {
+      "id": "ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である",
+      "title": "ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -7.887583490583767,
+      "y": 80.70000038752217
+    },
+    {
+      "id": "データストアは一貫性の要求から選ぶ",
+      "title": "データストアは一貫性の要求から選ぶ",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -115.46230374762814,
+      "y": 27.366957689470844
+    },
+    {
+      "id": "デザイン4原則は素人にも効く",
+      "title": "デザイン4原則は素人にも効く",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 108.91784107269943,
+      "y": 23.573848059340847
+    },
+    {
+      "id": "テストの本当の価値は変更する勇気である",
+      "title": "テストの本当の価値は変更する勇気である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 46.0309813629822,
+      "y": 88.37033454722666
+    },
+    {
+      "id": "テストの配分はピラミッドではなく文脈で決める",
+      "title": "テストの配分はピラミッドではなく文脈で決める",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 29.4525258068409,
+      "y": -34.9583743883007
+    },
+    {
+      "id": "テストは腐らない唯一のドキュメントである",
+      "title": "テストは腐らない唯一のドキュメントである",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 55.540624267939236,
+      "y": 7.627236381600164
+    },
+    {
+      "id": "デプロイ戦略はリスクの取り方の選択である",
+      "title": "デプロイ戦略はリスクの取り方の選択である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -18.995454001384537,
+      "y": 116.65998126693613
+    },
+    {
+      "id": "プロンプトは文脈を与える技能である",
+      "title": "プロンプトは文脈を与える技能である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -9.302698422897521,
+      "y": -65.02116860831339
+    },
+    {
+      "id": "メイカーのスケジュールを守る",
+      "title": "メイカーのスケジュールを守る",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -52.06879101186786,
+      "y": 59.5123260355536
+    },
+    {
+      "id": "メンタルモデルは増分的に作る",
+      "title": "メンタルモデルは増分的に作る",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -48.553978127527145,
+      "y": -26.23448529627564
+    },
+    {
+      "id": "ログと監視は障害が起きる前に設計する",
+      "title": "ログと監視は障害が起きる前に設計する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 92.16094010131934,
+      "y": -14.62270130881385
+    },
+    {
+      "id": "万人向けの設計は後付けできない",
+      "title": "万人向けの設計は後付けできない",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 2.2780837433980525,
+      "y": 131.46040025342288
+    },
+    {
+      "id": "人脈は機会の経路である",
+      "title": "人脈は機会の経路である",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -75.37094090657548,
+      "y": -48.67146521053318
     },
     {
       "id": "仮説思考とTDD（テスト駆動開発）",
       "title": "仮説思考とTDD（テスト駆動開発）",
       "tags": [],
-      "x": 62.54458698649386,
-      "y": 108.79719263281858
+      "x": 506.6757189237721,
+      "y": 204.99831961803858
+    },
+    {
+      "id": "伝言は必ず歪む",
+      "title": "伝言は必ず歪む",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -81.55072504330253,
+      "y": 70.41369092552227
+    },
+    {
+      "id": "何を学ばないかを決める",
+      "title": "何を学ばないかを決める",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 82.47998775336603,
+      "y": -47.44485269233907
+    },
+    {
+      "id": "勝ちを記録する",
+      "title": "勝ちを記録する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 42.168220733710946,
+      "y": 121.12793661949992
+    },
+    {
+      "id": "品質特性がアーキテクチャを決める",
+      "title": "品質特性がアーキテクチャを決める",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -93.412182390649,
+      "y": -28.565957092669745
+    },
+    {
+      "id": "図はコンパイルされない",
+      "title": "図はコンパイルされない",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 45.02691319721385,
+      "y": -16.698077118704262
+    },
+    {
+      "id": "図は聴衆によって選ぶ",
+      "title": "図は聴衆によって選ぶ",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -62.580023527507116,
+      "y": 85.5444823413278
+    },
+    {
+      "id": "学習は習慣として設計する",
+      "title": "学習は習慣として設計する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -31.651758320957004,
+      "y": -77.99822247933261
+    },
+    {
+      "id": "安全な変更の条件は小さく可逆であること",
+      "title": "安全な変更の条件は小さく可逆であること",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 69.89015537754476,
+      "y": 101.07423311475739
+    },
+    {
+      "id": "影響力は相手の言葉で価値を語ることから生まれる",
+      "title": "影響力は相手の言葉で価値を語ることから生まれる",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -106.18013765005729,
+      "y": -3.978184447542236
+    },
+    {
+      "id": "戦略的な怠惰が生産性を生む",
+      "title": "戦略的な怠惰が生産性を生む",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 31.684708446886873,
+      "y": 10.25312257532716
+    },
+    {
+      "id": "新しい言語を学ぶと母語の書き方が変わる",
+      "title": "新しい言語を学ぶと母語の書き方が変わる",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -33.89125744977573,
+      "y": 86.69808914226707
+    },
+    {
+      "id": "未知のコードは履歴と実行から読む",
+      "title": "未知のコードは履歴と実行から読む",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -4.43760963317618,
+      "y": -13.752719560429755
+    },
+    {
+      "id": "正しい操作を最も簡単な操作にする",
+      "title": "正しい操作を最も簡単な操作にする",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 96.03806658467582,
+      "y": 57.98972391962906
+    },
+    {
+      "id": "決定はADRに残しフィットネス関数で守る",
+      "title": "決定は ADR に残しフィットネス関数で守る",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -105.94276886547895,
+      "y": 69.00924052964709
+    },
+    {
+      "id": "自分の環境では動くは本番で通用しない",
+      "title": "「自分の環境では動く」は本番で通用しない",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 12.05280804851307,
+      "y": -81.2075747351519
+    },
+    {
+      "id": "良いコードは「少ない」コードである",
+      "title": "良いコードは「少ない」コードである",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 63.334522065762414,
+      "y": 49.549053658662785
+    },
+    {
+      "id": "解決策に飛びつく前に問題を定義する",
+      "title": "解決策に飛びつく前に問題を定義する",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -34.06151442140413,
+      "y": 6.939100756442024
+    },
+    {
+      "id": "賢いコードは事故的複雑さである",
+      "title": "賢いコードは事故的複雑さである",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": 89.56305243996474,
+      "y": 9.382577614363278
+    },
+    {
+      "id": "道具への投資は複利で効く",
+      "title": "道具への投資は複利で効く",
+      "tags": [
+        "reading",
+        "from-coder-to-engineer"
+      ],
+      "x": -69.62099317522689,
+      "y": 111.70605457903393
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "source": "AIは道具でありあなたは責任の引受人である",
+      "target": "コードレビューが機能する条件は信頼である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "AIの能力と限界を分けて理解する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "AIは道具でありあなたは責任の引受人である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "アーキテクチャとはトレードオフの選択である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "あなたはユーザーではない",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "キャリアはゴールから逆算して設計する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "クエリ性能はデータ量の成長を前提に設計する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "コードは書く時間より読む時間のほうが長い",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "コードレビューが機能する条件は信頼である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "スキーマ変更は互換性を保ったまま段階的に行う",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "ステークホルダーは権力と関心で分ける",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "セキュリティは機能ではなく前提である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "データストアは一貫性の要求から選ぶ",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "デザイン4原則は素人にも効く",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "テストの本当の価値は変更する勇気である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "テストの配分はピラミッドではなく文脈で決める",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "テストは腐らない唯一のドキュメントである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "デプロイ戦略はリスクの取り方の選択である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "プロンプトは文脈を与える技能である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "メイカーのスケジュールを守る",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "メンタルモデルは増分的に作る",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "ログと監視は障害が起きる前に設計する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "万人向けの設計は後付けできない",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "人脈は機会の経路である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "伝言は必ず歪む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "何を学ばないかを決める",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "勝ちを記録する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "品質特性がアーキテクチャを決める",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "図はコンパイルされない",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "図は聴衆によって選ぶ",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "学習は習慣として設計する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "安全な変更の条件は小さく可逆であること",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "影響力は相手の言葉で価値を語ることから生まれる",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "戦略的な怠惰が生産性を生む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "新しい言語を学ぶと母語の書き方が変わる",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "未知のコードは履歴と実行から読む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "正しい操作を最も簡単な操作にする",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "決定はADRに残しフィットネス関数で守る",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "自分の環境では動くは本番で通用しない",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "良いコードは「少ない」コードである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "解決策に飛びつく前に問題を定義する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "賢いコードは事故的複雑さである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "Fundamentals of Software Engineering",
+      "target": "道具への投資は複利で効く",
+      "kind": "wikilink"
+    },
+    {
+      "source": "アーキテクチャとはトレードオフの選択である",
+      "target": "品質特性がアーキテクチャを決める",
+      "kind": "wikilink"
+    },
+    {
+      "source": "クエリ性能はデータ量の成長を前提に設計する",
+      "target": "データストアは一貫性の要求から選ぶ",
+      "kind": "wikilink"
+    },
+    {
+      "source": "コードレビューが機能する条件は信頼である",
+      "target": "賢いコードは事故的複雑さである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "デザイン4原則は素人にも効く",
+      "target": "正しい操作を最も簡単な操作にする",
+      "kind": "wikilink"
+    },
+    {
+      "source": "テストの本当の価値は変更する勇気である",
+      "target": "良いコードは「少ない」コードである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "テストの配分はピラミッドではなく文脈で決める",
+      "target": "テストは腐らない唯一のドキュメントである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "テストは腐らない唯一のドキュメントである",
+      "target": "未知のコードは履歴と実行から読む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "デプロイ戦略はリスクの取り方の選択である",
+      "target": "スキーマ変更は互換性を保ったまま段階的に行う",
+      "kind": "wikilink"
+    },
+    {
+      "source": "メイカーのスケジュールを守る",
+      "target": "解決策に飛びつく前に問題を定義する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "メンタルモデルは増分的に作る",
+      "target": "未知のコードは履歴と実行から読む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "伝言は必ず歪む",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "図はコンパイルされない",
+      "target": "未知のコードは履歴と実行から読む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "図は聴衆によって選ぶ",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "戦略的な怠惰が生産性を生む",
+      "target": "解決策に飛びつく前に問題を定義する",
+      "kind": "wikilink"
+    },
+    {
+      "source": "新しい言語を学ぶと母語の書き方が変わる",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "未知のコードは履歴と実行から読む",
+      "target": "コードは未来の他人に宛てた手紙である",
+      "kind": "wikilink"
+    },
+    {
+      "source": "未知のコードは履歴と実行から読む",
+      "target": "戦略的な怠惰が生産性を生む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "正しい操作を最も簡単な操作にする",
+      "target": "デザイン4原則は素人にも効く",
+      "kind": "wikilink"
+    },
+    {
+      "source": "良いコードは「少ない」コードである",
+      "target": "テストは腐らない唯一のドキュメントである",
+      "kind": "wikilink"
+    },
+    {
+      "source": "良いコードは「少ない」コードである",
+      "target": "戦略的な怠惰が生産性を生む",
+      "kind": "wikilink"
+    },
+    {
+      "source": "賢いコードは事故的複雑さである",
+      "target": "テストは腐らない唯一のドキュメントである",
+      "kind": "wikilink"
+    }
+  ]
 }

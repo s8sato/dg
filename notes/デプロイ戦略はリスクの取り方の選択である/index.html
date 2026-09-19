@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デプロイ戦略はリスクの取り方の選択である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E6%88%A6%E7%95%A5%E3%81%AF%E3%83%AA%E3%82%B9%E3%82%AF%E3%81%AE%E5%8F%96%E3%82%8A%E6%96%B9%E3%81%AE%E9%81%B8%E6%8A%9E%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>デプロイ戦略はリスクの取り方の選択である</code> <button type="button" class="copy-id" data-copy="デプロイ戦略はリスクの取り方の選択である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="デプロイ戦略はリスクの取り方の選択である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845441000">2026-09-19 19:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>デプロイ戦略はリスクの取り方の選択である</h1>
+<p>本番への配置に万能の戦略はない。<strong>選んだ戦略は、円滑な展開と週末の呼び出し待機との差になりうる。</strong></p>
+<h2>一度に替えるか、少しずつ替えるか</h2>
+<p><strong>一括配置</strong>は、旧版を新版でまるごと入れ替える。実装は単純だが危険が大きい。問題があれば<strong>即座に全利用者に及ぶ</strong>。段階的な移行期がないので巻き戻しも複雑になる。小規模で利用者が限られ、停止時間を許容できる場合に向く。</p>
+<p><strong>段階的配置</strong>は、一部の利用者やサーバーに先に展開してから広げる。行きつけの店が新しい品を少数の客に先に出すようなもので、反応を集め、直し、徐々に広げる。<strong>早期の問題検出と軌道修正</strong>ができる。一部の利用者に先に出すカナリア配置、サーバーを一台ずつ更新するローリング配置が代表例である。</p>
+<p>停止時間は、<strong>ブルーグリーン配置</strong>（同一の環境を二つ保ち切り替える）やローリング更新で最小化または解消できる。構築は複雑になるが、基幹系や高負荷のサービスには最も滑らかな体験を与える。</p>
+<p>どれを選ぶかは<strong>場合による</strong>。システムの複雑さ、停止への耐性、監視の能力を考える。<strong>単純に始めて、アプリケーションとチームの成熟に合わせて進化させることに恥はない。</strong></p>
+<h2>巻き戻しは事前にしか準備できない</h2>
+<p>配置の自動化は、環境間でコードを動かす手作業で誤りやすい工程を取り除く。<strong>確認表を追って抜けがないことを祈る代わりに、毎回同じ信頼できる工程が走る。</strong></p>
+<p>だが自動化の目的は時間の節約ではない。<strong>信頼でき再現可能な工程を作り、配置への確信を得ること</strong>にある。小さく始め、いくつかの手順を自動化する単純なスクリプトからでよい。改善のたびに危険が減る。</p>
+<p>巻き戻しのスクリプトを書く前に、前提がいくつか要る。</p>
+<ul>
+<li>配置の前に、退避された版が存在することを確認する</li>
+<li><strong>巻き戻しの手順を定期的に試す</strong></li>
+<li>データベース移行の巻き戻し手順を文書化する</li>
+<li>複数世代の退避を保持する</li>
+<li>巻き戻しの最中もシステムを監視する</li>
+</ul>
+<h2>ブランチ戦略は責務の分離である</h2>
+<p>版管理の戦略は本番において特に重要になる。稼働中のサービスを乱さずに機能をリリースし、問題のある配置に素早く対処し、<strong>監査可能な記録を保つ</strong>ことを可能にする。</p>
+<ul>
+<li><strong>Git Flow</strong>: 複数の長命ブランチで作業の種類を分ける。開発と本番のコードを強く隔離する</li>
+<li><strong>GitHub Flow</strong>: <code>main</code> と短命の機能ブランチだけ。レビュー後、機能ブランチから直接本番へ</li>
+<li><strong>トランクベース開発</strong>: 全員が単一の <code>main</code> で働き、機能ブランチは極めて短命（しばしば一日未満）</li>
+<li><strong>リリーストレイン</strong>: 週次や月次の定期リリースに機能を束ねる</li>
+</ul>
+<p>Git Flow の補助ブランチは、それぞれ具体的な問いに答えている。</p>
+<p><strong>リリースブランチ</strong>は、最終試験と修正の間も次のリリース向けの機能を <code>develop</code> に足し続けられるようにする。版番号の更新や配置設定の変更にも専用の場所が要る。</p>
+<p><strong>ホットフィックスブランチ</strong>が答えるのはこの問いだ──<strong>本番に深刻な問題が出たが、<code>develop</code> には本番に出せない半端な機能が入っているとしたら。</strong> 安定した <code>main</code> から分岐すれば、不完全な機能を配置せずに直せる。修正は両方に適用され、将来のリリースで失われない。</p>
+<p><strong>どの戦略でも目標は同じである。</strong> コードを守り、作業を隔離し、変更を統合する明確な工程を作ること。</p>
+<h2>CI/CD が全体を繋ぐ</h2>
+<p>テストが書いた時点の確信を与えるとして、<strong>それが本番へ昇格するたびに走ることをどう保証するか。</strong> 継続的インテグレーションはチーム全体の変更を自動的に統合して試験する。継続的デリバリーは試験済みのコードをリリース可能な状態に整え、継続的デプロイはそれを本番まで運ぶ。</p>
+<h2>効く条件</h2>
+<ul>
+<li>初めての本番配置を設計するとき。単純に始めて進化させる方針が、過剰設計を防ぐ</li>
+<li>配置のたびに緊張しているとき。自動化と巻き戻しの演習が、緊張の実体を減らす</li>
+<li>ブランチ戦略を選ぶとき。リリースの頻度と隔離の必要から逆算する</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>データベースの変更を伴う配置。コードは戻せてもスキーマは戻らない。前方修正を前提に設計する（<a href="../%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E%E5%A4%89%E6%9B%B4%E3%81%AF%E4%BA%92%E6%8F%9B%E6%80%A7%E3%82%92%E4%BF%9D%E3%81%A3%E3%81%9F%E3%81%BE%E3%81%BE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AB%E8%A1%8C%E3%81%86/">スキーマ変更は互換性を保ったまま段階的に行う</a>）</li>
+<li>監視が貧弱な状態でのカナリア配置。<strong>一部に出しても、悪化を検知できなければ意味がない</strong></li>
+<li>小さなチームでの Git Flow。長命ブランチの維持費が、隔離の利益を上回る</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

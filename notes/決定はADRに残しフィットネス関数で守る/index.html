@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>決定は ADR に残しフィットネス関数で守る</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E6%B1%BA%E5%AE%9A%E3%81%AFADR%E3%81%AB%E6%AE%8B%E3%81%97%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%8D%E3%82%B9%E9%96%A2%E6%95%B0%E3%81%A7%E5%AE%88%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>決定はADRに残しフィットネス関数で守る</code> <button type="button" class="copy-id" data-copy="決定はADRに残しフィットネス関数で守る">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="決定はADRに残しフィットネス関数で守る" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845234000">2026-09-19 19:13 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>決定は ADR に残しフィットネス関数で守る</h1>
+<p>アーキテクチャを作ることには多くが投じられるが、<strong>それを維持する方法</strong>はあまり考えられていない。熱力学第二法則はソフトウェアにも適用される。無秩序に抗う努力なしに、アーキテクチャは劣化する。</p>
+<h2>変化を前提に設計する</h2>
+<p>アーキテクチャは「後から変えにくい決定」と定義されるが、技術において唯一の定数は変化である。両者は共存できる。ただし<strong>前提を少し変える必要がある</strong>。将来の要件を苦もなく扱えるアーキテクチャを作ろうとするのではなく、<strong>物事が変わることを見込んで設計したらどうか。</strong> これが進化的アーキテクチャの中核にある。</p>
+<p>鍵は<strong>増分的</strong>であることだ。アジャイル開発は結局のところ入れ子のフィードバックループである。数ヶ月かけて作ってから的を外したと気づくのではなく、定期的な実演が反応と調整の機会を与える。</p>
+<p>仮説駆動開発はこの構造を取る。</p>
+<pre class="hljs"><code>われわれは &lt;この変更&gt; が
+&lt;この結果&gt; をもたらすと信じる
+&lt;この指標が X だけ変化&gt; したとき、成功したと分かる
+</code></pre>
+<p><strong>データに基づく決定は、一時間議論して部屋で最も声の大きい人に従うより良い。</strong></p>
+<h2>フィットネス関数は劣化を検知する</h2>
+<p>最初のコミットから、アーキテクチャは変化し始めている。開発に深く関わった人は要所の機微を知っていても、<strong>新しいメンバーはその背景を持たない</strong>。注意を怠れば、顧客が苦情を言い始める。</p>
+<p>Nate は経歴の初期に、古い VB6 アプリケーションの性能問題を直すよう命じられた。最近の更新と結びつけられることを期待して、問題がいつ始まったかを尋ねた。<strong>返ってきた答えは「この三年のどこか」だった。</strong> 目の前に膨大な作業があると悟り、アーキテクトになりたいという願望を疑い始めた。</p>
+<p>振り返れば、診断はこれほど難しくある必要はなかった。<strong>性能を定期的に試すフィットネス関数があれば、顧客が気づく前に問題を見つけられていた。</strong></p>
+<p>フィットネス関数は、アーキテクチャが目的にどれだけ近いかを測る。実体は、リファクタリングや新機能がアーキテクチャに違反していないことを保証するテストである。アーキテクトから開発者への to-do 一覧であり、軽量で儀式の少ない統治でもある。</p>
+<ul>
+<li>サービス呼び出しは平均100ミリ秒以内に応答すること</li>
+<li>循環的複雑度は5を超えないこと</li>
+<li>利用者が増えたときの平均応答時間が妥当な範囲にあること</li>
+</ul>
+<p>理想的にはすべて自動化され CI/CD の中で走る。初期に特定するが、<strong>それらは時とともに変化する</strong>。定期的に見直し、まだ妥当かを確かめる。</p>
+<h2>なぜ、は、どうやって、より重要である</h2>
+<p>アーキテクトはしばしば、<strong>不十分な時間と不十分な情報のもとで決める</strong>。数時間か数日の審議を経て、チームは選択し、前進する。</p>
+<p>だが、<strong>なぜその選択をしたのかを書き留めただろうか。</strong> ソフトウェアアーキテクチャの第二法則はこう言う──<strong>なぜは、どうやって、より重要である。</strong></p>
+<p>その瞬間は自分が経緯を知っている。だが後から来る人はどうか。数週間後、今日の危機が思考を占めている自分はどうか。アーキテクチャ決定記録（ADR）は組織の知識を<strong>逐次的な記録</strong>に変え、将来のメンバーが「どうやって今日に至ったか」を読めるようにする。</p>
+<p>Michael Nygard が導入したこの形式は大作である必要はないが、「なぜ」を説明できるだけの詳細を含むべきだ。平文で書かれることが多く、<strong>検索性の面でも有利</strong>である。</p>
+<ul>
+<li><strong>表題</strong>: 三桁の連番を前置した記述。並べれば今日までの道筋が見える</li>
+<li><strong>状態</strong>: レビュー中、提案、受理、廃止。<strong>ADR は不変である。</strong> 後の ADR が先のものを廃止する場合は、廃止された側から新しい側を指す</li>
+<li><strong>文脈</strong>: 制約と固有の事情。CIO に推奨ベンダーがあれば、それが選択肢を人為的に狭める。<strong>文脈をけちらない</strong></li>
+<li><strong>選択肢</strong>: 何を検討し、何を除外し、それはなぜか</li>
+<li><strong>決定と帰結</strong>: 何を決め、なぜ決め、何を退けたか。正負両方の帰結。情報は多すぎるくらいでよい</li>
+<li><strong>統治</strong>: その決定が実際に守られることをどう保証するか。<strong>どんなフィットネス関数で強制するか</strong></li>
+</ul>
+<h2>効く条件</h2>
+<ul>
+<li>決定を下した直後。数週間後には、自分が理由を思い出せない</li>
+<li>新しいメンバーが「なぜこうなっているのか」と問うたとき。ADR が答えになる</li>
+<li>品質特性が徐々に劣化している疑いがあるとき。フィットネス関数が、苦情より先に知らせる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>ADR を書くこと自体が承認手続きになった場合。記録の道具が関門に変わると、誰も書かなくなる</li>
+<li>測れない品質特性。保守性や単純性は、フィットネス関数に落とすのが難しい</li>
+<li>変化の速い初期段階。すべての決定を記録すれば、記録が変化に追いつかない。<strong>後から変えにくいもの</strong>に絞る</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

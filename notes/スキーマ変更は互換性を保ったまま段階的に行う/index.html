@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>スキーマ変更は互換性を保ったまま段階的に行う</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E%E5%A4%89%E6%9B%B4%E3%81%AF%E4%BA%92%E6%8F%9B%E6%80%A7%E3%82%92%E4%BF%9D%E3%81%A3%E3%81%9F%E3%81%BE%E3%81%BE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AB%E8%A1%8C%E3%81%86">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>スキーマ変更は互換性を保ったまま段階的に行う</code> <button type="button" class="copy-id" data-copy="スキーマ変更は互換性を保ったまま段階的に行う">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="スキーマ変更は互換性を保ったまま段階的に行う" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844992000">2026-09-19 19:09 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>スキーマ変更は互換性を保ったまま段階的に行う</h1>
+<p>コードベースがバージョン管理なしに置かれていると想像してほしい。背筋が寒くなるはずだ。<strong>データ基盤の土台であるスキーマも、同じ保護に値する。</strong></p>
+<h2>スキーマをバージョン管理する</h2>
+<p>バージョン管理がなければ、重要な履歴を失い、同僚の作業を上書きし、問題のある変更を巻き戻せない。</p>
+<p>Flyway、Liquibase、Rails Migrations のような道具は、スキーマのバージョン管理の枠組みを与える。どの変更がどの環境に適用済みかを追跡し、開発・試験・本番の一貫性を保証する。</p>
+<pre class="hljs"><code>V1__Create_users_table.sql
+V2__Add_email_to_users.sql
+V3__Create_orders_table.sql
+</code></pre>
+<p>これらの道具は<strong>逐次的に適用する</strong>。版100から版250へ移るには、その間のすべてを順に走らせる。非効率に見えるかもしれないが、<strong>これは安全機能である</strong>。各移行が前の状態の上に正しく積み上がることを保証し、問題が起きたときの切り分けを容易にする。</p>
+<p>重要な実践は三つ。<strong>各スクリプトを冪等にする</strong>（複数回実行しても害がない）。<strong>可能な限り後方互換にする</strong>。そして<strong>スキーマ変更と、それに伴うデータ変換を同じスクリプトに含める</strong>。構造とデータが全環境で同期し続けるからだ。</p>
+<h2>一度に動かすか、分けて動かすか</h2>
+<p>システム間のデータ移動は、片方からコピーしてもう片方に貼るだけに見える。実際にはめったにそう単純ではない。<strong>成功する移行は、周到な計画・実行・検証を要する。</strong></p>
+<p><strong>ビッグバン移行</strong>は全データを一度に、通常は停止時間の中で動かす。容易だが危険も大きい。</p>
+<p><strong>段階移行</strong>は区切って動かす。一部を移し、検証し、次へ進む。従業員データベースなら、この段階では人事部門だけを移す、というように。どう分割するかを決めるのが計画の勘所で、<strong>何か起きても影響が最も小さい集団から始める</strong>とよい。</p>
+<p>移行の経験がないなら、段階的なほうが安全な戦略になる。時間はかかるが危険は大きく減り、<strong>より重要なデータへ進む前に学ぶ機会が得られる</strong>。</p>
+<p>コードで処理するなら、メモリを圧迫しないようバッチで処理する。1,000〜10,000件あたりが出発点になるが、自分のシステムの能力は実証試験で測る。</p>
+<h2>ETL の三段階はそれぞれ壊れる</h2>
+<p>抽出（Extract）・変換（Transform）・投入（Load）は、各段階の境界を明確にする。そして<strong>各段階がそれぞれの難所を持つ。</strong></p>
+<p>抽出では、流量制限や本番システムへの性能影響に当たる。変換では、小規模な実証試験では見えなかった<strong>データ品質の問題</strong>が噴き出す。投入では、移行先の制約や検証で失敗する。</p>
+<p>だから<strong>詳細なエラー処理とログに時間を投じる</strong>。どのレコードがいつ、なぜ移行に失敗したかが分からなければ、手早く反復できない。</p>
+<h2>移行期は二重に存在する</h2>
+<p>段階移行は危険を減らすが、別の難題を生む。移行が完了するまで、<strong>新しく入った従業員は両方のデータベースに存在しなければならない。</strong></p>
+<p>同期のためには、更新を非同期に扱うメッセージキュー、データベースの変更を追跡する変更データ捕捉（CDC）、そして不整合を見つけて直す突合処理を検討する。</p>
+<h2>効く条件</h2>
+<ul>
+<li>スキーマ変更を伴う機能に着手するとき。移行ツールの導入は、変更が少ないうちほど安い</li>
+<li>無停止での移行が求められるとき。後方互換と段階適用が前提条件になる</li>
+<li>初めての移行を担当するとき。段階移行は、学習の機会を危険の外側に作る</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>移行元と移行先のデータモデルが根本的に異なる場合。後方互換が原理的に成立せず、二重書き込みと突合の期間を長く取るしかない</li>
+<li>停止時間を取れる小規模なシステム。段階移行の複雑さは、単純な停止より高くつく</li>
+<li>移行ツールの履歴が壊れている環境。逐次適用の安全性は、履歴が正しいという前提に依存している</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../デプロイ戦略はリスクの取り方の選択である/">デプロイ戦略はリスクの取り方の選択である</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

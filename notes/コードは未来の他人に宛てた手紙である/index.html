@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コードは未来の他人に宛てた手紙である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9C%AA%E6%9D%A5%E3%81%AE%E4%BB%96%E4%BA%BA%E3%81%AB%E5%AE%9B%E3%81%A6%E3%81%9F%E6%89%8B%E7%B4%99%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>コードは未来の他人に宛てた手紙である</code> <button type="button" class="copy-id" data-copy="コードは未来の他人に宛てた手紙である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="コードは未来の他人に宛てた手紙である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>コードは未来の他人に宛てた手紙である</h1>
+<p>黄金律（Golden Rule）──自分がそうされたいように他人に接せよ──は、倫理の標語であるだけでなく、<strong>コードにそのまま適用できる基準</strong>である。</p>
+<h2>最適化の対象は人間である</h2>
+<p>コードは計算機に仕事を指示する手段である。だがその役割は、<strong>他の開発者に語りかける手段</strong>としての役割に比べれば色褪せる。コードは究極的には伝達機構であり、読まれるために書かれるべきものだ。</p>
+<p>したがって最適化すべき対象はコンパイラではなく人間である。例外はある。ごく特殊な最適化が要る場面では話が違う。ただそういう場面に出会えば自分で分かる、という程度のものだ。つまり<strong>既定は常に人間側</strong>であり、コンパイラ側に倒すのは正当化を要する逸脱である。</p>
+<h2>未来の他人は自分である</h2>
+<p>この原則が説教臭くならないのは、受益者が他人だけではないからだ。どの開発者にも、ひどいコードを前に「こんなものを書いた馬鹿は誰だ」と思い、やがてその馬鹿が自分だったとゆっくり気づいた経験がある。</p>
+<p>自分の足跡をたどる開発者を想像せよ、そしてその開発者は自分かもしれない──これが黄金律の実装である。未来の自分はコードベースに何を見たいか。次の開発者の生活を良くするものは何か。</p>
+<p>この視点変換が効くのは、<strong>共感を動機に頼らずに済む</strong>からだ。他人のために丁寧に書け、では持続しない。半年後の自分が読むと考えれば持続する。</p>
+<h2>コードの外側まで届く</h2>
+<p>黄金律に従うなら、行為はコードに閉じない。</p>
+<p>後続が理解・保守できるようきれいなコードを書く。ドキュメントを更新し、古いやり方を追って空回りする人を減らす。混乱させるのではなく明確化する図を描く。質問に答え、他人を助ける時間を取る。</p>
+<p>これらを積み上げると、周囲を良くする人間だと認識され、チームから求められるようになる。つまり黄金律は倫理であると同時に、<strong>可視性の戦略</strong>でもある。書いたコードの量より、周囲の速度をどれだけ上げたかのほうが人の記憶に残る。</p>
+<h2>効く条件</h2>
+<ul>
+<li>製品が保守フェーズにあるとき。コードは生涯の大半を保守に費やす以上、読まれる回数が書かれる回数を圧倒する</li>
+<li>人の入れ替わりがあるチーム。文脈が口伝で保たれない環境ほど、コードとドキュメントが唯一の伝達路になる</li>
+<li>自分が去ることが決まっているとき。引き継ぎ資料より、読めるコードのほうが長く効く</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>本当に捨てるコード。使い捨てのスクリプトや検証用プロトタイプに黄金律を適用するのは過剰投資である。ただし「捨てるつもりだった」ものが残り続けるのは日常なので、判断は慎重に</li>
+<li>性能が要件そのものである層。ホットパス、組込み、数値計算などでは可読性を明示的に犠牲にする。その場合は<strong>なぜ犠牲にしたかを書き残す</strong>ことで黄金律を別の形で果たす</li>
+<li>読み手の前提が自分と大きく異なる場合。「自分が読みたい形」は自分の熟達度に依存する。想定読者を自分ではなくチームの中央値に置き直す必要がある</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である/">ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</a></li><li><a href="../伝言は必ず歪む/">伝言は必ず歪む</a></li><li><a href="../図は聴衆によって選ぶ/">図は聴衆によって選ぶ</a></li><li><a href="../新しい言語を学ぶと母語の書き方が変わる/">新しい言語を学ぶと母語の書き方が変わる</a></li><li><a href="../未知のコードは履歴と実行から読む/">未知のコードは履歴と実行から読む</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

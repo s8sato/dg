@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メンタルモデルは増分的に作る</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AF%E5%A2%97%E5%88%86%E7%9A%84%E3%81%AB%E4%BD%9C%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>メンタルモデルは増分的に作る</code> <button type="button" class="copy-id" data-copy="メンタルモデルは増分的に作る">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="メンタルモデルは増分的に作る" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844548000">2026-09-19 19:02 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>メンタルモデルは増分的に作る</h1>
+<p>未知のコードベースは不安を生む。だが<strong>新しいコードベースのすべてを即座に理解できなくてよい</strong>。何年も関わっている人でも全部は知らない。</p>
+<h2>木を見る前に森を見る</h2>
+<p>細部（フレームワークのバージョン）に没入すると、大きな状況（このプロジェクトが何のためにあるのか）が見えなくなる。すぐ貢献して価値を示したくなるが、順序がある。</p>
+<p><strong>コードを理解する前に、プロジェクトの目的と意図を理解する。</strong> なぜこれは存在するのか。ステークホルダーは誰か。雇用主にとって何を意味するのか。事業の大きな部分を占めるのか。</p>
+<p>出発点はプロダクトマネージャのように製品を深く知る人がよい。会議を設定し、学ぶ準備をして臨む。あとで参照できるよう記録を取り、オンラインなら録画の許可を求める。そして何より<strong>質問する。愚かな問いは、しなかった問いだけだ。</strong></p>
+<p>高レベルの概観を得たら技術側へ降りる。現在の開発者、そしてもし原開発者を見つけられたらゴールドラッシュで金脈を掘り当てたようなものだ。決定の経緯を語れるテックリードやアーキテクトが理想的である。</p>
+<p>顧客は誰か。公開情報を探し、顧客の視点から見てみる。ユーザーペルソナがあれば、<strong>なぜその技術的決定がなされたか</strong>の文脈になる。</p>
+<h2>文書は嘘をつくが、コードは嘘をつかない</h2>
+<p>次に文書をすべて読み通す。ADR も含めて。プロジェクト自体を高レベルで理解したあとなら、意味が通り始めているはずだ。</p>
+<p>ローカルで動かすための「オンボーディング文書」も。Docker のような道具で年々ましになったが、それでも退屈な工程ではある。</p>
+<p>この段階で文書を書くのは仕事ではないが、<strong>記録を取り、文書の欠落を特定しておく</strong>。あとで戻って直せるし、チームへの良い貢献になる。</p>
+<p>ただし注意がいる。Dan は複雑な認証システムの理解に三日を費やしたことがある。最新だと思っていた文書を丁寧に読み込んでいた。ついに同僚に助けを求めると、笑ってこう言われた──ああ、それは二世代前の文書だよ、認証は去年まるごと書き直した。</p>
+<p><strong>文書は嘘をつくが、コードは嘘をつかない。</strong> 読んだものは、実際に動いているものと必ず突き合わせる。そして助けを求めることを恐れない。<strong>三分の会話が三日を節約しえた。</strong></p>
+<h2>構造がパターンを語る</h2>
+<p>コードや設定を読む前に、アーキテクチャと構成を見る。プロジェクトの構造は多くを明かす。</p>
+<p>ほとんどのプロジェクトは、意図的な設計であれ有機的な進化であれ、何らかのアーキテクチャパターンに従っている。層でパッケージングされていれば <code>controllers</code> <code>services</code> <code>repositories</code> <code>models</code> のような最上位ディレクトリが並び、技術的責務で水平に切られている。機能でパッケージングされていれば、業務の単位で垂直に切られている。<strong>どちらが選ばれたかは、このコードベースが何を変わりやすいと考えてきたかを語る。</strong></p>
+<h2>スコープを段階的に広げる</h2>
+<p>個々の部品を理解したら、焦点を増分的に広げていく。</p>
+<ol>
+<li>単一のメソッドを隔離して見る</li>
+<li>クラスとその直接の依存へ移る</li>
+<li>複数の部品にまたがる機能単位の流れへ</li>
+<li>最後にセキュリティやトランザクション処理のような横断的関心へ</li>
+</ol>
+<p>この増分的な接近が<strong>認知の過負荷を防ぎながら</strong>全体像を作る。読むための具体的な手つきは <a href="../%E6%9C%AA%E7%9F%A5%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E5%B1%A5%E6%AD%B4%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80/">未知のコードは履歴と実行から読む</a> に譲る。</p>
+<p>理解は反復的な過程である。一度目で全部を把握することはできないし、それがまったく正常だ。課題や新機能に取り組むたび、知識は深くなる。経験豊富なメンバーでさえ、システムが進化するにつれて理解を更新し続けている。</p>
+<h2>効く条件</h2>
+<ul>
+<li>新しいプロジェクトに配属された最初の数日。コードより先に事業の目的を聞く順序が効く</li>
+<li>文書を読んでも腑に落ちないとき。三日粘る前に三分聞く</li>
+<li>大規模なコードベースに圧倒されているとき。スコープの段階的拡大が過負荷を防ぐ</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>聞ける人が誰も残っていない場合。事業目的の把握からして考古学になる</li>
+<li>明確なアーキテクチャパターンがない場合。構造が語るのは無秩序であって設計ではない</li>
+<li>即座の貢献が期待されている場合。理解の順序を守る時間が制度的に与えられないことはある</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

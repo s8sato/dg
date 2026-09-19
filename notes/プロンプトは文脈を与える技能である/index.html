@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プロンプトは文脈を与える技能である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%AF%E6%96%87%E8%84%88%E3%82%92%E4%B8%8E%E3%81%88%E3%82%8B%E6%8A%80%E8%83%BD%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>プロンプトは文脈を与える技能である</code> <button type="button" class="copy-id" data-copy="プロンプトは文脈を与える技能である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="プロンプトは文脈を与える技能である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846223000">2026-09-19 19:30 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>プロンプトは文脈を与える技能である</h1>
+<p>プロンプトエンジニアリングという語は威圧的に響くが、実体は<strong>AI と効果的に意思疎通することを学ぶ</strong>だけのものだ。検索エンジンの使い方を学ぶのに似ている。<strong>専門家のために取ってある技能ではなく、誰もが育てるべきものである。</strong></p>
+<h2>隣の席の新人に頼むように</h2>
+<p>隣の席の新人に「ログインのバグを直して」と頼んだとする。文脈がなければ、この単純な依頼は複雑な問題になる。課題管理システムを探し回るかもしれない。<strong>ログインのフォームは複数あるが、どれのことか。</strong> 何時間も試して、何も見つからないかもしれない。</p>
+<p>代わりにこう言ったらどうか。「利用者ダッシュボードのログインフォームがメール形式を正しく検証しておらず、不正なアドレスの送信を許していて、下流で問題を起こしている。」<strong>はるかに良い結果が返る。</strong></p>
+<p>AI にも同じ原理が当てはまる。<strong>プロンプトの質は、応答の質に直接相関する。</strong></p>
+<h2>具体・構造・思考の道筋</h2>
+<p><strong>具体であること。</strong> 「ソート用の Java コードを書いて」は曖昧すぎる。何をソートするのか、どう並べるのか、どんなデータ構造かを指定していない。「<code>Employee</code> オブジェクトの <code>ArrayList</code> を給与の降順でソートする Java のメソッドを書いて。null 入力のエラー処理も含めて」なら、データ構造・対象・基準・順序・境界条件まで揃っている。</p>
+<p><strong>構造を与えること。</strong> 良く構造化されたプロンプトは、<strong>何が欲しいかだけでなく、どう届けてほしいか</strong>を理解させる。「データベースの索引について説明して」では、深さも視点も形式も指定がない。一文で返るかもしれないし、大学院水準の説明が返るかもしれない。</p>
+<p>代わりに、<strong>役割</strong>（経験ある Java 開発者として）、<strong>構造</strong>（三つの部分に分けて）、<strong>長さ</strong>（各2〜3文）、<strong>具体例</strong>（PostgreSQL で索引を作る例を一つ）を指定する。</p>
+<p><strong>命令ではなく教えること。</strong> 新人の良い指導者なら、特定の作業の結果をいきなり要求したりしない。<strong>できる限りの文脈を与え、既存のコードベースにある例を通じて教える。</strong></p>
+<p>結果を命じる代わりに、<strong>自分の思考の道筋を辿らせる</strong>。これが思考連鎖のプロンプティングで、より正確な応答を導く。「このコードを最適化して」では、自分にとって最適化が何を意味するかの文脈がない。速度か、メモリか、可読性か。</p>
+<p>代わりに「大きなデータ集合を走査するこのメソッドを最適化したい。まず現在の時間計算量を特定するのを手伝って。次に具体的な改善を提案して。最後に、性能向上を説明するコメント付きでリファクタリング後のコードを見せて」と書く。<strong>作業を論理的な段に分け、目標を指定し、コードと並んで説明を求めている。</strong></p>
+<h2>すぐ使える工夫</h2>
+<ul>
+<li><strong>文脈を具体的に与える。</strong> 更地の新規案件か、現代的な実践を取り込めない既存のレガシーか。個人の制作か、業務の基幹か</li>
+<li><strong>例を示す。</strong> 良い出力がどう見えるかを見せる。特定の書式が欲しいなら例を添える</li>
+<li><strong>環境を伝える。</strong> 言語の版、使っているフレームワーク、抱えている制約</li>
+<li><strong>役割を指定する。</strong> 「上級アーキテクトとしてこのコードをレビューして」。応答の詳細度と視点が定まる</li>
+<li><strong>反復して磨く。</strong> 一度目で完璧を期待しない</li>
+<li><strong>AI にプロンプトの改善を頼む。</strong> 望む結果が出ないとき、どう言い換えるべきかを尋ねる</li>
+<li><strong>良いプロンプトを保存する。</strong> 似た依頼は将来も必要になる</li>
+</ul>
+<p>例の与え方にも段階がある。<strong>ゼロショット</strong>は例を与えずに頼む。それで十分なこともある。<strong>ワンショット</strong>は、従ってほしい型を確立するために例を一つ与える──たとえば自分の好むコーディングスタイルのメソッドを一つ見せる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>期待した答えが返らなかったとき。原因は多くの場合モデルではなく文脈の不足にある</li>
+<li>既存のコードベースに沿った出力が欲しいとき。規約は例で伝えるのが最も速い</li>
+<li>同じ種類の依頼を繰り返しているとき。プロンプトは資産として蓄積できる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>自分が答えを分かっていない場合。文脈を与えられないなら、検証もできない</li>
+<li>長大な文脈を与えた場合。情報量と精度は単調には比例せず、要点が埋もれることがある</li>
+<li>モデルや製品が変わった場合。特定の言い回しへの最適化は、移植性を持たない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

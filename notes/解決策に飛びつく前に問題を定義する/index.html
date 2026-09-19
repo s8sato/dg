@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>解決策に飛びつく前に問題を定義する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E8%A7%A3%E6%B1%BA%E7%AD%96%E3%81%AB%E9%A3%9B%E3%81%B3%E3%81%A4%E3%81%8F%E5%89%8D%E3%81%AB%E5%95%8F%E9%A1%8C%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>解決策に飛びつく前に問題を定義する</code> <button type="button" class="copy-id" data-copy="解決策に飛びつく前に問題を定義する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="解決策に飛びつく前に問題を定義する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>解決策に飛びつく前に問題を定義する</h1>
+<p>ソフトウェアの大きな問題の多くは、<strong>誤解（misconception）に由来する</strong>。テストも型システムも、誤解は見つけられない。</p>
+<h2>シフトレフトの先にあるもの</h2>
+<p>バグは見つかるのが遅いほど高くつく。本番で見つかれば顧客が影響を受け、データが壊れ、修正は複数のモジュールにまたがる。だから検出を前へ動かす。ここから QA が生まれ、さらに開発中に見つければ安いという論理がテスト駆動開発を下支えしている。</p>
+<p>ただしシフトレフトは、単にバグを早く見つける話ではない。<strong>価値のあることすべてをプロセスの前方へ動かす</strong>話だ。ペアプログラミングはレビューをリアルタイムの活動に変え、継続的インテグレーションは衝突の痛みを和らげる。</p>
+<p>突き詰めると、ある地点に到達する。<strong>そもそもそのバグを書かなければよかったのではないか。</strong></p>
+<h2>誤解は技術では検出できない</h2>
+<p>Rich Hickey の指摘が的確だ。ソフトウェアの大問題の大半は誤解の問題であり、何をやっているのか分かっていないまま突き進むことから生じる。</p>
+<p>「クライアント」と「カスタマー」は同義に見える。プロダクトオーナーが「それはクライアントには通るがカスタマーには通らない」と言った瞬間、両者が別物だと分かる。<strong>どんなテストも型システムも、この種の問題は検出しない。</strong> 理解の相違に起因するからだ。</p>
+<p>対策は地味だ。用語集（glossary）は、プロジェクトの成果物として最も効果の大きいものの一つになりうる。</p>
+<h2>要求と必要は一致しない</h2>
+<p>顧客はしばしば、問題ではなく<strong>特定の解決策の形</strong>で要望を持ってくる。「このテーブルを表計算ソフトにエクスポートしたい」。すぐ実装したくなるが、経験を積んだエンジニアはまず、その下にある必要を問う。</p>
+<p>エンジニアは総じて楽観的に過ぎる。スケーラビリティは重要だが、どのアプリケーションもインターネットトラフィックの三分の一を捌くわけではない。あらゆる将来の必要を想像して作り込めば、いずれ捨てるコード──あるいはもっと悪いことに、使われないまま残り続けるコード──が積み上がる。</p>
+<p>根本原因まで降りる道具が「なぜ」を5回繰り返す手法（Five Whys）だ。Nate が出会った例では、Web ページの閉じタグが妙な位置にあった。なぜ？ 昔の Web サーバのバグのため。なぜまだそのバージョンを支えている？ 支えていない。ではなぜバグが直っていない？ 直っている。ではなぜまだこの書き方を見る？ 古いページだろう──いや、数日前に作られたものだった。ここで、周知とクリーンアップという実際の課題が立ち上がる。</p>
+<p>要求の主たる出し手が旧システムのスーパーユーザーである場合は特に注意が要る。その知識は貴重だが、<strong>今あるものに染まっている</strong>。新技術で書かれた旧システムの複製へ誘導されうる。</p>
+<h2>新しい目という資産</h2>
+<p>この罠から抜ける手段が、新参者の視点である。Grace Hopper が最も危険な言葉として挙げたのは「これまでずっとこうやってきた」だった。</p>
+<p>Nate は、朝までに終わらなくなった夜間バッチの相談を受けたとき、単純な問いを置いた──ウィジェット A の処理は B と関係があるか？ ない、最後に集約するだけだ、と。では並列にすればよいのでは。沈黙のあと、できる、と返ってきた。</p>
+<p>特別な洞察があったわけではない。ただ「これまでずっとこうやってきた」に縛られていなかっただけだ。昔誰かが取った方法は、偶然かもしれないし、その場で最も手早い選択だっただけかもしれない。</p>
+<p>経験の浅さは、<strong>歴史的経緯に拘束されていない</strong>という資産と表裏である。ただしこの資産は、問いが学ぶ意思から発しているときにだけ機能する。過去の開発者を辱める試みと受け取られれば閉じる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>顧客が解決策の形で要望を持ってくるとき</li>
+<li>既存システムの置き換え。旧システムの複製に堕する圧力が構造的に働く</li>
+<li>チーム内で同じ語が別の意味で使われている疑いがあるとき</li>
+<li>自分が新しく入ったとき。視点の鮮度には賞味期限がある</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>本番障害の最中。根本原因の探索と止血は別作業で、順序は止血が先</li>
+<li>問題定義が権限外にあるとき。問い続けても摩擦にしかならない。影響力の問題として扱い直す</li>
+<li>際限なく遡ると分析麻痺になる。行動可能な層に当たったら止める</li>
+<li>使い捨てのプロトタイプ。誤解したまま作って捨てるほうが速いことがある</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../メイカーのスケジュールを守る/">メイカーのスケジュールを守る</a></li><li><a href="../戦略的な怠惰が生産性を生む/">戦略的な怠惰が生産性を生む</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

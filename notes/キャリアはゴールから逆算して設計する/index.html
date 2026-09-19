@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>キャリアはゴールから逆算して設計する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2%E3%81%AF%E3%82%B4%E3%83%BC%E3%83%AB%E3%81%8B%E3%82%89%E9%80%86%E7%AE%97%E3%81%97%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>キャリアはゴールから逆算して設計する</code> <button type="button" class="copy-id" data-copy="キャリアはゴールから逆算して設計する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="キャリアはゴールから逆算して設計する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846024000">2026-09-19 19:27 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>キャリアはゴールから逆算して設計する</h1>
+<p>エンジニアは、複雑な問題を扱いやすい小さな断片に分解する技能を育ててきた。<strong>同じ原理がキャリアにも適用できる。</strong></p>
+<h2>情熱は試して見つける</h2>
+<p>書けることは技術的キャリアの土台だが、<strong>何が自分をコーディングに興奮させるか</strong>を見つけることが、満たされて持続する道を作る。</p>
+<p>まだ見つかっていないなら、<strong>実験するほかに知る道はない</strong>。消費者向け、企業システム、インフラ、ゲーム、医療、EC、機械学習。ドメインごとに課題も影響も文化も違う。</p>
+<p>キャリア初期は扱えるプロジェクトが限られる。<strong>副業的な制作は、低い危険で技術とドメインを探索できる場</strong>になる。何をどう作るかの完全な自由がある。</p>
+<p>何で作るかを選ぶとき、<strong>働きたい会社10社の求人を見て、繰り返し現れる技術を拾う</strong>手がある。ただし流行だけに限らない。<strong>あえて本業と違うものを選ぶ</strong>ことが、ソフトウェアの動き方についての心の地図を広げる。</p>
+<p>そして<strong>何が自分を活気づけ、何が消耗させるか</strong>に注意を払う。どんな問題を解くのが楽しいか。画面を作るのとデータや算法を扱うのとどちらが好きか。複雑なシステムのデバッグは活気づけるか、苛立たせるか。<strong>活動ごとに +1（活気づく）か −1（消耗する）を短い理由とともに書き留めて、型を探す。</strong></p>
+<h2>三年後から逆に辿る</h2>
+<p>長期の展望から逆向きに働き、<strong>達成可能な里程標に分解する</strong>。三年から五年後にどこにいたいか。技術アーキテクトか。エンジニアリングマネージャか。<strong>中間の段を特定することが、体系的に到達させる。</strong></p>
+<p>アーキテクトを目指すならこうなる。<strong>一〜二年目</strong>は現在の技術スタックの習熟、システム設計の原則の学習開始、そして<strong>組織内のアーキテクトとの定期的な一対一の設定</strong>。<strong>三〜五年目</strong>は技術的なプロジェクトの主導、後進の指導、分散システムと拡張性の経験、アーキテクトの成果物の手伝い。<strong>五年目以降</strong>は主要プロジェクトの決定を駆動し、チームを越えた標準を作り、発表や会議運営といった非技術の技能に取り組む。</p>
+<p><strong>目指す位置にいる人と繋がる。</strong> その人の道のりを訊けば、自分の判断の材料になる。</p>
+<h2>偶然の学習は偶然の結果を生む</h2>
+<p>学ぶのが好きなら良い職を選んだ。だが現実として、<strong>すべては学べない</strong>。</p>
+<p><strong>偶然の学習は偶然の結果を生む。</strong> 進むには構造化された技能獲得が要る。</p>
+<p><strong>中核の技能</strong>は、流行が変わっても価値を保つ土台である。データ構造と算法、設計パターン、テスト手法、版管理、データベース設計。<strong>複雑さを足す前に土台を固める。</strong></p>
+<p>その上で <strong>T 字型</strong>に広げる。縦棒は主たる技術スタックの深い知識、横棒は関連技術への広い知識。<strong>深さと広さの組み合わせが、専門的でありながら適応的にする。</strong></p>
+<p>限られた時間を投じる前に、機会を基準で評価する。<strong>キャリアの目標と揃っているか。三〜五年後も関連しているか。競争上の優位を与えるか。今の役割で自分をより価値あるものにするか。そして、これは自分を興奮させるか。</strong></p>
+<h2>人生の段階で優先順位は変わる</h2>
+<p>キャリアの判断は真空では起きない。<strong>現在の人生の段階と個人的な事情に深く影響される。</strong> 学校を出た直後に理にかなった道が、幼い子がいる時期や、子が巣立った時期にも同じとは限らない。</p>
+<p>判断を駆動する要因はおおむね五つ。<strong>報酬</strong>、<strong>チームと職場の文化</strong>、<strong>仕事の内容と技術的な挑戦</strong>、<strong>成長機会と将来性</strong>、そして<strong>仕事と生活の均衡</strong>。</p>
+<p>すべてを考慮すべきだが、<strong>優先順位は段階によって動く</strong>。初期は成長機会と挑戦を優先し、経験のために低い報酬を受け入れるかもしれない。家族を作る時期には、安定した労働時間と予測可能な収入が決定的になる。中期には報酬の最大化に焦点が移るかもしれない。後期には、<strong>均衡と文化が急速な昇進より重要になる</strong>ことが多く、指導や意義のある仕事を通じた遺産に動機を見出す人も多い。</p>
+<p>成長機会を考えるときは<strong>機会費用</strong>も見る。この道を選ぶことで、どんな経験、技能、繋がりを逃すか。</p>
+<h2>効く条件</h2>
+<ul>
+<li>キャリアの方向に迷ったとき。+1 / −1 の記録が、好みを推測から観察に変える</li>
+<li>次に何を学ぶか決めるとき。五つの基準を通せば、流行への追随が落ちる</li>
+<li>転職や異動を検討するとき。五つの要因の優先順位が、いまの人生の段階で変わっていないか確かめる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>目標そのものが分からない段階。逆算は終点があって初めて成立する</li>
+<li>副業に充てる時間が取れない状況。探索の前提が崩れる</li>
+<li>三〜五年の見通しが立たない領域。逆算した里程標が、途中で無意味になることはある</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

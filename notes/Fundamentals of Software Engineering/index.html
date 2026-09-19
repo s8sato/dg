@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentals of Software Engineering</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=Fundamentals%20of%20Software%20Engineering">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>Fundamentals of Software Engineering</code> <button type="button" class="copy-id" data-copy="Fundamentals of Software Engineering">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="Fundamentals of Software Engineering" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846223000">2026-09-19 19:30 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>Fundamentals of Software Engineering</h1>
+<p>Nathaniel Schutta / Dan Vega『Fundamentals of Software Engineering - From Coder to Engineer』（O'Reilly, 2026）の読書クラスター。</p>
+<p>扱うのは「コードが書ける」から先、つまり大学やブートキャンプが時間の都合で落とす領域である。読むコード、書くコード、モデリング、テスト、データ、アーキテクチャ、本番、生産性、学習、ソフトスキル、キャリア、AI。個々のトピックはそれぞれ専門書がある題材だが、ここではそれらが<strong>一人のエンジニアのキャリアという一本の軸に並べ直されている</strong>。</p>
+<p>このクラスターは章立てをなぞらず、<strong>1ノート＝1つの命題</strong>に分解している。各ノートは「主張」と「それが効く条件・効かない条件」をセットで書く。適用条件を書けない主張は、標語であって判断材料ではない。<code>## 効かない条件</code> は本書の記述ではなく、読み手として当て込んだ限界である。1ノートは 2,000字以内、1〜3分で読み切れる長さに収めている。</p>
+<h2>出発点</h2>
+<ul>
+<li><a href="../%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AF%E4%BD%9C%E3%82%8B%E4%BA%BA%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E5%88%A4%E6%96%AD%E3%81%AB%E8%B2%AC%E4%BB%BB%E3%82%92%E6%8C%81%E3%81%A4%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B/">ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</a></li>
+<li><a href="../%E6%88%A6%E7%95%A5%E7%9A%84%E3%81%AA%E6%80%A0%E6%83%B0%E3%81%8C%E7%94%9F%E7%94%A3%E6%80%A7%E3%82%92%E7%94%9F%E3%82%80/">戦略的な怠惰が生産性を生む</a></li>
+<li><a href="../%E8%A7%A3%E6%B1%BA%E7%AD%96%E3%81%AB%E9%A3%9B%E3%81%B3%E3%81%A4%E3%81%8F%E5%89%8D%E3%81%AB%E5%95%8F%E9%A1%8C%E3%82%92%E5%AE%9A%E7%BE%A9%E3%81%99%E3%82%8B/">解決策に飛びつく前に問題を定義する</a></li>
+<li><a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9C%AA%E6%9D%A5%E3%81%AE%E4%BB%96%E4%BA%BA%E3%81%AB%E5%AE%9B%E3%81%A6%E3%81%9F%E6%89%8B%E7%B4%99%E3%81%A7%E3%81%82%E3%82%8B/">コードは未来の他人に宛てた手紙である</a></li>
+</ul>
+<h2>コードを読む</h2>
+<ul>
+<li><a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9B%B8%E3%81%8F%E6%99%82%E9%96%93%E3%82%88%E3%82%8A%E8%AA%AD%E3%82%80%E6%99%82%E9%96%93%E3%81%AE%E3%81%BB%E3%81%86%E3%81%8C%E9%95%B7%E3%81%84/">コードは書く時間より読む時間のほうが長い</a></li>
+<li><a href="../%E6%9C%AA%E7%9F%A5%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E5%B1%A5%E6%AD%B4%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80/">未知のコードは履歴と実行から読む</a></li>
+<li><a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AF%E8%85%90%E3%82%89%E3%81%AA%E3%81%84%E5%94%AF%E4%B8%80%E3%81%AE%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%A7%E3%81%82%E3%82%8B/">テストは腐らない唯一のドキュメントである</a></li>
+</ul>
+<h2>コードを書く</h2>
+<ul>
+<li><a href="../%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E3%80%8C%E5%B0%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E3%81%82%E3%82%8B/">良いコードは「少ない」コードである</a></li>
+<li><a href="../%E8%B3%A2%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E4%BA%8B%E6%95%85%E7%9A%84%E8%A4%87%E9%9B%91%E3%81%95%E3%81%A7%E3%81%82%E3%82%8B/">賢いコードは事故的複雑さである</a></li>
+<li><a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E6%A9%9F%E8%83%BD%E3%81%99%E3%82%8B%E6%9D%A1%E4%BB%B6%E3%81%AF%E4%BF%A1%E9%A0%BC%E3%81%A7%E3%81%82%E3%82%8B/">コードレビューが機能する条件は信頼である</a></li>
+<li><a href="../%E6%96%B0%E3%81%97%E3%81%84%E8%A8%80%E8%AA%9E%E3%82%92%E5%AD%A6%E3%81%B6%E3%81%A8%E6%AF%8D%E8%AA%9E%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9%E3%81%8C%E5%A4%89%E3%82%8F%E3%82%8B/">新しい言語を学ぶと母語の書き方が変わる</a></li>
+</ul>
+<h2>設計を伝える</h2>
+<ul>
+<li><a href="../%E5%9B%B3%E3%81%AF%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84/">図はコンパイルされない</a></li>
+<li><a href="../%E5%9B%B3%E3%81%AF%E8%81%B4%E8%A1%86%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6%E9%81%B8%E3%81%B6/">図は聴衆によって選ぶ</a></li>
+</ul>
+<h2>テスト</h2>
+<ul>
+<li><a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E6%9C%AC%E5%BD%93%E3%81%AE%E4%BE%A1%E5%80%A4%E3%81%AF%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B%E5%8B%87%E6%B0%97%E3%81%A7%E3%81%82%E3%82%8B/">テストの本当の価値は変更する勇気である</a></li>
+<li><a href="../%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E9%85%8D%E5%88%86%E3%81%AF%E3%83%94%E3%83%A9%E3%83%9F%E3%83%83%E3%83%89%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E6%96%87%E8%84%88%E3%81%A7%E6%B1%BA%E3%82%81%E3%82%8B/">テストの配分はピラミッドではなく文脈で決める</a></li>
+</ul>
+<h2>未知のシステムを変える</h2>
+<ul>
+<li><a href="../%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AF%E5%A2%97%E5%88%86%E7%9A%84%E3%81%AB%E4%BD%9C%E3%82%8B/">メンタルモデルは増分的に作る</a></li>
+<li><a href="../%E5%AE%89%E5%85%A8%E3%81%AA%E5%A4%89%E6%9B%B4%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%AF%E5%B0%8F%E3%81%95%E3%81%8F%E5%8F%AF%E9%80%86%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8/">安全な変更の条件は小さく可逆であること</a></li>
+</ul>
+<h2>ユーザーインターフェース</h2>
+<ul>
+<li><a href="../%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84/">あなたはユーザーではない</a></li>
+<li><a href="../%E4%B8%87%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E8%A8%AD%E8%A8%88%E3%81%AF%E5%BE%8C%E4%BB%98%E3%81%91%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/">万人向けの設計は後付けできない</a></li>
+<li><a href="../%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B34%E5%8E%9F%E5%89%87%E3%81%AF%E7%B4%A0%E4%BA%BA%E3%81%AB%E3%82%82%E5%8A%B9%E3%81%8F/">デザイン4原則は素人にも効く</a></li>
+<li><a href="../%E6%AD%A3%E3%81%97%E3%81%84%E6%93%8D%E4%BD%9C%E3%82%92%E6%9C%80%E3%82%82%E7%B0%A1%E5%8D%98%E3%81%AA%E6%93%8D%E4%BD%9C%E3%81%AB%E3%81%99%E3%82%8B/">正しい操作を最も簡単な操作にする</a></li>
+</ul>
+<h2>データ</h2>
+<ul>
+<li><a href="../%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AF%E4%B8%80%E8%B2%AB%E6%80%A7%E3%81%AE%E8%A6%81%E6%B1%82%E3%81%8B%E3%82%89%E9%81%B8%E3%81%B6/">データストアは一貫性の要求から選ぶ</a></li>
+<li><a href="../%E3%82%AF%E3%82%A8%E3%83%AA%E6%80%A7%E8%83%BD%E3%81%AF%E3%83%87%E3%83%BC%E3%82%BF%E9%87%8F%E3%81%AE%E6%88%90%E9%95%B7%E3%82%92%E5%89%8D%E6%8F%90%E3%81%AB%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B/">クエリ性能はデータ量の成長を前提に設計する</a></li>
+<li><a href="../%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E%E5%A4%89%E6%9B%B4%E3%81%AF%E4%BA%92%E6%8F%9B%E6%80%A7%E3%82%92%E4%BF%9D%E3%81%A3%E3%81%9F%E3%81%BE%E3%81%BE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AB%E8%A1%8C%E3%81%86/">スキーマ変更は互換性を保ったまま段階的に行う</a></li>
+</ul>
+<h2>アーキテクチャ</h2>
+<ul>
+<li><a href="../%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%A8%E3%81%AF%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95%E3%81%AE%E9%81%B8%E6%8A%9E%E3%81%A7%E3%81%82%E3%82%8B/">アーキテクチャとはトレードオフの選択である</a></li>
+<li><a href="../%E5%93%81%E8%B3%AA%E7%89%B9%E6%80%A7%E3%81%8C%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">品質特性がアーキテクチャを決める</a></li>
+<li><a href="../%E6%B1%BA%E5%AE%9A%E3%81%AFADR%E3%81%AB%E6%AE%8B%E3%81%97%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%8D%E3%82%B9%E9%96%A2%E6%95%B0%E3%81%A7%E5%AE%88%E3%82%8B/">決定は ADR に残しフィットネス関数で守る</a></li>
+</ul>
+<h2>本番へ</h2>
+<ul>
+<li><a href="../%E8%87%AA%E5%88%86%E3%81%AE%E7%92%B0%E5%A2%83%E3%81%A7%E3%81%AF%E5%8B%95%E3%81%8F%E3%81%AF%E6%9C%AC%E7%95%AA%E3%81%A7%E9%80%9A%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84/">「自分の環境では動く」は本番で通用しない</a></li>
+<li><a href="../%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E6%88%A6%E7%95%A5%E3%81%AF%E3%83%AA%E3%82%B9%E3%82%AF%E3%81%AE%E5%8F%96%E3%82%8A%E6%96%B9%E3%81%AE%E9%81%B8%E6%8A%9E%E3%81%A7%E3%81%82%E3%82%8B/">デプロイ戦略はリスクの取り方の選択である</a></li>
+<li><a href="../%E3%83%AD%E3%82%B0%E3%81%A8%E7%9B%A3%E8%A6%96%E3%81%AF%E9%9A%9C%E5%AE%B3%E3%81%8C%E8%B5%B7%E3%81%8D%E3%82%8B%E5%89%8D%E3%81%AB%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B/">ログと監視は障害が起きる前に設計する</a></li>
+<li><a href="../%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%AF%E6%A9%9F%E8%83%BD%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E5%89%8D%E6%8F%90%E3%81%A7%E3%81%82%E3%82%8B/">セキュリティは機能ではなく前提である</a></li>
+</ul>
+<h2>生産性と学習</h2>
+<ul>
+<li><a href="../%E9%81%93%E5%85%B7%E3%81%B8%E3%81%AE%E6%8A%95%E8%B3%87%E3%81%AF%E8%A4%87%E5%88%A9%E3%81%A7%E5%8A%B9%E3%81%8F/">道具への投資は複利で効く</a></li>
+<li><a href="../%E5%AD%A6%E7%BF%92%E3%81%AF%E7%BF%92%E6%85%A3%E3%81%A8%E3%81%97%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B/">学習は習慣として設計する</a></li>
+<li><a href="../%E4%BD%95%E3%82%92%E5%AD%A6%E3%81%B0%E3%81%AA%E3%81%84%E3%81%8B%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">何を学ばないかを決める</a></li>
+</ul>
+<h2>働き方</h2>
+<ul>
+<li><a href="../%E5%BD%B1%E9%9F%BF%E5%8A%9B%E3%81%AF%E7%9B%B8%E6%89%8B%E3%81%AE%E8%A8%80%E8%91%89%E3%81%A7%E4%BE%A1%E5%80%A4%E3%82%92%E8%AA%9E%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8B%E3%82%89%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B/">影響力は相手の言葉で価値を語ることから生まれる</a></li>
+<li><a href="../%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AF%E3%83%9B%E3%83%AB%E3%83%80%E3%83%BC%E3%81%AF%E6%A8%A9%E5%8A%9B%E3%81%A8%E9%96%A2%E5%BF%83%E3%81%A7%E5%88%86%E3%81%91%E3%82%8B/">ステークホルダーは権力と関心で分ける</a></li>
+<li><a href="../%E4%BC%9D%E8%A8%80%E3%81%AF%E5%BF%85%E3%81%9A%E6%AD%AA%E3%82%80/">伝言は必ず歪む</a></li>
+<li><a href="../%E3%83%A1%E3%82%A4%E3%82%AB%E3%83%BC%E3%81%AE%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92%E5%AE%88%E3%82%8B/">メイカーのスケジュールを守る</a></li>
+</ul>
+<h2>キャリア</h2>
+<ul>
+<li><a href="../%E3%82%AD%E3%83%A3%E3%83%AA%E3%82%A2%E3%81%AF%E3%82%B4%E3%83%BC%E3%83%AB%E3%81%8B%E3%82%89%E9%80%86%E7%AE%97%E3%81%97%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B/">キャリアはゴールから逆算して設計する</a></li>
+<li><a href="../%E5%8B%9D%E3%81%A1%E3%82%92%E8%A8%98%E9%8C%B2%E3%81%99%E3%82%8B/">勝ちを記録する</a></li>
+<li><a href="../%E4%BA%BA%E8%84%88%E3%81%AF%E6%A9%9F%E4%BC%9A%E3%81%AE%E7%B5%8C%E8%B7%AF%E3%81%A7%E3%81%82%E3%82%8B/">人脈は機会の経路である</a></li>
+</ul>
+<h2>AI</h2>
+<ul>
+<li><a href="../AI%E3%81%AE%E8%83%BD%E5%8A%9B%E3%81%A8%E9%99%90%E7%95%8C%E3%82%92%E5%88%86%E3%81%91%E3%81%A6%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B/">AI の能力と限界を分けて理解する</a></li>
+<li><a href="../%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%AF%E6%96%87%E8%84%88%E3%82%92%E4%B8%8E%E3%81%88%E3%82%8B%E6%8A%80%E8%83%BD%E3%81%A7%E3%81%82%E3%82%8B/">プロンプトは文脈を与える技能である</a></li>
+<li><a href="../AI%E3%81%AF%E9%81%93%E5%85%B7%E3%81%A7%E3%81%82%E3%82%8A%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E8%B2%AC%E4%BB%BB%E3%81%AE%E5%BC%95%E5%8F%97%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B/">AI は道具であり、あなたは責任の引受人である</a></li>
+</ul>
+</article>
+
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

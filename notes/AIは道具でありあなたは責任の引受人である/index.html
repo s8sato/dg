@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI は道具であり、あなたは責任の引受人である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=AI%E3%81%AF%E9%81%93%E5%85%B7%E3%81%A7%E3%81%82%E3%82%8A%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E8%B2%AC%E4%BB%BB%E3%81%AE%E5%BC%95%E5%8F%97%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>AIは道具でありあなたは責任の引受人である</code> <button type="button" class="copy-id" data-copy="AIは道具でありあなたは責任の引受人である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="AIは道具でありあなたは責任の引受人である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789846223000">2026-09-19 19:30 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>AI は道具であり、あなたは責任の引受人である</h1>
+<p><strong>あなたは操縦士であって、乗客ではない。</strong> AI は強力な助手だが、コードを理解し、アーキテクチャの判断を下し、品質を保証する責任は自分に残る。<strong>自分が書いたか AI が書いたかによらず、プロジェクトのすべてのコードの責任は自分が負う。</strong></p>
+<h2>高価なカメラは写真家を作らない</h2>
+<p>5,000ドルのカメラを渡された人と、20年の経験を持つ写真家にスマートフォンを渡した場合、<strong>どちらが良い写真を撮るか</strong>。おそらく写真家が勝つ。絞り、露出、光、構図を理解し、撮りたい像を捉える視点を持っているからだ。</p>
+<p><strong>高価なカメラは増幅器である。既存の技能を増幅するが、そこにない技能を作り出すことはできない。</strong> AI も同じで、<strong>道具が自分をより良い開発者にすることはない。</strong></p>
+<h2>仕事はコードを書くことではない</h2>
+<p>コードを書く前に、<strong>不完全で曖昧な要求を動くシステムに変える</strong>責任がある。トレードオフについて「場合による」という判断を下す。社内政治を渡り、後進を指導し、技術的でない相手に概念を説明する。</p>
+<p>AI は無数の例で訓練され、新しいコードを生成できる。<strong>だが自社の事業モデルも、利用者固有の必要も、なぜ CEO の「単純な要望」が実はアーキテクチャの悪夢なのかも理解していない。</strong> 会議に同席して、プロダクトマネージャの要件が営業の約束と食い違っていることに気づくこともできない。<strong>こうした人間的な要素は例外ではなく、仕事そのものである。</strong></p>
+<p><strong>AI は開発者を置き換えないが、AI を使う開発者が使わない開発者を置き換える。</strong></p>
+<p>アセンブリから高水準言語へ、単純なエディタから IDE と自動化された配管へ。<strong>プログラマを不要にしえた進歩をすべて通り抜けて、開発者への需要は毎年増えてきた。</strong></p>
+<p>AI が消しているのは、<strong>しばしば退屈だと感じる作業</strong>である。定型コード、反復的なテスト、文書。これを脅威と見ることも、<strong>解放</strong>と見ることもできる。自分を価値あるものにしているのは for ループを書ける能力ではなく、<strong>いつそれを使うべきか、なぜ重要か、より大きな応用にどう収まるかを知っていること</strong>である。</p>
+<h2>レビューはかつてなく重要になる</h2>
+<p>2025年2月、Andrej Karpathy が<strong>バイブコーディング</strong>という語を作った。これは<strong>問題のある開発慣行を際立たせるための意図的な皮肉</strong>であって、推奨ではない。</p>
+<p>エージェント型の IDE を使い、よく練られたプロンプトでアプリケーション全体を生成する。これは開発を新しい層の作り手に開いた。</p>
+<p>だが Karpathy 自身が述べたとおり、これがうまくいくのは**「使い捨ての週末の制作」**である。鍵になる語は「使い捨て」だ。<strong>自分だけが使う家計簿の計算違いと、複数州の税制にまたがる数千人の給与システムの不具合とでは、賭けているものがまるで違う。</strong></p>
+<p>「大企業のコードの25%が AI によって書かれている」という見出しの実体はこうだ。開発者が問題を詳述した課題を作る。AI のエージェントがそれを読み、コードの変更を生成し、プルリクエストを作る。<strong>人間がレビューし、統合するかどうかを決める。</strong> AI が定型的な実装を担い、<strong>品質保証と意思決定は人間が握り続けている。</strong></p>
+<p>企業環境には、週末の作り手にないものがある──<strong>厳格な手順</strong>だ。<strong>AI が生成したコードも、人間が書いたものと同じ精査を通る必要がある。むしろこれらの手順は、かつてなく決定的になる。</strong> 生成されたコードにも、微妙なバグ、脆弱性、自分の応用には適さないアーキテクチャ判断が含まれうる。Neal Ford は、適切なレビューなしに急いで導入するチームが招く**「悪いコードの津波」**を警告している。</p>
+<p>だから<strong>自分の「自分の」コードを説明できなければならない</strong>。プルリクエストを出す前に、なぜそのコードが存在し何をするのかを厳密に辿る。<strong>AI が生成したから自分のせいではない、という言い訳は使えない。書いたのが自分でも機械でも、責任と結果を負うのは自分である。</strong></p>
+<h2>創り手であり、目利きであれ</h2>
+<p>鍵は、<strong>プロンプトを投げて祈る</strong>やり方を避けることにある。自分を<strong>コードの創り手であると同時に目利き</strong>だと考える。</p>
+<p>要る技能は、効果的なプロンプトを書くこと、<strong>生成されたコードを素早くレビューし理解すること</strong>、人間と AI の双方が書いたものから問題を特定すること、<strong>偏りや排除を見つけること</strong>、そしてレビューで効果的に意思疎通すること（<a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E6%A9%9F%E8%83%BD%E3%81%99%E3%82%8B%E6%9D%A1%E4%BB%B6%E3%81%AF%E4%BF%A1%E9%A0%BC%E3%81%A7%E3%81%82%E3%82%8B/">コードレビューが機能する条件は信頼である</a>）。</p>
+<h2>効く条件</h2>
+<ul>
+<li>生成されたコードをそのまま統合したくなったとき。説明できるかを自分に問う</li>
+<li>使い捨ての試作と本番のシステムを区別するとき。賭けているものが違えば、手順も違う</li>
+<li>AI に職を奪われる不安を感じたとき。仕事の実体がコードを書くことではないと確かめる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>生成量がレビュー能力を超えた場合。「すべて理解して説明する」は、量が一定を超えると物理的に成立しない</li>
+<li>自分の熟達度が生成物を下回る領域。<strong>理解できないコードはレビューできない</strong>。学習の順序は依然として先に来る</li>
+<li>組織が速度だけを測っている場合。責任の所在は、評価指標が示す方向にしか向かない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

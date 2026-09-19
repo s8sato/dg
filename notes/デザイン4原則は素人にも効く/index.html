@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザイン4原則は素人にも効く</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B34%E5%8E%9F%E5%89%87%E3%81%AF%E7%B4%A0%E4%BA%BA%E3%81%AB%E3%82%82%E5%8A%B9%E3%81%8F">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>デザイン4原則は素人にも効く</code> <button type="button" class="copy-id" data-copy="デザイン4原則は素人にも効く">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="デザイン4原則は素人にも効く" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844837000">2026-09-19 19:07 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>デザイン4原則は素人にも効く</h1>
+<p>設計の技能は時間をかけて育つ。だが<strong>履き古された原則に従えば、初心者でも説得力のあるデザイン を作れる</strong>。Robin Williams が『ノンデザイナーズ・デザインブック』で示した対比・反復・整列・近接がそれだ。</p>
+<p>主眼は文書や名刺だが、概念はインタフェース設計にも等しく効く。単純で適用しやすく、<strong>無視すれば使いやすさに深刻な帰結をもたらす。</strong></p>
+<h2>対比（Contrast）</h2>
+<p>最も効果的な道具である。二色の違いを思い浮かべがちだが、<strong>異なる二つのものは何であれ対比を生む</strong>。大きな字と小さな字、太い線と細い線、小さな画像と大きな画像。形も、整列のしかたさえも。</p>
+<p>効かせるには、本当に違うものを使う。<strong>弱腰になるな。</strong> 二種類の灰色の対比は、赤と黒ほどには効かない。似すぎているより、やりすぎるほうがましだ。</p>
+<p>対比は組織化の道具でもある。一瞥して流れが掴めるべきで、下手に使えば、意図しない視覚的な群を作って混乱させる。見出し、小見出し、本文は明確に区別できるだけ違っていなければならない。</p>
+<h2>反復（Repetition）</h2>
+<p>主要な視覚要素をデザイン全体で繰り返すと、馴染みと結束が生まれる。持続的なナビゲーションが典型だが、もっと微妙でもよい。同じフォント、配色、画面構成、箇条書きの記号──<strong>結び付けるものなら何でも繰り返せる。</strong></p>
+<p>単なる一貫性だと思うかもしれないが、視覚的には良いデザインの鍵である。最も基本的な水準では、<strong>利用者が同じ場所にいると分かる</strong>。視覚的な意匠が絶えず変わるアプリケーションがどれほど落ち着かないか想像すればいい。</p>
+<p>反復は視覚的な単位を作り、<strong>利用者が安全に「無視」してよいものを学ぶ</strong>ことを助ける。そして繰り返された形は、違いを際立たせる。</p>
+<p>やりすぎは容易で、とりわけ色がそうだ。赤がブランドと結びついていても、アプリケーションを赤で溢れさせる免許にはならない。</p>
+<h2>整列（Alignment）</h2>
+<p>最も実践しやすい原則である。<strong>そこに空きがあるからという理由で要素を放り込まない。</strong> 整列は鋭く結束した見た目を作り、離れた要素同士にも視覚的な繋がりを与える。</p>
+<p>左または右に揃えると鋭い垂直の縁ができ、洗練された印象になる。<strong>中央揃えは避ける。</strong> ぎざぎざの縁は目に心地よくなく、文章も読みにくくなる。</p>
+<p>文字だけの話ではない。<strong>要素を置くときは必ず、何かと揃える。</strong> そして一つの方針を選び、全体で繰り返す。</p>
+<h2>近接（Proximity）</h2>
+<p>人が見たものを評価するうえで決定的な役割を果たす。<strong>近くにまとめられた項目は、実際には関係がなくても、関係していると認識される。</strong></p>
+<pre class="hljs"><code>• Shorts      • Sunglasses
+• Sunscreen   • Sandals
+• Socks       • Shirts
+</code></pre>
+<p>まとめられているので、本能的に一つの視覚的単位として見える。ここで二つだけ記号を変えてみる。</p>
+<pre class="hljs"><code>• Shorts      • Sunglasses
+• Sunscreen   — Sandals
+• Socks       — Shirts
+</code></pre>
+<p>一瞥して、sandals と shirts が全体の中で特別な関連を持つように見える。<strong>関連の内容が不明でも、人は（意識的にせよ無意識にせよ）その繋がりが何かを探そうとする。</strong></p>
+<p>逆に、関係のない項目をまとめてはならない。視覚的な単位を作ったら、<strong>間に余白を置く</strong>。緩衝が結び付きを強め、ページの理解を助ける。ページ上の視覚的な群は少なく保つ。五つ程度を超えるなら、配置を変えて新しい群を作ることを考える。</p>
+<h2>効く条件</h2>
+<ul>
+<li>専門の designer がいないチームで画面を作るとき。四つの原則だけで水準は大きく上がる</li>
+<li>既存画面が「なんとなく雑」に見えるが理由を言語化できないとき。四つのどれが破られているかで説明がつく</li>
+<li>破壊的操作や重要な導線を目立たせたいとき。対比と近接が直接効く（<a href="../%E6%AD%A3%E3%81%97%E3%81%84%E6%93%8D%E4%BD%9C%E3%82%92%E6%9C%80%E3%82%82%E7%B0%A1%E5%8D%98%E3%81%AA%E6%93%8D%E4%BD%9C%E3%81%AB%E3%81%99%E3%82%8B/">正しい操作を最も簡単な操作にする</a>）</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>記憶に残ることが目的の場面。ぎざぎざの整列は広告では効きうるが、勤怠管理アプリでは効かない</li>
+<li>デザインシステムが既にある組織。原則はシステムの設計者が使うもので、利用者はシステムに従うほうが一貫性を保てる</li>
+<li>情報密度が要件である画面。余白で群を作る余地がないとき、近接は他の手段（罫線、背景色）に置き換わる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../正しい操作を最も簡単な操作にする/">正しい操作を最も簡単な操作にする</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

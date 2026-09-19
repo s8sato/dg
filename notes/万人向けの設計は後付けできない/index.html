@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>万人向けの設計は後付けできない</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E4%B8%87%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E8%A8%AD%E8%A8%88%E3%81%AF%E5%BE%8C%E4%BB%98%E3%81%91%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>万人向けの設計は後付けできない</code> <button type="button" class="copy-id" data-copy="万人向けの設計は後付けできない">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="万人向けの設計は後付けできない" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844837000">2026-09-19 19:07 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>万人向けの設計は後付けできない</h1>
+<p>アクセシビリティ（a11y）、ローカライゼーション（L10N）、インターナショナライゼーション（I18N）は、<strong>最初から織り込むほうがはるかに単純</strong>である。あとから被せるのは別の仕事になる。</p>
+<h2>改修という別の仕事</h2>
+<p>Nate はかつて、専門技術者に広く使われる成熟した Web アプリケーションで、スクリーンリーダーとキーボード操作への改修を任された。</p>
+<p>そうした概念を念頭に置かずに作られていた、というのは控えめな表現だった。<strong>スクリーンリーダーで初めてページを辿ったとき、作業量の膨大さは明らかだった。</strong> 欄には明確なラベルがなく、ショートカットと呼べるものはほぼ存在しない。膨大な労力を注いで、どうにかキーボードから（おおむね）使える状態までは持っていった。</p>
+<p>これは法規制の問題でもある。米国の ADA、リハビリテーション法第508条、欧州アクセシビリティ法がそれぞれアクセシブルな設計を求めている。</p>
+<h2>縁石の切り下げは誰の役にも立つ</h2>
+<p>考えるべき困難は幅広い。視覚（弱視から全盲、色覚の差異。<strong>男性の約8%、女性の約0.4%が何らかの色覚特性を持つ</strong>）、聴覚、巧緻性、認知（自閉症、失読症など）。</p>
+<p>だが<strong>アクセシブルにすることは、障害のある人だけを助けるのではない。</strong></p>
+<p>歩道の縁石の切り下げは車椅子に不可欠だが、空港でスーツケースを引く旅行者も助ける。キーボードショートカットは、マウスを使えない人と同じくらい熟練利用者に効く。高帯域の接続に依存しないソフトウェアは、ブロードバンドのない人と、圏内外を出入りする移動中の人の両方を助ける。</p>
+<h2>I18N が土台、L10N が実装</h2>
+<p>しばしば混同されるが、この二つは別物である。</p>
+<p><strong>I18N</strong> は、異なる言語と文化的期待に適応できるようアプリケーションを設計・構築する過程だ。ラベルを直書きせず、プロパティファイルから読み込むようにする。<strong>ラベルの伸長も設計に織り込む</strong>。英語からドイツ語への翻訳は、同じ語句で35%膨らむことがある。すべての文化が左から右ではない。アラビア語やヘブライ語は右から左に読み、日本語は上から下にも組める。</p>
+<p><strong>L10N</strong> は、対象市場の文化と言語にインタフェースを適合させる過程だ。ラベルと欄を訳し、適切な通貨記号、期待される日付書式、単位を使う。</p>
+<p>つまり <strong>I18N が適応を可能にする土台であり、L10N がその適応を実装する。</strong> 特定の地域の外で決して使われないと保証できない限り、最初から両方を念頭に置いて設計する。単一市場を超える可能性が少しでもあるなら、世界を相手に作る。</p>
+<h2>使いやすさは文脈で最大化する</h2>
+<p>使いやすさは「意図した聴衆にとってどれだけ使いやすいか」に尽きるが、その構成要素は多い──学習容易性、効率、記憶容易性、発見容易性、エラー処理、満足度、そしてアクセシビリティ。</p>
+<p>すべてを最大化しようとする前に問うべきは、<strong>このアプリケーションはどう使われるのか</strong>である。</p>
+<p>毎日一日中使われるもの、あるいは CAD のように本質的に複雑なものでは、効率・記憶容易性・満足度が重要になる。利用者は訓練を受けるか、反復の力で覚える。一方、次の社会ネットワークを狙うなら、利用者は何かを学ぶ必要に耐えない。<strong>学習容易性と発見容易性が鍵</strong>になり、直感的でなければ他所へ去る。</p>
+<p>効率も同じ規則に従う。一日の大半をそこで過ごすなら、数クリックの節約が急速に積み上がる。<strong>小さな数に大きな数を掛ければ、大きな数になる。</strong> 逆に、めったに使われないアプリケーションは効率で多少損をしてよい。記憶容易性や学習容易性が上がるならなおさらだ。パズルゲームは発見容易性が低いよう意図的に設計される。解き明かすこと自体が目的だからだ。<strong>文脈が指針になる。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>新規プロジェクトの初期。改修の費用と作り込みの費用は桁が違う</li>
+<li>単一市場向けに見えるアプリケーション。その前提が崩れる確率は思うより高い</li>
+<li>使いやすさの優先順位を決めるとき。「毎日使うのか、たまにしか使わないのか」が配分を決める</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>既存の成熟したアプリケーション。「後付けできない」は正しいが、だからといって諦める理由にはならない。段階的な改修の計画が別途要る</li>
+<li>社内向けの短命なツール。I18N の土台を敷く費用が回収されないことはある</li>
+<li>規制が適用されない領域で、かつ予算が逼迫している場合。正しさと実行可能性は別の問題であり、その差を埋めるのは技術ではなく交渉である</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

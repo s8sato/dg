@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>何を学ばないかを決める</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E4%BD%95%E3%82%92%E5%AD%A6%E3%81%B0%E3%81%AA%E3%81%84%E3%81%8B%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>何を学ばないかを決める</code> <button type="button" class="copy-id" data-copy="何を学ばないかを決める">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="何を学ばないかを決める" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845661000">2026-09-19 19:21 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>何を学ばないかを決める</h1>
+<p><strong>注意は希少な資源であり、増やすことはできない。</strong> 読み、観て、聴くことのすべてはできない。選ばざるをえない。</p>
+<h2>FOMO は事実だが、恐れる必要はない</h2>
+<p>すべてを能動的に消費していなければ何か重要なものを取りこぼす──この取り残される恐れ（FOMO）は実在する。</p>
+<p>だが泡を割ってしまえば、<strong>すべてを読むことも観ることも聴くこともできない</strong>。この段落を読むあいだに、およそ一週間分の動画が新たに投稿されている。</p>
+<p>慰めになる事実がある。<strong>技術に本当に大きなことが起きれば、耳に入る。</strong> 最初の発表は見逃すかもしれないが、それでよい。</p>
+<p>人脈も使える。友人や同僚の関心は自分と違う。<strong>学習を複数の人に分散させることに何も悪いところはない。</strong></p>
+<h2>理由なしに学ばない</h2>
+<p><strong>履歴書駆動開発をしない。</strong> 何か新しいものを学ぶには「なぜ」が要る。<strong>必要になるまで学ぶのを待ってよい。過大評価されていると直観が告げるなら、一拍置いてから投資しても構わない。</strong></p>
+<p>Nate はデータベースをもっと知ろうと、ある日その主題の本を開いた。20分後、彼は本を置いて階上へ行き、<strong>靴下の引き出しを整理した</strong>。比喩ではない。靴下の引き出しのほうが優先度が高いと判断したのだ。<strong>この主題に情熱を持っていないという紛れもない合図だった。</strong></p>
+<p>学習時間を予定に入れるのは容易だが、<strong>何を学ぶべきかという問いは残る</strong>。興奮しない主題のために日々の時間を作るのは難しい。本を置いても、動画を半分で止めてもよい。<strong>完走に追加点はない。</strong></p>
+<h2>振り子は揺れ、古いものは戻ってくる</h2>
+<p><strong>ソフトウェアでは型がしばしば繰り返し、物事は両極の間を振り子のように揺れる。</strong> 古いものが埃を払われ、改名され、誰もやったことがないかのように再登場するのは珍しくない。</p>
+<p>次の記述を読んでほしい。「異なるプログラミング言語で書かれ、さまざまな計算機で動くソフトウェア部品が、互いに通信し協働できるようにする手法」。マイクロサービスを思い浮かべただろうか。<strong>当てはまる。</strong> だがこれは1990年代に流行した CORBA の定義である。</p>
+<p>ただし直観は割り引いたほうがいい。Paul Graham は2001年、自らの基準を Java に当てて「この言語はあまり成功しないだろうという予感がする」と書いた。20年以上を経た今、Java は史上最も成功した言語の一つである。<strong>彼ほどの人がこれほど外しうるなら、自分の直観も割り引くのが賢明だ。</strong></p>
+<h2>情熱は採用の理由にならない</h2>
+<p><strong>すべての新しいものについていけないのと同じく、すべてを採用することもできない。</strong> ある道具への情熱は、それがプロジェクトに適することを自動的には意味しない。利点だけでなく<strong>すべての帰結</strong>を考える。</p>
+<p>そして<strong>自分の文脈で試す</strong>。検証は、その技術が実際に出会う制約のもとで行う。</p>
+<p>あるチームは、何年も使ってきた UI ライブラリが限界に達し、三つの候補に絞って<strong>更地での検証</strong>を行った。一つを選び、既存のアプリケーションに少しずつ振りかけていく計画を立てた。六ヶ月後、彼らは悟った──<strong>このライブラリは少しずつ足せるものではなく、真に使うには全面的な書き直しが要る。</strong> 既存プロジェクトのフォークで検証していれば、ずっと早く気づけた。それでも同じものを選んだかもしれないが、<strong>少なくとも目を開いた状態で選べた。</strong></p>
+<p><strong>更地で to-do 一覧が動いたからといって、その技術が自分の環境との接触を生き延びるとは限らない。練習した通りに試合をすることになる。</strong></p>
+<h2>自分に猶予を与える</h2>
+<p>移り変わる技術についていくことは重要だが、<strong>非常に圧倒されうる</strong>。先端に立ち続けようとして燃え尽きるのは驚くほど簡単だ。<strong>学習は楽しみであるべきで、人生の緊張の元であってはならない。</strong> 良い睡眠や心身の健康を犠牲にしてまでやることではない。</p>
+<p><strong>最後の責任ある瞬間まで学習を待つことに、何も悪いところはない。</strong> ソフトウェアの空間は、先月の新しい熱狂の残骸で散らかっている。<strong>いつ学び始めてよいかに時効はない。</strong> 定着力が証明されたなら、来週でも来年でも拾える。</p>
+<h2>効く条件</h2>
+<ul>
+<li>学ぶべきものが多すぎて麻痺しているとき。「なぜ」がないものを落とす判断ができる</li>
+<li>新しい技術の採用を検討するとき。既存プロジェクトのフォークで試す判断が、六ヶ月後の後悔を防ぐ</li>
+<li>情報を追うことに疲れたとき。大きなことは耳に入る、という事実が休むことを許す</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>職務上、幅広い技術動向の把握が求められる立場。選択的であることが職務放棄になりうる</li>
+<li>分野そのものが急変している時期。「決着を待つ」判断が、致命的な出遅れになることはある</li>
+<li>情熱を基準にしすぎる場合。業務上必要だが退屈な領域は、それでも学ばねばならない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

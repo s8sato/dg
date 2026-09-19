@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>道具への投資は複利で効く</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E9%81%93%E5%85%B7%E3%81%B8%E3%81%AE%E6%8A%95%E8%B3%87%E3%81%AF%E8%A4%87%E5%88%A9%E3%81%A7%E5%8A%B9%E3%81%8F">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>道具への投資は複利で効く</code> <button type="button" class="copy-id" data-copy="道具への投資は複利で効く">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="道具への投資は複利で効く" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845661000">2026-09-19 19:21 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>道具への投資は複利で効く</h1>
+<p>多くの職業では、道具に責任を持つのは自分である。<strong>プロの厨房に共用の包丁立てはない。</strong> 料理人は自分の包丁を持ち込む。整備士は自分の工具箱を、自分の基準で整えて持つ。</p>
+<h2>道具は自分に合わせる</h2>
+<p>会社がライセンスの費用を持つとしても、<strong>道具立ての責任は自分にある。自分のものにすることを恐れない。</strong></p>
+<p>隅から隅まで、すべての難解なコマンドを知る必要はない。だが<strong>日々使うものは手の甲のように知っているべきだ。</strong></p>
+<p>目的は流れの状態（flow）に留まることにある。数分ごとに手を止めてコマンドを調べたり、ショートカットで済むのにトラックパッドへ手を伸ばしたりすれば、集中は途切れる。</p>
+<p>車に乗れば座席とハンドルとミラーを自分に合わせる。工場出荷時のままでは快適でも安全でもない。<strong>自分の光剣を組み立てるようなものだ。</strong> フォント、テーマ、OS の設定、小さな補助アプリ。同僚のメニューバーに見慣れないものがあれば訊く。<strong>尋ねるだけで月に数時間を節約しうる。</strong></p>
+<p>物理的な環境も含まれる。椅子と画面の高さ、そしてキーボード。<strong>会社が一括購入したものが自分に合っているとは限らない。</strong> 反復性ストレス障害の痛みを待つ必要はない。</p>
+<p>ただし<strong>時間の沼になりうる</strong>ことには注意がいる。本当は仕事をすべきときにフォントとテーマをいじっていた、ということになりかねない。実験には時間箱を切る。行き過ぎた個人化は、他人とペアを組むことをほぼ不可能にもする。</p>
+<h2>コマンドラインは力の増幅器である</h2>
+<p>最初は威圧的に見えるが、<strong>CLI はすぐに超能力になる</strong>。多くの日常作業が数打鍵で片付く。週に数分、新しいコマンドを試す時間を取る。</p>
+<p>パイプは、単一目的の単純な道具をつなげて複雑な出力を得させる。Git リポジトリの URL が欲しければ <code>cat .git/config | grep url | cut -f2 -d=</code> で済む。</p>
+<p>よく使うものには別名（alias）を作る。<strong>ただし自分の設定がない機械では効かない</strong>ので賢く使う。履歴は<strong>最も過小評価されている側面</strong>で、逆順検索を覚えるだけで同じコマンドを二度打つことはほぼなくなる。</p>
+<h2>0 か 1 か n か</h2>
+<p>他人のためにコードを書いて一日を過ごしているのだから、<strong>自分のために書くことを恐れない</strong>。数行が結果的に何時間も節約する。</p>
+<p>計算機科学には三つの数しかない。<strong>ゼロ回やること、一度だけやること、そして n 回。</strong> 一度より多くやるなら、数え切れないほどやることになると思ったほうがいい。<strong>二度以上やることは自動化を検討する。</strong></p>
+<p>ただし自動化の追求も危険な沼になりうる。<strong>コードを書くほうが作業そのものより長くかかることがある。</strong> 本当に一度きりなら、自動化は時間の使い方として賢くない。数回やってから、それでも時間箱を切って取り組む。</p>
+<h2>覚えたことを外に置く</h2>
+<p>技術は猛烈な速さで変わり、情報に溺れることになる。だから<strong>個人の知識管理の戦略</strong>を持つのがよい。複雑である必要も専用の道具が要るわけでもないが、後で使う情報を貯める場所は要る。</p>
+<p><strong>答えを知っていたはずなのに、それがどこにあったか思い出せないことほど苛立たしいものはない。</strong></p>
+<p>書き留める。同じ問題にまた出くわす。同僚も出くわす。次回には覚えていない。<strong>脳から外部記憶へ降ろす。</strong> 形式は問わない。紙片を挟んだクリップでも機能する。ただし電子的なもののほうが検索しやすく、同僚と共有しやすい。</p>
+<h2>学びは同僚から借りる</h2>
+<p>コツの最良の供給源は同僚である。<strong>生産性の実践について尋ねる習慣を持つ。</strong> 知らないことを恥じない。</p>
+<p>逆に、同僚が難しいやり方をしていたら簡単な道を示す。<strong>定着させるために三、四回繰り返してから次へ進む。</strong> それは自分の知識を深めるだけでなく、<strong>馴染んだ環境を手元に増やすことにもなる。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>同じ操作の繰り返しに気づいたとき。二度目が自動化を検討する合図</li>
+<li>新しい職場に入ったとき。同僚の道具立てを訊くのに最も自然なタイミング</li>
+<li>手首や首に違和感が出たとき。道具への投資は健康への投資でもある</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>個人化が強すぎる場合。ペアやモブでの作業、他人の機械での作業が成立しなくなる</li>
+<li>共有環境や制限された端末で働く場合。別名も設定も持ち込めない</li>
+<li>自動化の対象が不安定な場合。仕様がすぐ変わるものを自動化すると、保守対象が増えるだけになる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

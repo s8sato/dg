@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アーキテクチャとはトレードオフの選択である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%A8%E3%81%AF%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95%E3%81%AE%E9%81%B8%E6%8A%9E%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>アーキテクチャとはトレードオフの選択である</code> <button type="button" class="copy-id" data-copy="アーキテクチャとはトレードオフの選択である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="アーキテクチャとはトレードオフの選択である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845234000">2026-09-19 19:13 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>アーキテクチャとはトレードオフの選択である</h1>
+<p><strong>アーキテクチャとは検索できないものである。</strong> データストアのエラーメッセージなら検索すれば答えが見つかる。だが「この用途にどのデータストアを使うべきか」には、いくら検索しても満足のいく答えは出ない。</p>
+<h2>後から変えにくい決定</h2>
+<p>建築から借りた語であるとおり、アーキテクトは全体像・構造・構想に責任を持つ。つまり<strong>後から変えるのが難しいもの</strong>に。コンクリートを流し込んだあとのリファクタリングは本当に難しい。</p>
+<p>ソフトウェアは家よりは容易に作り変えられるが、<strong>悪魔的に作り直しにくい決定もある</strong>。多数の小さな独立した部品に分けて作り、半年後に考えを変えたら前途は多難だ。</p>
+<p>だからアーキテクトは、機能要件の先を満たせるかを確かめるために問題空間を探索する。同時利用者は何人か。地理的にどこにいるか。可用性の目標は。需要の急増は何が引き起こすか。どのデータをどれだけの期間残すか。どんな法規制に従うか。許容される応答時間は。</p>
+<p><strong>これらに一般解はない。</strong> だから「正しいアーキテクチャ」も存在しない。</p>
+<h2>「場合による」としか言えない理由</h2>
+<p>学校には A をもらえる答え、B の答え、C の答えがあった。ソフトウェアには<strong>正解も誤答もなく、あるのはトレードオフだけ</strong>である。「最良の答え」もなく、多くの場合<strong>最も悪くない答え</strong>を受け入れることになる。</p>
+<p>プログラマはあらゆるものの利点を知っていて、トレードオフを何も知らない。アーキテクトは両方を理解する必要がある。</p>
+<p>例を挙げる。共通機能を括り出すとして、実行時に呼ぶサービスにすべきか、呼び出し側と一緒にビルドされるライブラリにすべきか。<strong>場合による。</strong> では何によるのか。</p>
+<p>そのライブラリはどれだけ変わりやすく、最新版を持つことはどれだけ重要か。絶えず変化するなら実行時依存が理にかなう。<strong>すべての呼び出し側が同時に最新を持つ</strong>と確信できる。だがプロセス外呼び出しを持ち込んだことで、新しい誤りの表面積が生まれた。<strong>到達できなかったら何をするのか。</strong> 代替、キャッシュされた答え、既定の結果が要るかもしれない。</p>
+<p>ビルド時依存にすれば網越しの往復が消え、一群の誤りがなくなり、テストも単純になる。<strong>ただし組織全体への更新の展開は難しくなり</strong>、利用者ごとに違う版を配置する可能性が高まる。</p>
+<h2>戦略か戦術か</h2>
+<p>アーキテクチャと設計の境界は曖昧だ。現在の設計はアーキテクチャの可動域を制限し、現在のアーキテクチャは設計の余地に影響する。大多数の決定は連続体の上にある。</p>
+<p>区別する視点の一つが、<strong>その決定は戦略的か戦術的か</strong>である。戦略的な思考は長期の目標と全体の方向に焦点を当てる。戦術的な決定は目先の問題を解く短期の行動で、粘着テープで留めるようなもの──恒久的な修理でないと知りながらやる。<strong>戦術的であるほど設計に近く、戦略的であるほどアーキテクチャに寄る。</strong></p>
+<p>判定の手がかりは二つ。<strong>何人で決められるか。</strong> 開発者が一、二人なら戦術的、CTO を含む数週間の会議を要するなら戦略的。そして<strong>変更の費用はいくらか。</strong> メソッドのリファクタリングは戦術、モノリスをマイクロサービスに割るのは戦略である。</p>
+<h2>偶然のアーキテクト</h2>
+<p><strong>アーキテクトの肩書きを持たない技術者がアーキテクチャの仕事をするのはごく普通</strong>である。持て余すほどアーキテクトがいる組織は存在せず、たいてい多くのプロジェクトに薄く広がっている。</p>
+<p>アーキテクトにほとんどアクセスできない立場に置かれたなら、自分が偶然のアーキテクトである。その役を演じているなら、<strong>より大きな絵を見る時間を確保し</strong>、他の人から意見をもらうことを恐れない。</p>
+<h2>効く条件</h2>
+<ul>
+<li>技術選定で意見が割れたとき。「利点」ではなく「トレードオフ」を並べる形式に変える</li>
+<li>ある決定を誰が下すべきか決めかねるとき。戦略／戦術の軸と変更費用が線を引く</li>
+<li>肩書き上アーキテクトでないが決定を求められたとき。偶然のアーキテクトであることの自覚が、視野の確保を正当化する</li>
+<li>様式の選定に入る前。トレードオフの枠組みが、流行による選択を防ぐ（<a href="../%E5%93%81%E8%B3%AA%E7%89%B9%E6%80%A7%E3%81%8C%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">品質特性がアーキテクチャを決める</a>）</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>「場合による」が思考停止の口実になる場合。トレードオフの列挙は結論を出さない免罪符ではない</li>
+<li>変更費用が実際には低い領域。後から変えにくいという前提が成り立たないなら、決めずに試すほうが速い</li>
+<li>制約が支配的な環境。調達・規制・既存資産が選択肢を一つに絞るなら、分析は事後の正当化になる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

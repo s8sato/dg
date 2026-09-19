@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「自分の環境では動く」は本番で通用しない</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E8%87%AA%E5%88%86%E3%81%AE%E7%92%B0%E5%A2%83%E3%81%A7%E3%81%AF%E5%8B%95%E3%81%8F%E3%81%AF%E6%9C%AC%E7%95%AA%E3%81%A7%E9%80%9A%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>自分の環境では動くは本番で通用しない</code> <button type="button" class="copy-id" data-copy="自分の環境では動くは本番で通用しない">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="自分の環境では動くは本番で通用しない" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845441000">2026-09-19 19:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>「自分の環境では動く」は本番で通用しない</h1>
+<p><strong>利用者は、それが自分の機械で動くことを気にしていない。自分の機械で動くことを気にしている。</strong></p>
+<h2>利用者は予測できない</h2>
+<p>開発者はしばしば、利用者がどう操作するかを予期できると思い込む罠に落ちる。利用者像が不完全なこともあれば、実際より分かっているつもりのこともある。</p>
+<p>どれだけテストを書き、どれだけのシナリオを模しても、<strong>現実の使われ方の予測不可能性は再現できない</strong>。利用者こそが最終のテストである。</p>
+<p>Dan は大学を出て最初の仕事で二次サポートをしていた。ある利用者から、計算機の「ドリンクホルダー」が壊れたという電話を受けた。計算機にドリンクホルダーはありません、と答えた。<strong>利用者が指していたのは CD-ROM ドライブだった。</strong> どれだけテストしても、CD-ROM ドライブをドリンクホルダーと取り違える利用者には備えられない。</p>
+<p>予測不可能性の源は多い。<strong>現実のデータ</strong>、<strong>規模と同時実行</strong>、<strong>環境の多様性</strong>（OS、資源、安全設定、ブラウザ、網の遅延）、<strong>版の差による漂流</strong>、そして<strong>予期せぬ用途</strong>。</p>
+<h2>何が環境間で変わるか</h2>
+<p>本番の課題を読み、自分が作った機能だと気づく。再現しようとするが、できない。<strong>「再現不能」は、こういうときに課題を閉じるために使われる言葉である。</strong> だがそれは利用者の問題を解かない。</p>
+<ul>
+<li><strong>環境の差</strong>: 16GB の MacBook Pro で開発し、本番は別のメモリ制約を持つ Linux。手元は MySQL 8.0、本番は PostgreSQL 14</li>
+<li><strong>設定管理</strong>: 手元では自分の機械のデータベースに繋ぎ、すべてをログに出し、偽のカード番号を使う試験 API を叩く。本番では安全なクラウドのデータベースに切り替わり、ログは誤りだけに絞られ、<strong>実際に課金される決済事業者</strong>に繋がる</li>
+<li><strong>同時実行と負荷</strong>: カート機能を数回クリックして確かめた。だが商戦期には数千人が同時に同じボタンを押す。30%で巡航していたメモリが95%に跳ね上がる</li>
+<li><strong>データの多様性</strong>: 手元には自分で作った整った数百件。本番には何年分もの数百万件があり、<strong>現実の顧客データは乱雑で予測できない</strong>。レガシーシステムが違う形で保存した値が、検証ロジックを壊す</li>
+<li><strong>外部依存</strong>: 決済が遅い、メール配信が流量制限に当たる、認証事業者が落ちる。<strong>味方の一人が不調なら、よくできたチームでも試合を落とす</strong></li>
+<li><strong>安全上の制約</strong>: 手元はどこからの HTTP も受けるが、本番は防火壁の奥にある。HTTPS と有効な証明書が要り、CORS が同じ要求を弾く</li>
+</ul>
+<h2>溝を埋める</h2>
+<p><strong>コンテナ化</strong>で環境を揃える。<strong>環境の同等性</strong>──本番を忠実に映すステージングを保つ。<strong>CI/CD</strong> で本番に近い条件で定期的に試される状態にする。そして<strong>可観測性</strong>で、利用者に影響する前に問題を捕まえる。</p>
+<p>未知への備えとしては、カナリアリリースと A/B テストがある。<strong>現実の利用者によるテストの力を借りながら、危険を最小化する。</strong></p>
+<h2>設定はコードだが、コードと違う</h2>
+<p>「設定はコードである」と言われるが、コードと違い<strong>設定は環境ごとに変わる</strong>。明るい陽射し向けに最適化した写真の設定が暗所で破綻するように、それぞれの環境に合わせた設定が要る。</p>
+<pre class="hljs"><code><span class="hljs-comment">// これをやってはいけない</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DbConnection</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">"jdbc:postgresql://localhost:5432/fose"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-string">"admin"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">"secret"</span>;
+}
+</code></pre>
+<p>接続先、認証情報、ログ設定、外部サービスの端点、キャッシュ設定。<strong>環境ごとに設定できる形にする。</strong> 設定管理は配置工程に組み込むべきもので、後付けではない。</p>
+<h2>効く条件</h2>
+<ul>
+<li>「再現不能」で課題を閉じようとしたとき。差がどこから来るかを列挙する枠組みになる</li>
+<li>本番で初めて問題が出たとき。六つの差のどれかにたいてい当たる</li>
+<li>新しい環境を立てるとき。設定を外に出す判断は、最初にしか安く入らない</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>本番の規模を再現できない場合。環境の同等性は構成の話であって、負荷の話ではない</li>
+<li>外部依存を模せない場合。相手が落ちたときの挙動は、相手を落とせなければ試せない</li>
+<li>コンテナ化が万能に見える場合。揃うのは実行環境であって、データも負荷も利用者も揃わない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

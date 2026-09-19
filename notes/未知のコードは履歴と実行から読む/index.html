@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>未知のコードは履歴と実行から読む</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E6%9C%AA%E7%9F%A5%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E5%B1%A5%E6%AD%B4%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>未知のコードは履歴と実行から読む</code> <button type="button" class="copy-id" data-copy="未知のコードは履歴と実行から読む">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="未知のコードは履歴と実行から読む" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844118000">2026-09-19 18:55 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>未知のコードは履歴と実行から読む</h1>
+<p>未知のコードベースに向かうとき、最初に開くべきはエディタではない。<strong>人、文書、変更履歴</strong>が先に来る。</p>
+<h2>順序がある</h2>
+<p>まずチームメイト。次に文書──README、wiki、そしてアーキテクチャ決定記録（ADR）。ADR は、次の障害対応に追われるなかで真っ先に失われる**「なぜ」**を保存している。デバッガと数時間格闘するより、文書と数分過ごすほうが学べることは多い。ただし文書は古びている。信ぜよ、されど検証せよ。</p>
+<p>そして<strong>古びていたら学びながら更新し、なければ自分で作る</strong>。文書を作る行為自体が理解を助け、同時に後から来る開発者に効く（<a href="../%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E6%9C%AA%E6%9D%A5%E3%81%AE%E4%BB%96%E4%BA%BA%E3%81%AB%E5%AE%9B%E3%81%A6%E3%81%9F%E6%89%8B%E7%B4%99%E3%81%A7%E3%81%82%E3%82%8B/">コードは未来の他人に宛てた手紙である</a>）。重くなくてよい。何をするのか。どう動くのか。何に依存するのか。どう起動するのか。</p>
+<h2>掘る</h2>
+<p>エディタを開いたら考古学を始める。コードはどう組織されているか。モノリスか分散か。どんなドメイン概念が表れているか。テストは機能について何を語るか。</p>
+<p>意図が読めなければ、<strong>呼び出し元から逆向きに辿る</strong>。遡行はサービスの入口まで続き、やがてユーザーの操作とコードの接続が見つかる。</p>
+<p>見当がついたらアプリケーションを動かす。画面上の要素でもサービスの引数でも、具体的な一点をコードに対応づける。<strong>目印を探す</strong>。ある操作がデータストアの更新に至ると分かっているなら、それをコードに見つける。デバッガで歩く──予想どおりだったか、まったく違う経路に出たか。</p>
+<p>やっているのはメンタルモデルの構築だ。アプリケーションを脳に読み込んでいる。</p>
+<h2>名前と例外を信じない</h2>
+<p>コードが進化するにつれ、変数名やメソッド名は現実を映さなくなる。急がず勘を確認する。かかるだけの時間をかければ、結果的に短い時間で済む（<a href="../%E6%88%A6%E7%95%A5%E7%9A%84%E3%81%AA%E6%80%A0%E6%83%B0%E3%81%8C%E7%94%9F%E7%94%A3%E6%80%A7%E3%82%92%E7%94%9F%E3%82%80/">戦略的な怠惰が生産性を生む</a>）。</p>
+<p>例外も誤誘導する。<strong>非常に高いレベルの例外を捕捉している箇所</strong>には特に注意がいる。書いた側には手軽だが、起こりうる問題を覆い隠す。</p>
+<h2>履歴を読む</h2>
+<p><strong>何が頻繁に変わるか。</strong> コミットログは更新について何を語るか。最も頻繁に変更されたクラスから始めるとよい。</p>
+<pre class="hljs"><code>git <span class="hljs-built_in">log</span> --pretty=format: --since=<span class="hljs-string">"1 year ago"</span> --name-only -- <span class="hljs-string">"*.java"</span> \
+  | <span class="hljs-built_in">sort</span> | <span class="hljs-built_in">uniq</span> -c | <span class="hljs-built_in">sort</span> -rg | <span class="hljs-built_in">head</span> -10
+</code></pre>
+<p><code>git blame</code> は、質問すべき相手の名簿でもある。</p>
+<h2>道具に仕事をさせる</h2>
+<p>IDE はテキストエディタ以上のものだ。使用箇所の検索、定義へのジャンプ、呼び出し階層と依存関係図、メソッド本体の折り畳み。専用のモデル図は現実からずれていくが、<strong>コードからなら図はいつでも抽出できる</strong>。</p>
+<p>IDE は強力すぎて全容の把握は事実上不可能なので、<strong>週に一つ新しいことを覚える</strong>くらいの構えがいい。</p>
+<h2>全部は分からなくていい</h2>
+<p>現代のコードベースは広大で、一人で全体を理解することはできないし、それは目標でもない。知識は時間をかけて増える。読む力を上げる近道はなく、<strong>読む以外にない。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>新しいコードベースに入った最初の数週間。人・文書・履歴・実行という順序が、闇雲な全文検索より速い</li>
+<li>バグ修正を振られたとき。目印を一つ決めてデバッガで歩くのが最短で文脈を得る道になる</li>
+<li>どこから手を付けるか決めかねているとき。変更頻度の統計が、重要な場所と不安定な場所の両方を教える</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>履歴が失われている場合。リポジトリ移行で全ファイルが一つの初期コミットに潰れていれば、手がかりは人の記憶だけになる</li>
+<li>動かせないシステム。環境の再現コストが高すぎれば「まず動かす」が成立しない</li>
+<li>探索が目的化する場合。理解の完成を待つほど変更は始まらない。曖昧さを抱えたまま小さく変え始めるほうが速いことは多い</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../テストは腐らない唯一のドキュメントである/">テストは腐らない唯一のドキュメントである</a></li><li><a href="../メンタルモデルは増分的に作る/">メンタルモデルは増分的に作る</a></li><li><a href="../図はコンパイルされない/">図はコンパイルされない</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

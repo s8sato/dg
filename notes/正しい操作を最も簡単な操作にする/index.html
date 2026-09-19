@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正しい操作を最も簡単な操作にする</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E6%AD%A3%E3%81%97%E3%81%84%E6%93%8D%E4%BD%9C%E3%82%92%E6%9C%80%E3%82%82%E7%B0%A1%E5%8D%98%E3%81%AA%E6%93%8D%E4%BD%9C%E3%81%AB%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>正しい操作を最も簡単な操作にする</code> <button type="button" class="copy-id" data-copy="正しい操作を最も簡単な操作にする">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="正しい操作を最も簡単な操作にする" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844837000">2026-09-19 19:07 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>正しい操作を最も簡単な操作にする</h1>
+<p>発見容易性（discoverability）はアプリケーションを学ぶ鍵である。<strong>機能が誰も予期しない場所に隠れていれば、学ぶのに時間がかかる。</strong> 十分にうまく隠せば、利用者はその機能が存在しないものと見なす。</p>
+<h2>隠された録音ボタン</h2>
+<p>われわれのうちの一人が毎日のように苦しんだ会議ソフトがある。音声を録音する手順はこうだった。会議番号を設定したうえで「音声をテスト」を押し、さらに「テスト後も会議音声に接続したままにする」に忘れずチェックを入れる。初めて使う人はたいてい、常用者の助けかマニュアルなしには辿り着けなかった。</p>
+<p>これはひどすぎて記憶には残る。何か「変な」ことをしないと動かない、と。だが数ヶ月録音しなければ、その手順を覚えているだろうか。<strong>発見容易性は記憶容易性に寄与する。迷ったら、より自明なほうを取る。</strong></p>
+<p>そもそもなぜ音声を「テスト」する必要があるのか。音量メーターを最初のダイアログに置けば、あの難物の二枚目は丸ごと不要になる。</p>
+<p>可能な限り、<strong>利用者が誤った操作をできないようにする</strong>。フォームで正しい入力欄の型を選ぶだけで、無数の誤りが起こらなくなる。ヒント、入力マスク、書式の例を使って、正しい選択を自明にする。</p>
+<h2>隠してよい場合もある</h2>
+<p>すべての機能が発見可能である必要はない。機能が多すぎれば、すべてを中央には置けない。</p>
+<p>iPhone のピンチによる拡大を考えてみる。インタフェースを見ても、つまむと何かが起きるとは分からない。<strong>だが、つまむ＝拡大だと教えるのには二秒しかかからない。</strong> 学びやすく、記憶に残り、一度発見すれば自然に感じられる。あまりに自然なので、いまや対応していないインタフェースのほうが利用者のメンタルモデルを壊す。</p>
+<p>ただしこれは特殊な例だ。Apple は拡大を初期の広告の中心に据え、解説動画も用意し、そもそもピンチなしでも使えるようにしていた。<strong>鍵となる機能を隠す前に、その相互作用の利益がすぐ明らかであること</strong>を確かめる。</p>
+<p>逆に、発見しやすいが記憶に残らないものもある。ショートカットは熟練者の効率に不可欠だが、頻度の低い組み合わせは覚えられない。メニュー階層に併記すれば、メニューを使ううちに自然と覚える。</p>
+<h2>エラーメッセージは回復の設計である</h2>
+<p>利用者は完璧ではなく、間違える。<strong>誤りへの適切な応答は、使いやすさ全体を決定づける要因になることが多い。</strong></p>
+<p>まず誤りが起きないようにする。それでも幸福な経路を外れたとき、意味のあるメッセージで迎える。「インタフェースが登録されていません」ではなく。良いエラーメッセージは、<strong>何が起きたのかを利用者に理解させ、代案を示す。</strong></p>
+<p>そして<strong>回復させる</strong>。郵便番号を打ち間違えたからといってハードディスクを初期化してはならない。取り消しや復元の支援は、利用者が探索できるための鍵だ。<strong>戻れないなら、人は試さない。</strong></p>
+<p>良い例はこうなる。接続に問題が起きたとき、暗号めいた文字列ではなく、インターネット接続の問題だと明示し、自動で再接続を試みつつ「今すぐ試す」という選択肢も置く。<strong>既定では利用者の代わりに再試行し、望むなら行動できる。</strong></p>
+<h2>破壊的操作にだけ摩擦を足す</h2>
+<p>簡単にするという原則には例外が一つある。<strong>破壊的な操作</strong>だ。データの編集を難しくしたい場面はまずないが、アカウントの削除のように取り消せない決定なら、<strong>手順を一つか三つ足すのがむしろ正しい</strong>。</p>
+<p>GitHub のリポジトリ削除がよくできている。破壊的な設定はページ最下部にあり（近接の応用）、スクロールさせることで誤クリックを防ぐ。「Danger Zone」という見出しが危険を明示し、ボタンの色が目を引く（対比の応用。<a href="../%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B34%E5%8E%9F%E5%89%87%E3%81%AF%E7%B4%A0%E4%BA%BA%E3%81%AB%E3%82%82%E5%8A%B9%E3%81%8F/">デザイン4原則は素人にも効く</a>）。</p>
+<p>「このリポジトリを削除」を押しても、実際には削除されない。取り消せないと述べる警告が出て、さらに<strong>リポジトリ名を正確に打ち込まないと最後のボタンが有効にならない</strong>。</p>
+<p>やりすぎに見えるかもしれないが、代替はもっと悪い。ボタンのラベルが単なる「削除」ではなく、<strong>押すことで何をするのかを完全に書き下している</strong>点にも注意したい。</p>
+<h2>効く条件</h2>
+<ul>
+<li>フォームや設定画面を設計するとき。入力欄の型とマスクだけで誤りの大半は消える</li>
+<li>「マニュアルに書いてあります」と言いたくなったとき。それは発見容易性の敗北宣言である</li>
+<li>取り消せない操作を実装するとき。摩擦・明示的なラベル・確認の三段構え</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>熟練者が一日中使う画面。摩擦は正しさではなく苛立ちになる。破壊的操作の保護も、頻度が上がれば無視され始める</li>
+<li>確認ダイアログを濫用した場合。人は訓練されて自動的にクリックするようになり、保護は機能しなくなる</li>
+<li>発見容易性と情報密度が競合する場合。すべてを見えるところに置けば、結局どれも見えない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li><li><a href="../デザイン4原則は素人にも効く/">デザイン4原則は素人にも効く</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

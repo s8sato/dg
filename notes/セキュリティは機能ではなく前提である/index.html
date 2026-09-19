@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>セキュリティは機能ではなく前提である</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%AF%E6%A9%9F%E8%83%BD%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E5%89%8D%E6%8F%90%E3%81%A7%E3%81%82%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>セキュリティは機能ではなく前提である</code> <button type="button" class="copy-id" data-copy="セキュリティは機能ではなく前提である">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="セキュリティは機能ではなく前提である" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845441000">2026-09-19 19:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>セキュリティは機能ではなく前提である</h1>
+<p>セキュリティは一度考えて終わるものではない。<strong>警戒と定期的な注意を要する継続的な過程</strong>である。開発工程の最初から組み込むものであって、最後に外付けするものではない。</p>
+<h2>自分で作らない</h2>
+<p>第一の、そして最も重要な規則がある。<strong>いかなる状況でも、自分で安全機構を作らない。</strong></p>
+<p>認証の仕組みを自作するのは簡単そうに見える。だが安全の専門家は、必ずしも自明でない複雑な脆弱性を特定し緩和することに何十年も費やしてきた。<strong>実績のあるライブラリは、その年月をそのまま含んでいる。</strong></p>
+<h2>葉書か封書か</h2>
+<p>手元での開発では HTTP が単に便利なので使いたくなる。だが<strong>本番に出す前に HTTPS で試す</strong>ことが重要だ。手元の開発向けに信頼された証明書を作る道具はある。</p>
+<p>旅先から送る葉書を思えばいい。裏に書いた手書きの文面は誰にでも見える。<strong>HTTP はこれと同じ</strong>で、平文を運ぶ。パスワード、カード番号、秘密、個人情報が、通信を傍受した誰にでも見える。</p>
+<p>私信にしたいなら封書に入れる。<strong>HTTPS がやっているのはこれ</strong>で、TLS による暗号化の層を加える。TLS 証明書は Web サイトにとっての身分証で、信頼された認証局が所有者の身元を確認したうえで発行する。</p>
+<p><strong>HTTPS はすべての安全問題を解決しない。</strong> 層の一つにすぎない。ログイン画面だけでなくどこでも使う。HTTP は自動的に HTTPS へ転送する。証明書は最新に保つ。安全な TLS の版（1.2 以上）を使う。</p>
+<h2>認証は層で守る</h2>
+<p>認証は利用者が名乗るとおりの人物かを確かめる過程であり、<strong>認可は確認された利用者が何をしてよいかを決める</strong>。両者は別物である。</p>
+<p>パスワードでは、漏洩済みのデータベースと照合し、使い回しを防ぎ、<strong>一つ一つに固有のソルトを付けた現代的なハッシュ</strong>を使う。ソルトとはハッシュの前に加える無作為のデータで、事前計算表による攻撃を防ぐ。</p>
+<p>ただし<strong>どれだけ技術的な保護を積んでも、パスワードは最終的に人間の行動に依存する</strong>。付箋に書かれたり共有されたりすれば、最強の方針も役に立たない。だからこそ層を重ねる。</p>
+<p>失敗した試行には指数的な待ち時間を設ける。同一 IP からの複数アカウントへの試行を追い、新しい端末からの試行を利用者に知らせる。セッションでは<strong>暗号学的に安全なトークン</strong>を使い、無操作と絶対時間の両方で期限を設ける。多要素認証では複数の方式を支えるが、<strong>SMS とメールは SIM 乗っ取りのような攻撃に弱い</strong>ことは知っておく。</p>
+<h2>データは預かりものである</h2>
+<p>利用者は自分のデータを預けている。<strong>その信頼を守ることは、職業上の責任であり倫理上の責任でもある。</strong> <strong>開発者としての判断は、人の生活、経済的な安全、身体の安全に現実に影響しうる。</strong></p>
+<p>個人を識別しうる情報（PII）には、氏名や社会保障番号のような明白なものだけでなく、<strong>IP アドレスや端末識別子のような目立たないもの</strong>も含まれる。他のデータと組み合わさったときに初めて PII になるものもある。</p>
+<p>機微なデータを平文で保存してはならない。暗号化は<strong>安全網</strong>であり、金庫のようなものだ。破られても、鍵がなければ中身は使えない。</p>
+<p>適合性の実践としては、<strong>最初から privacy by design</strong>（設計段階からデータ保護を組み込む）、安全なコーディング規約、<strong>移動中と保存時の両方の暗号化</strong>、データの削除と書き出しの明確な仕組み、機微な情報とのやりとりの記録がある。</p>
+<p>規制をすべて暗記する必要はない。<strong>規制されたデータに自分のコードが触れたときにそれと気づき、助けを求めればよい。</strong> 安全はチームの仕事である。自分では危険に近づいていることに気づけないことがあり、それは普通のことだ。</p>
+<h2>効く条件</h2>
+<ul>
+<li>認証や暗号を実装しようとしたとき。まず既存の実績ある実装を探す</li>
+<li>個人情報を扱う機能に着手するとき。設計段階でしか組み込めない</li>
+<li>手元で HTTP を使い続けているとき。本番との差が、そのまま事故の種になる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>既存システムへの後付け。正しいが、段階的な計画と優先順位付けが別途要る</li>
+<li>安全と使いやすさが対立する場面。完全に安全なシステムは使えないシステムでもある</li>
+<li>専門家が組織にいない場合。「助けを求める」相手がいなければ、外部の監査を買うしかない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

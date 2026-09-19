@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安全な変更の条件は小さく可逆であること</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%AE%89%E5%85%A8%E3%81%AA%E5%A4%89%E6%9B%B4%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%AF%E5%B0%8F%E3%81%95%E3%81%8F%E5%8F%AF%E9%80%86%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>安全な変更の条件は小さく可逆であること</code> <button type="button" class="copy-id" data-copy="安全な変更の条件は小さく可逆であること">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="安全な変更の条件は小さく可逆であること" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844548000">2026-09-19 19:02 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>安全な変更の条件は小さく可逆であること</h1>
+<p>既存システムは無数の反復と機能を経てきている。<strong>荒っぽいボクサーのようにリングへ飛び込み、第一ラウンドで全力を使い果たすわけにはいかない。</strong> 「速く動いて壊せ」が通る場面はあるが、ここはそうではない。</p>
+<h2>テストを先に足す</h2>
+<p>テストは安全網になる。小さく変え、テストを走らせ、他所に影響していないことを確かめる。<strong>リファクタリング中はテストを変えない。</strong> 目的は振る舞いを保ったまま構造を改善することだからだ。</p>
+<p>カバレッジが足りないなら、<strong>リファクタリングの前にテストを足す</strong>機会である。</p>
+<ol>
+<li>現在の振る舞いを記述するテストを書く</li>
+<li>現在の実装でそれが通ることを確かめる</li>
+<li>リファクタリングする</li>
+<li>新しい実装でもテストが通ることを確かめる</li>
+</ol>
+<p>ここで重要なのは、<strong>既存コードにテストを足すときの第一目標は、現在の振る舞いを記述することであって、変えることではない</strong>という点だ。より良いやり方を知っていても、これはバグだと確信していても、まず現在の振る舞いを固定するテストを書く。バグの修正と追加のリファクタリングは、テストが揃ったあとで戻ってくればいい。</p>
+<h2>ボーイスカウト規則には限度がある</h2>
+<p>「来たときより良くして去る」。ファイルに触れるたび、小さな漸進的改善を促す規則だ。名前を明瞭にする、複雑すぎるメソッドを分解する、死んだコードを消す。</p>
+<p>ただし<strong>掃除と目の前の仕事の均衡が要る</strong>。大きなコードベースでは、改善だけに全時間を使い、本来直しに来たものを直していないことに気づきうる。改善できるコードのすべてを、今すぐ改善すべきとは限らない。</p>
+<p><strong>してよいのは</strong>──理解しにくいとき。その領域に機能を足すとき。そこでバグを直しているとき。性能問題を起こしているとき。複数の開発者が頻繁に触る領域であるとき。</p>
+<p><strong>見送るべきなのは</strong>──問題なく動きめったに変わらないとき。締切の圧力が強いとき。壊す危険が利益を上回るとき。現在の作業を超えた広範な変更を要するとき。<strong>安全を保証するだけのテストがないとき。</strong></p>
+<h2>可逆性を設計する</h2>
+<p>段階的で容易に戻せる変更が、既存コードを変える最も安全な方法だ。複雑な問題を一度に片付けたくなるし、プロダクトオーナーはより大きな変更を求めるかもしれない。それでも狙うのは、全体を乱さない小さな修正である。変更管理では安全性と可視性を優先する。</p>
+<ul>
+<li><strong>変更を見えるようにする</strong>。何が変更を促し、どう実装したかを説明する。網羅的である必要はない</li>
+<li><strong>検証を組み込む</strong>。自動テスト、コードレビュー、静的解析</li>
+<li><strong>巻き戻しを計画する</strong>。起こりうることは起こる。小さな変更ほど戻すのは容易い</li>
+<li><strong>影響を監視する</strong>。予期せぬ結果を見張る。可観測性への投資が報われる場面だ</li>
+</ul>
+<p><strong>各変更の範囲が限られるので危険が減り</strong>、テストは焦点が定まり、レビューは扱いやすくなり、問題の切り分けが容易になる。機能要求が大きすぎるなら押し返して分割することも意味する。<strong>大きな一つの変更でバグを持ち込むより、小さく成功した変更をいくつも届けるほうがよい。</strong></p>
+<h2>履歴も可逆性の一部である</h2>
+<p>コミットは、コードがどう進化したかの物語であるべきだ。<strong>原子的なコミット</strong>は、単独で成立する一つの論理的変更を表す。理解しやすく、レビューしやすく、必要なら戻しやすい。</p>
+<p>メッセージは何が変わったかと<strong>なぜ変わったか</strong>の両方を説明する。「バグ修正」ではなく「割引コードが二重適用される際の合計計算を修正する」と書き、どの経路で二重適用が起きたかの文脈を残す。数十の変更をためてからでは、どこで問題が入ったかを特定しにくい。</p>
+<p>ブランチは<strong>短命に保つ</strong>。長生きするブランチは本流から離れ続け、統合を難しくする。プルリクエストも同じで、20ファイル1,000行の変更はレビューできない。<strong>単一の関心事を扱う小さなものを狙う。</strong></p>
+<h2>効く条件</h2>
+<ul>
+<li>レガシーシステムに手を入れるとき。テストで現状を固定してから動く順序が効く</li>
+<li>大きな機能要求を受けたとき。分割して押し返す根拠になる</li>
+<li>障害の切り分けが難しいプロジェクト。原子的なコミットと短命なブランチが、原因の特定を容易にする</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>変更が本質的に不可分な場合。スキーマとコードの同時変更のように、分割すると中間状態が壊れるものがある</li>
+<li>巻き戻しが原理的にできない領域。送信済みの通知、課金、外部への副作用は戻らない。可逆性は前方修正の設計で代替する</li>
+<li>リリース単位が重い組織。小さな変更を頻繁に届けられないなら、バッチを小さくする効果は限定的になる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

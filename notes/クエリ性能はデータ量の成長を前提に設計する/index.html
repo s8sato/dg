@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クエリ性能はデータ量の成長を前提に設計する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%82%AF%E3%82%A8%E3%83%AA%E6%80%A7%E8%83%BD%E3%81%AF%E3%83%87%E3%83%BC%E3%82%BF%E9%87%8F%E3%81%AE%E6%88%90%E9%95%B7%E3%82%92%E5%89%8D%E6%8F%90%E3%81%AB%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>クエリ性能はデータ量の成長を前提に設計する</code> <button type="button" class="copy-id" data-copy="クエリ性能はデータ量の成長を前提に設計する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="クエリ性能はデータ量の成長を前提に設計する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844992000">2026-09-19 19:09 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>クエリ性能はデータ量の成長を前提に設計する</h1>
+<p>開発環境で動くものが本番で落ちる。<strong>遅いアプリケーションは、どれだけ見た目が良くても利用者を苛立たせる。</strong> 良いクエリと悪いクエリの差は、秒からミリ秒への短縮になりうる。</p>
+<h2>まず、取りすぎない</h2>
+<p>書き始めのうちは、求める結果が返るクエリを書きたいだけだ。次に問うべきは「このクエリの性能をどう上げるか」である。</p>
+<pre class="hljs"><code><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> active <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>無害に見えるが二つ問題がある。<strong><code>SELECT *</code> は必要なのが一、二列でも全列を取る。</strong> そして、数千件になりうるレコードを一度にメモリへ載せる。</p>
+<pre class="hljs"><code><span class="hljs-keyword">SELECT</span> id, username, email <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> active <span class="hljs-operator">=</span> <span class="hljs-literal">true</span> LIMIT <span class="hljs-number">100</span>
+</code></pre>
+<p>必要な列だけを選び結果を制限するだけで、転送量は劇的に減る。<strong>常に列を明示し、大きな集合にはページングを考える。</strong> 性能が上がるだけでなく、応用が必要とするデータが何かをコードが明示することになる。</p>
+<h2>準備済み文は二度得する</h2>
+<p>値を文字列連結で埋め込んだクエリは、実行のたびにデータベースが<strong>まったく新しいクエリとして解析・コンパイル・最適化する</strong>。</p>
+<p>準備済み文（prepared statement）なら一度だけ解析・最適化し、以降は異なるパラメータでその実行計画を再利用する。頻繁に実行されるクエリで<strong>20〜50%の短縮</strong>になりうる。加えて、パラメータのエスケープを自動で扱うので、手作業の無害化なしに SQL インジェクションから守られる。</p>
+<h2>索引と実行計画</h2>
+<p>索引がなければ、本の中から特定の語への言及を探すのに全ページを読むことになる。<strong>索引は値と格納場所を対応づける表を作り、遅い全表走査を速い取得に変える。</strong></p>
+<p>どう実行されるかを見るには <code>EXPLAIN</code> を使う。クエリプランナは SQL を実行計画に翻訳するコンパイラのようなもので、索引・統計・複数の実行戦略を検討する。現代のデータベースの多くは<strong>費用ベース</strong>で、複数の計画を生成して推定費用が最小のものを選ぶ。</p>
+<p>ページングにも落とし穴がある。オフセット方式は<strong>オフセットまでの行をすべて走査して捨てる</strong>ため、大きくなるほど非効率になる。加えて総件数を数えるクエリは表の成長とともに高くつく。キーセット方式（<code>WHERE id &gt; last_seen_id</code>）、件数のキャッシュや推定、総件数を要求しない無限スクロールが代替になる。</p>
+<h2>成長は計画する</h2>
+<p>完璧な計画はないが、<strong>計画が何もない状態は避ける</strong>。成長への備えとは、性能指標と容量を定期的に見直すことだ。クエリ応答時間が閾値を超える、CPU が恒常的に高い、メモリ使用が上がり続ける、遅いという苦情が増える。<strong>成長中のアプリケーションなら月次で</strong>、危機になる前に手を打つ。</p>
+<p>指標が出たときの選択肢はいくつかある。</p>
+<ul>
+<li><strong>垂直スケール</strong>: サーバーに資源を足す。構成を変えずに済むので最初の一手になりやすいが、いずれハードウェアの限界に当たる</li>
+<li><strong>読み取りレプリカ</strong>: 読み取り用の複製を作り主系の負荷を下げる。<strong>読み取りが多いなら最初に検討する。</strong> 完全な水平分散より実装が容易で効果が大きい</li>
+<li><strong>水平スケール</strong>: 複数サーバーに分散する。垂直スケールが限界に達したとき、または地理的分散が要るとき</li>
+<li><strong>シャーディング</strong>: シャードキーで複数データベースに分割する。最も複雑だが、単一サーバーに収まらない量では必要になる</li>
+</ul>
+<p>レプリカとキャッシュは似て非なるものだ。<strong>レプリカはデータベース全体の複製</strong>で、応用側のコード変更を要さずデータベース水準の結果整合性を提供する。<strong>キャッシュは頻繁に使うデータの一時的な写し</strong>で古くなりうるため、無効化と一貫性の管理は応用側の責任になる（<a href="../%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AF%E4%B8%80%E8%B2%AB%E6%80%A7%E3%81%AE%E8%A6%81%E6%B1%82%E3%81%8B%E3%82%89%E9%81%B8%E3%81%B6/">データストアは一貫性の要求から選ぶ</a>）。</p>
+<h2>効く条件</h2>
+<ul>
+<li>クエリを書いた直後。列の明示とページングは、書いたその場でしか安く入らない</li>
+<li>本番で初めて遅くなったとき。<code>EXPLAIN</code> が推測を事実に変える</li>
+<li>負荷の増大が見え始めたとき。読み取りレプリカが最も費用対効果の高い一手になりやすい</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>データ量が小さいまま推移する場合。索引もページングも、維持費だけが残る</li>
+<li>索引を増やしすぎた場合。読みは速くなるが書きは遅くなり、容量も食う</li>
+<li>ORM が生成するクエリを制御できない場合。列の明示も準備済み文も、抽象の下に隠れる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学習は習慣として設計する</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%AD%A6%E7%BF%92%E3%81%AF%E7%BF%92%E6%85%A3%E3%81%A8%E3%81%97%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>学習は習慣として設計する</code> <button type="button" class="copy-id" data-copy="学習は習慣として設計する">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="学習は習慣として設計する" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789845661000">2026-09-19 19:21 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>学習は習慣として設計する</h1>
+<p>人は忘れる。1880年代、Hermann Ebbinghaus は記憶を研究し、<strong>学んだことの半分をわずか30分後に忘れる</strong>ことを見出した。ただし繰り返し触れれば、減衰は大きく緩む。</p>
+<h2>熟達には段階がある</h2>
+<p>技能の習得を説明する模型はいくつもあり、似た概念を共有している。武道由来の<strong>守破離</strong>、あるいは Clark Terry の言う<strong>模倣・同化・革新</strong>。</p>
+<p>守の段階では指導者を正確になぞる。なぜかや背後の理論はあまり気にしない。破で枝分かれが始まり、筋肉の記憶ができたところで理論を埋め、他の師を求め、自分の理解に同化させる。離では本質的に<strong>自分から学んでいる</strong>。他人の敷いた道ではなく、自分の実践が学びを駆動する。</p>
+<p>Dreyfus 模型はこれを五段階に分ける。<strong>初心者</strong>は手順書を要する──この通りにやれ。<strong>中級者</strong>は硬い規則を越え始め、構えを変えると何が起きるかを試す。<strong>上級者</strong>は切り分けができる。球筋を見て自分の誤りが分かる。<strong>熟練者</strong>は指摘されずとも誤りを感じて直せる。<strong>達人</strong>ではすべてが直観で起き、そして<strong>何をどうやったかを説明するのに苦労する</strong>。ただそうするのが正しく思えただけなのだ。</p>
+<p>ここから分かることがある。<strong>ゴルフクラブを握ったばかりの人に「曲げると思って曲げろ」と言っても効かない。</strong> 規則と手順は初心者に不可欠だが、<strong>達人にとっては苦労して得た直観を阻害する。</strong></p>
+<p>新しいフレームワークを学ぶときも同じだ。最初は手引きのコードを写し、誤りの解決を検索に頼る。やがて<strong>誤りのメッセージを見た瞬間にどこが問題か分かる</strong>ようになる。習熟に近づくと、やりたいことを翻訳するのではなく、<strong>そのフレームワークを通じて意図をそのまま表現する</strong>ようになる。</p>
+<h2>深さは主題ごとに選ぶ</h2>
+<p>達人になるには相当の時間がかかる。だから<strong>ほとんどの人は中級者からあまり先に進まない</strong>。だが成功するキャリアが、あらゆる側面で達人であることを要求するわけではない。<strong>ある領域では専門性が育ち、他は中級者のままである。それで何も悪くない。</strong></p>
+<p>課題は、限られた学習時間から最大を引き出すことだ。<strong>深さは主題ごとに選べる。</strong></p>
+<p><strong>概観</strong>（ポッドキャスト、基調講演、リリースノート）、<strong>浅く潜る</strong>（短い動画、記事、手引き）、<strong>深く潜る</strong>（研修、書籍）、<strong>極めて深く潜る</strong>（<strong>その主題で発表する、あるいは講習を主導する</strong>）。</p>
+<h2>間隔を空けて繰り返す</h2>
+<p>Ebbinghaus が提案したのは<strong>間隔反復</strong>である。学んだあと、徐々に間隔を広げながら復習すれば、完全に失われる前に概念が補強される。</p>
+<p>年間に配置するとこうなる。<strong>週次</strong>でポッドキャスト、動画、記事。<strong>月次</strong>で技術書や業務書、勉強会、オンライン講座。<strong>年次</strong>でカンファレンス、新しい言語、副業的な制作、資格、あるいは講演。</p>
+<p><strong>声に出して学ぶ</strong>のも効く。学んだことを書き残せば、<strong>将来の検索が自分の書いたものを返す</strong>ことになる。</p>
+<p>そして習慣にする。予定表に読む時間を確保する。<strong>結局のところ、自分の時間の番人は自分しかいない。</strong></p>
+<p><strong>朝のコーヒー</strong>という実践は強く勧められる。一日の最初の15〜30分、好きな飲み物とともに、自分にとっての「ニュース」に目を通す。習慣にして、<strong>一日が自分から逃げていく前にやる</strong>。緊急対応の穴に落ちて消えた日でも、少なくとも何かは学べている。</p>
+<h2>押すのをやめると出てくる</h2>
+<p>何かに詰まったら、<strong>壁に頭を打ちつけ続けるより脇に置くほうがよい</strong>ことが多い。シャワーを浴びる、散歩する、夕食を作る。その程度の気晴らしが答えを解き放つ。</p>
+<p>脳には二つの処理様式がある。<strong>R モード</strong>は非言語的で探索と取り出しを担い、背景で走っていて直接には制御できない。映画を観ていて俳優の名前が出てこず、五分後に突然浮かぶ──あれが R モードだ。<strong>L モード</strong>は言語的・分析的で、論理と計算に焦点がある。</p>
+<p><strong>L モードを気晴らしで占めれば、R モードが本領を発揮できる。</strong> 問題について考え、それから何か単調なことをする。押し込むことが最も効果的な解であるとは限らない。</p>
+<h2>効く条件</h2>
+<ul>
+<li>学ぶ対象が多すぎて麻痺しているとき。深さを四段階から選ぶだけで着手できる</li>
+<li>学んだつもりが定着していないとき。間隔反復と「教える」段階が効く</li>
+<li>問題に詰まったとき。押し続けるより離れる判断に、根拠が与えられる</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>締切の直前。間隔反復は時間の余裕を前提にしている</li>
+<li>初心者に熟練者向けの学び方を当てる場合。段階を飛ばせば、規則の不在は自由ではなく迷子になる</li>
+<li>気晴らしが逃避に変わる場合。R モードは問題を頭に入れてから離れたときにだけ働く</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

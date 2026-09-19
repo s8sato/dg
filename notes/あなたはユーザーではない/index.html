@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>あなたはユーザーではない</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>あなたはユーザーではない</code> <button type="button" class="copy-id" data-copy="あなたはユーザーではない">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="あなたはユーザーではない" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844837000">2026-09-19 19:07 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>あなたはユーザーではない</h1>
+<p>開発者向けのツールを作っているのでない限り、<strong>自分は実際のユーザーを代表していない</strong>。自分にとって自明なことが、異なる背景を持つ人にとって自明とは限らない。</p>
+<h2>想定しない、観察する</h2>
+<p>ユーザー調査の近道として想定を置くと、しなくてよい失敗を招く。</p>
+<p>ある退職者コミュニティが、地元企業に古いコンピュータの寄付を打診した。オフィスマネージャは笑って応じた。高齢者に使いこなす素養はないだろう、埃をかぶるだけだろうと思いながら。数ヶ月後に再び連絡が来たとき、彼は機器を返したいのだろうと考えた。実際には<strong>キーボードをもっと欲しい</strong>という話だった。住人たちが使い潰していたのだ。</p>
+<p>数ヶ月を現地調査に費やす必要はない。基本的な問いで遠くまで行ける。どんな端末で使うのか。機能的な制約を持つ人はいるか。どこで、どれくらいの頻度で使うのか。環境は騒がしいか。訓練は提供されるのか。</p>
+<p>答えは設計を直接変える。<strong>騒がしい環境で使われるなら通知音は聞き逃される。</strong> 訓練を前提にできないなら、利用者はまずマニュアルを読まない。だから<strong>簡単にできることが、正しいことであるようにする</strong>。数字しか許されない欄に文字を入れさせない。野外で地下水を測る水文学者の堅牢タブレットと、大画面とトラックパッドを持つ事務職とでは、制約がまるで違う。</p>
+<p>可能なら、代表的な顧客が実際に使う様子に<strong>影を落として観察する</strong>。数日で、喜ばれるアプリと嫌われるアプリの差が生まれる。</p>
+<h2>ユーザーは自分がしないことをする</h2>
+<p>ある世論調査会社が、自陣営の候補者が選択肢に出てこないと選挙陣営から苦情を受けた。コールセンターに出向くと原因はすぐ分かった。<strong>職員の一部が、設問を読みやすくするためにフォントを大きくしていた。</strong></p>
+<p>利用者の行動としては驚くに値しない。だが誰も試していなかった。偏りを除くため候補者名はランダムな順で表示されていたが、フォントを大きくすると<strong>一部の名前が画面外に出ていた</strong>。その調査は破棄され、会社の評判は傷ついた。</p>
+<h2>二次利用者を忘れない</h2>
+<p>多くの場合、アプリケーションを使う人自身が<strong>別の誰かの代理</strong>として働いている。カスタマーサービスに問い合わせたとき、自分は二次利用者だった。</p>
+<p>Nate は予約担当者が数分かけて予約を入れるのを見たことがある。彼女は詫びながら言った──新しいソフトは11クリックかかるんです、数えました。しかも彼の情報はすべて登録済みだった。</p>
+<p><strong>使いにくさには実際の費用がかかる。</strong> 利用者とその仕事に直接響き、市場における評判にも滲み出す。「うちの利用者に選択肢はない」と言う開発者もいるが、<strong>囚われの聴衆であることは、人の目を棒で突く免許ではない。</strong></p>
+<h2>既定値の専制</h2>
+<p>既定値の力を過小評価しない。電話でメールに何を使い、経路案内に何を使っているか。おそらく OS の既定値だろう。</p>
+<p>Nate の教え子が顧客に機能を実演したとき、顧客が真っ先にしたのは<strong>既定値をすべて変えること</strong>だった。驚いて尋ねると、返事はこうだった──うちはいつもそこを変えるので。彼は席に戻って既定を更新し、顧客は喜んだ。<strong>正しい既定値を知っていると思い込まない。尋ねる。できれば測る。</strong></p>
+<p>そして<strong>利用者が設定を変えたなら、それを覚えておく</strong>。自分の好みに変えたのに、次回の起動でアプリのほうが分かっているとばかりに戻された経験は誰にでもある。</p>
+<p>既定値は<strong>安全</strong>であるべきだ。取り消せない破壊的な操作なら、摩擦を足すことがむしろ善になる。</p>
+<h2>文化はメンタルモデルを変える</h2>
+<p>右から左に読む言語は異なる配置を要する。自分にとって普通のことが、別の大陸に住む人には侮辱になりうる。<strong>赤は多くの東洋文化で幸運を表すが、南アフリカでは喪の色である。</strong> 保存を表すフロッピーディスクのような歴史的記号も、ディスクドライブを使ったことのない人の割合が増え続けている。</p>
+<p><strong>第一印象をやり直す機会は二度とない。</strong> コードの向こう側にいる人の話を聞くだけで得られる好意を、過小評価しないほうがいい。</p>
+<h2>効く条件</h2>
+<ul>
+<li>新しい画面や機能の設計に入る前。基本的な問いを一通り立てるだけで設計が変わる</li>
+<li>既定値を決めるとき。顧客に尋ねる、あるいはテレメトリで測る</li>
+<li>国際展開の可能性があるとき。文化差は配置と色と図像のすべてに及ぶ</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>利用者に接触できない組織。営業や CS が間に入り、観察の機会が構造的に与えられないことは多い</li>
+<li>開発者向けツール。この場合に限り、自分は利用者の合理的な代理になる</li>
+<li>利用者集団が極端に多様な場合。「ユーザーを知る」が「誰も特定しない」に転化し、最大公約数の設計に落ちる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

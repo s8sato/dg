@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>図はコンパイルされない</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=%E5%9B%B3%E3%81%AF%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>図はコンパイルされない</code> <button type="button" class="copy-id" data-copy="図はコンパイルされない">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="図はコンパイルされない" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1789844329000">2026-09-19 18:58 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+<ul class="tags"><li><a href="../../?tags=reading">#reading</a></li><li><a href="../../?tags=from-coder-to-engineer">#from-coder-to-engineer</a></li></ul>
+<article><h1>図はコンパイルされない</h1>
+<p>すべてのモデルは間違っているが、一部は役に立つ。図は実行可能なコードを生まない。<strong>それでも描く理由</strong>を持っていないなら、描く必要はない。</p>
+<h2>設計図の比喩が壊れるところ</h2>
+<p>建設業は着工前に一式の設計図を引く。ソフトウェアも同じようにすべきか。<strong>たぶん、違う。</strong></p>
+<p>物理世界のリファクタリングは難しく高価だ。施工業者は耐力壁の妥当性を本番で試すわけにいかない。設計図は建築基準への適合を保証し、配管・配線・空調の経路を確かめ、施主に何が建つのかを合意させ、完成後には仕様どおりかを確認させる。各業者が即興で作業する現場の混乱を想像すればいい。</p>
+<p>ソフトウェアはリファクタリングできる。<strong>数時間と数百ドルでコードは変えられる。</strong> もし家のちょっとした変更がその程度で済むなら、家の建て方は違っていただろうし、設計図が建築工程にここまで不可欠でもなかっただろう。ソフトウェアのほうが可塑的である以上、図はプロジェクトの成否にとって同じ重みを持たない。</p>
+<p>Jack Reeves が「Code as Design」で論じたとおり、プログラミングは根本的に設計活動であり、<strong>その設計の最も純粋な表現はコードそのもの</strong>だ。コードが究極の真実の源である。</p>
+<h2>それでも描く理由</h2>
+<p>図は文脈を与える。システムの複雑さを理解し、管理し、問題を分解するのに使える。品質特性を予測し、それに向けて設計するのにも使える。</p>
+<p>具体的には、設計を自分の頭に収めるため。<strong>一、二時間のスケッチが数日の開発を省くことがある。</strong> 未知のシステムを学ぶ考古学の遠征でも効く（<a href="../%E6%9C%AA%E7%9F%A5%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AF%E5%B1%A5%E6%AD%B4%E3%81%A8%E5%AE%9F%E8%A1%8C%E3%81%8B%E3%82%89%E8%AA%AD%E3%82%80/">未知のコードは履歴と実行から読む</a>）。オンボーディングや知識の移転でも。デバッグでは、システムの境界と中核の責務を知っていることが、テストケースの設計や着手点の判断を助ける。</p>
+<p>ただし、これらはすべて<strong>図が正確で最新である場合に限る</strong>。コードの現状を表していない図は価値を大きく損なう。十分に古ければ、積極的に有害だとさえ言える。</p>
+<h2>図に賞味期限を置く</h2>
+<p>ここから自然に出てくる問いがある。<strong>図はどれほど永続的であるべきか。</strong></p>
+<p>図には賞味期限があってよく、役に立たなくなったら捨ててよい。ホワイトボードのスケッチのように儚くてよいし、モデリングツールで正式に作ってもよい。</p>
+<p>判断の手がかりは反復にある。<strong>同じ図を何度も描いているなら、それは形式化すべき合図だ。</strong> ツールで作り、プロジェクトの中央に置く。自分に役立つなら同僚にも役立つ。大きな図ならプロッタで印刷して壁に貼る。厚紙に刷ると、人にとって現実味と価値が増すことさえある。写真を撮って文書に貼るのでも構わない。<strong>ツールに足を引っ張らせない。</strong></p>
+<p>モデルからコードを生成する道具はかつて存在したが、おおむね歴史の塵箱に収まった。開発者がツールの規則を注意深く守らない限り、生成ファイルに足したコードが次の生成で消えたからだ。双方向を謳うものもあったが、約束された生産性は得られなかった。</p>
+<p>図はどんな道具で作るにせよバージョン管理する。そして<strong>図は動くコードの代わりにはならない</strong>。コードから抽出する、あるいはビルドパイプラインで生成することは、乖離の問題を和らげる。</p>
+<h2>効く条件</h2>
+<ul>
+<li>設計が頭に収まらないとき。描く行為自体が思考の道具になる</li>
+<li>未知のシステムに入ったとき、およびオンボーディング。ただし既存の図の鮮度を先に疑う</li>
+<li>同じ図を三度目に描いたとき。形式化とバージョン管理に移す合図</li>
+</ul>
+<h2>効かない条件</h2>
+<p>ここから先は本書が書いていない領域で、読み手として当て込んだ限界である。</p>
+<ul>
+<li>図の維持に人手が要り、それが確保できない場合。古い図は無い図より悪い</li>
+<li>コードから抽出できる情報を手で描く場合。クラス図やシーケンス図は抽出に任せ、抽出できないもの（意図、境界、判断）に人手を使う</li>
+<li>図の作成が SDLC の必須成果物として課されている場合。目的なく生まれた図は誰も読まず、誰も更新しない</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../Fundamentals of Software Engineering/">Fundamentals of Software Engineering</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>
