@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学習の4段階：過去10年（2016→2026）の変化</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=learning-stages-2016-2026">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>learning-stages-2016-2026</code> <button type="button" class="copy-id" data-copy="learning-stages-2016-2026">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="learning-stages-2016-2026" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1790485521000">2026-09-27 05:05 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>学習の4段階：過去10年（2016→2026）の変化</h1>
+<h2>全体の傾向</h2>
+<p><strong>情報を入手し、生成する手間は大きく下がった。いま時間を取られるのは「何を問うか」と「それが正しいか」を判断するところ。</strong></p>
+<p>問いから始めて作り、確かめ、残して次の問いへ進むループ型の学び方は、2016 にもあった（プロジェクトベース学習、仮説思考、ブログに書きながら学ぶ習慣）。10年で変わったのは考え方ではなく、<strong>ループを1周するコスト</strong>である。問いの言語化、探索、要約、試作、成果物の生成が安くなり、4段階は直線ではなく何周も回しやすくなった。</p>
+<pre class="hljs"><code>一次経験・違和感 → 問い → 仮説 → 調べる → 学ぶ → 作る → 確かめる → 判断する → 残す・共有する → 次の問い
+</code></pre>
+<p>2016 の手段は消えていない。立志と発表では新しい手段が加わり、調査・学習・成果物の作り方では生成AI（以下 AI）を介する手段へ比重が移った。</p>
+<p>AIが教材を読む側（入力）と発表物を作る側（出力）の両方に入り、段階の境目も薄れた。たとえば NotebookLM などで縮約した教材を読んで理解し（調査・学習）、同じ資料から生成したスライドを発表の叩き台にする（共有）。</p>
+<p>安く回ることの副作用もある。</p>
+<ul>
+<li>問いの均質化: AIとの壁打ちから出る問いは平均的になりやすい</li>
+<li>わかったつもり: AIが詰まりを先に解き、試行錯誤の経験が減る</li>
+<li>知識の断片化: 必要な箇所だけ読むと、自分が何を知らないかに気づけない</li>
+<li>生成物へのアンカリング: AIが作った叩き台の構成や論点に引っ張られる</li>
+<li>供給過剰: 文章やコードを作るだけでは埋もれる</li>
+</ul>
+<h2>1. 立志（目的意識・問題発見・課題設定・仮説）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2016</th>
+<th>2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的意識のきっかけ</td>
+<td>読書、身近な人、仕事、メディア、ネットサーフィン</td>
+<td>左記に加え、パーソナライズされた推薦、AIとの対話</td>
+</tr>
+<tr>
+<td>課題設定</td>
+<td>自分や周囲の人と時間をかけて言葉にした</td>
+<td>AIとの壁打ちで数分で形になる</td>
+</tr>
+<tr>
+<td>仮説</td>
+<td>調べてから立てる</td>
+<td>最初に立てて、その場で暫定的に確かめる</td>
+</tr>
+<tr>
+<td>試行</td>
+<td>予備調査や試作の初期コストが高い</td>
+<td>比較案や試作品をすぐ作れる</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>変化: 問いを作るのが安くなった。それらしい問いは誰でも作れるが、どれも似た問いになりやすい</li>
+<li>いま効くこと: 自分の経験や現場の違和感（一次経験）を起点にする。動機が推薦から来たのか、自分の経験から来たのかを自覚する</li>
+<li>いま効くこと: 問いを立てたら、仮説と「何が確かめられれば答えとするか」まで一組で書く（<a href="../%E4%BB%AE%E8%AA%AC%E6%80%9D%E8%80%83%E3%81%A8TDD%EF%BC%88%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%EF%BC%89/">仮説思考とTDD（テスト駆動開発）</a>）</li>
+</ul>
+<h2>2. 調査（情報の取捨・教材選び）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2016</th>
+<th>2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主な経路</td>
+<td>検索、書籍、専門家ブログ、Qiita / Stack Overflow</td>
+<td>AIへの質問、AI検索（出典つき要約）。従来の経路も残る</td>
+</tr>
+<tr>
+<td>教材を選ぶ手がかり</td>
+<td>Amazonレビュー、専門家ブログ、目次やサンプルを読んだ感触</td>
+<td>AIの評価や推薦、AI要約を読んだ感触</td>
+</tr>
+<tr>
+<td>教材の読み方</td>
+<td>定番の書籍や講座を通読する</td>
+<td>問いに必要な章だけを拾う。AIが説明の順序や言い方をその人向けに組み替える</td>
+</tr>
+<tr>
+<td>足りないもの</td>
+<td>良い情報にたどり着く手段</td>
+<td>情報が正確か確かめる手段（AI生成の文章があふれている）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>変化: 「探す」から「確かめる」へ。必要な部分だけ読むので、自分が何を知らないかに気づきにくくなった</li>
+<li>変化: 教材を選ぶ手がかりが、出どころの違う複数の信号から、AI という単一の経路に集まった。要約は文体や密度を落とすので、要約の感触が測るのは教材の質より要約の質かもしれない</li>
+<li>いま効くこと: 情報源を証拠の強さで並べる。目安は AI回答 &lt; 解説記事 &lt; 公式文書 &lt; 論文・仕様 &lt; 自分の実験（ただし自分の実験は、自分の条件での確認にとどまる）。AIは根拠ではなく、一次資料や実験にたどり着くための探索に使う</li>
+<li>いま効くこと: 何を学ぶかの全体像はAIに任せない。未知の分野や積み上げ型の分野（数学、CS基礎、形式手法）では、標準的なカリキュラムや通読で地図を得てから問いに入る（<a href="../%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AF%E5%A2%97%E5%88%86%E7%9A%84%E3%81%AB%E4%BD%9C%E3%82%8B/">メンタルモデルは増分的に作る</a>）</li>
+</ul>
+<h2>3. 学習（記憶・反復・理解・応用）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2016</th>
+<th>2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>記憶・反復</td>
+<td>Anki、手書きノート、写経、演習問題</td>
+<td>覚えなくても引けばよい、という前提が広がった</td>
+</tr>
+<tr>
+<td>理解</td>
+<td>本や講義をノートを取りながら読み込む</td>
+<td>AIが縮約した教材（要約、比較表、スライド）を読み、AIとの対話で詰める</td>
+</tr>
+<tr>
+<td>応用</td>
+<td>手を動かして詰まり、自分で抜け出す</td>
+<td>AIが詰まりを先に解いてしまう</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>変化: 原資料と理解の間に、AIが生成する中間表現が入った。理解までは速くなった一方、「AIと話して納得した」と「自分で作れる」の差が見えにくくなった</li>
+<li>変化: 失われやすいのは知識そのものより、詰まって仮説を立て、試して直す経験</li>
+<li>いま効くこと: 覚えるものを選ぶ。頭に知識がなければAIの誤答を見抜けず、何を調べるべきかもわからない（<a href="../%E5%AD%A6%E7%BF%92%E3%81%AF%E7%BF%92%E6%85%A3%E3%81%A8%E3%81%97%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%99%E3%82%8B/">学習は習慣として設計する</a>）
+<ul>
+<li>外部化してよい: API名、たまにしか使わない構文、単発の事実、すぐ引ける手順</li>
+<li>内部化する: 概念と原理、制約と不変条件、因果関係、典型的な失敗パターン、評価基準（Rust なら個々の API より ownership / borrowing / lifetime の関係）</li>
+</ul>
+</li>
+<li>いま効くこと: 縮約は入口として使い、判断に効く箇所は原資料に戻って読む</li>
+<li>いま効くこと: 適度に詰まる余地を意図的に残す
+<ul>
+<li>先に自分で仮説を立ててからAIを見る</li>
+<li>AIには答えでなくヒントだけを出させる</li>
+<li>解決したらAIを閉じて再実装し、日を置いてゼロから再現する</li>
+</ul>
+</li>
+<li>いま効くこと: 理解の確認は「納得したか」ではなく、自分で説明・予測・再現・修正できるかで測る</li>
+</ul>
+<h2>4. 共有（発表・アーカイブ・接続）</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2016</th>
+<th>2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>発表</td>
+<td>ブログ、SNS、勉強会、LT</td>
+<td>左記に加え、短い動画、ニュースレター</td>
+</tr>
+<tr>
+<td>成果物の作り方</td>
+<td>手元のノートからスライドやPDFを起こす</td>
+<td>AIが生成したスライドやHTMLを叩き台にする</td>
+</tr>
+<tr>
+<td>共有するもの</td>
+<td>成果物（記事、スライド、PDF）</td>
+<td>成果物に加え、知識を抽出・変換する手順</td>
+</tr>
+<tr>
+<td>アーカイブ</td>
+<td>Google Drive、GitHub、ブログ、Evernote（人が読む前提）</td>
+<td>PKB、公開ノート（人とAIの両方が読む前提）。ナレッジベースから CI と SSG で公開サイトを自動生成する（仕組みは 2016 にもあったが、構築の手間が下がった）</td>
+</tr>
+<tr>
+<td>接続</td>
+<td>フォロワーやコミュニティ経由</td>
+<td>検索に加え、AI の回答を経由して届く。ただし出典として読まれず、内容だけ使われることも多い。発信は供給過剰</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>変化: 発信は簡単になり、ありふれた出力は埋もれる。PKB は未来の自分へのメモから、未来のAIに渡す文脈へと役割が広がった</li>
+<li>変化: 成果物が再生成できるなら、共有する価値は生成の手順の側に移る。知識源 → 変換パイプライン → 公開物という構造そのものが共有物になる</li>
+<li>いま効くこと: 手順を共有するなら、プロンプトだけでなく、入力資料、問い、モデルとツール、検証方法、どの出力をなぜ採用・棄却したかも残す。同じプロンプトでも出力が変わりうるうえ、モデルは更新・提供終了されるため、プロンプトだけでは再現できない</li>
+<li>いま効くこと: 生成する前に、自分の論点と判断軸を書いておく。叩き台に引っ張られないための錨になる</li>
+<li>いま効くこと: 固有の経験、判断の理由、失敗を記録する。コードはAIが再生成できても、そのとき何を問題とみなし、どの制約のもとでなぜその設計を選んだかは再生成できない（<a href="../%E6%B1%BA%E5%AE%9A%E3%81%AFADR%E3%81%AB%E6%AE%8B%E3%81%97%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%8D%E3%82%B9%E9%96%A2%E6%95%B0%E3%81%A7%E5%AE%88%E3%82%8B/">決定は ADR に残しフィットネス関数で守る</a>）</li>
+<li>いま効くこと: ノートどうしをつなぐだけでなく、人とつながる場も持つ。AI経由では届いたかどうかも見えにくく、反応も返ってこないので、反応をくれる相手が直接いるほうがループは回る</li>
+</ul>
+<h2>アウトプットを意識した学習への示唆</h2>
+<p>アウトプット志向を「作りながら学ぶ」ではなく、「問い・仮説・判断とその理由を、再利用・再検証できる形で残しながら学ぶ」と捉える。</p>
+<ol>
+<li>学習の単位を「本を一冊」から「問いを一つ」に変える（<a href="../%E4%BD%95%E3%82%92%E5%AD%A6%E3%81%B0%E3%81%AA%E3%81%84%E3%81%8B%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">何を学ばないかを決める</a>）
+<ul>
+<li>例: 「Rust の型では保証しにくく、Lean なら保証できる実用的な性質は何か」</li>
+<li>成果は読んだページ数ではなく、立てた問い、検証した問い、残した判断、つないだ知識の数で測る。途中でやめても、検証済みの問いは残る</li>
+<li>未知の分野では、最初に概観を得る段階を例外として残す</li>
+</ul>
+</li>
+<li>1周を冒頭のループで回す。要は「判断する」と「残す」</li>
+<li>AIには速さを任せ、自分は判断に集中する: 問いの選択、確認、結論は自分で持つ（<a href="../AI%E3%81%AF%E9%81%93%E5%85%B7%E3%81%A7%E3%81%82%E3%82%8A%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E8%B2%AC%E4%BB%BB%E3%81%AE%E5%BC%95%E5%8F%97%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B/">AI は道具であり、あなたは責任の引受人である</a>）</li>
+<li>完成品より判断の記録を残す: なぜその問いを選んだか、なぜ A でなく B を選んだか、何が予想と違ったか、どの証拠で考えを変えたか、AIの出力をどこで採用・棄却したか。未来の自分にとってもAIにとっても、一番使える材料になる
+<ul>
+<li>
+<p>1つの問いを、たとえば次の形で残す</p>
+<pre class="hljs"><code>question.md        問いと仮説
+sources.md         根拠とその強さ
+experiment/        試したもの
+decision.md        判断とその理由
+workflow.md        入力・モデル・手順・検証方法
+open-questions.md  未解決の点
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+</article>
+
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>
