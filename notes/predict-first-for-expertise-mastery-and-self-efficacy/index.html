@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>予測を先に書いて専門性と熟達と自己効力感を育てる</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=predict-first-for-expertise-mastery-and-self-efficacy">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>predict-first-for-expertise-mastery-and-self-efficacy</code> <button type="button" class="copy-id" data-copy="predict-first-for-expertise-mastery-and-self-efficacy">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="predict-first-for-expertise-mastery-and-self-efficacy" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1790492488000">2026-09-27 07:01 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>予測を先に書いて専門性と熟達と自己効力感を育てる</h1>
+<p>答えを見る前に「どうなるか」を賭け、答え合わせをする。短い賭けで熟達を、長い賭けで専門性を、的中の記録で自己効力感を育てる。
+「何が良いか」を先に書く実践と対になる（<a href="../think-before-asking-ai/">AIに聞く前に自分の見込みを書く</a>）。</p>
+<h2>基本動作：賭け</h2>
+<p>学習行為の直前に、1行で賭ける。</p>
+<pre class="hljs"><code>[賭け] 〜はこうなる / 確信度 70% / 根拠: 〜
+[結果] 当たり・外れ / 差分: 〜
+</code></pre>
+<ul>
+<li>AIに質問する前: 答えはたぶんこうだ</li>
+<li>コードやテストを実行する前: ここで落ちる</li>
+<li>本や論文を読む前: 結論はこうだろう</li>
+</ul>
+<p>外れの差分が学習材料になり、当たりの記録が自己効力感の根拠になる。期待を先に書いてから実行する点は、TDD と同じ形をしている（<a href="../%E4%BB%AE%E8%AA%AC%E6%80%9D%E8%80%83%E3%81%A8TDD%EF%BC%88%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA%EF%BC%89/">仮説思考とTDD（テスト駆動開発）</a>）。</p>
+<h2>長い賭けで判断を鍛える</h2>
+<p>反復で熟達は進むが、専門性はそれだけでは育たない。専門性の段差は知識量ではなく、結果を引き受ける判断の射程にある（<a href="../%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%81%AF%E4%BD%9C%E3%82%8B%E4%BA%BA%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8F%E5%88%A4%E6%96%AD%E3%81%AB%E8%B2%AC%E4%BB%BB%E3%82%92%E6%8C%81%E3%81%A4%E4%BA%BA%E3%81%A7%E3%81%82%E3%82%8B/">ソフトウェアエンジニアは作る人ではなく判断に責任を持つ人である</a>）。
+数週間〜数か月後に結果が出る判断（設計、見積もり、技術選定）にも賭け、期日に精算する。判断力はここでしか鍛えられない。</p>
+<pre class="hljs"><code>[賭け 2026-12-31] このキャッシュ層は3か月以内に外すことになる 60% / 根拠: 更新頻度が読みより高い
+</code></pre>
+<h2>賭け帳で伸びを測る</h2>
+<p>賭けを領域ごとに蓄積し、定期的に集計する。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>見るもの</th>
+<th>使い道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>的中率</td>
+<td>領域ごとの当たりの割合</td>
+<td>次の課題の難度を決める</td>
+</tr>
+<tr>
+<td>較正</td>
+<td>確信度70%の賭けが実際に7割当たっているか</td>
+<td>過信・過小評価を直す</td>
+</tr>
+<tr>
+<td>伸び</td>
+<td>同じ種類の賭けの的中率の推移</td>
+<td>自己効力感の根拠にする</td>
+</tr>
+</tbody>
+</table>
+<p>較正は熟練者にも要る。Paul Graham ですら Java の成功を外した（<a href="../%E4%BD%95%E3%82%92%E5%AD%A6%E3%81%B0%E3%81%AA%E3%81%84%E3%81%8B%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">何を学ばないかを決める</a>）。直観の確信度は記録で割り引く。</p>
+<p>自己効力感を気分ではなく自分のデータに置く。AIとの共同成果では膨らみも萎みもしない、較正された効力感になる。</p>
+<h2>的中率 50〜70% の縁で練習する</h2>
+<ul>
+<li>80% を超える: 課題を一段上げる。熟達済みの領域に留まっている</li>
+<li>40% を下回る: 範囲を狭める。外れの原因が見えなくなっている</li>
+<li>50〜70%: 伸びる帯</li>
+</ul>
+<p>課題はAIに作らせてよい。「この概念で、自分の予測が割れそうな問題を5つ」と頼む。</p>
+<h2>運用の候補</h2>
+<p>以下は決定ではなく、選ぶための例示である。★は最初に試す推奨。</p>
+<h3>賭け帳の置き場所</h3>
+<table>
+<thead>
+<tr>
+<th>候補</th>
+<th>利点</th>
+<th>欠点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★ 作業中のメモに直接書く</td>
+<td>書く場所を探さないので続く</td>
+<td>集計には拾い出しが要る</td>
+</tr>
+<tr>
+<td>領域ごとの専用ファイル</td>
+<td>集計しやすい</td>
+<td>開く手間で記録が途切れやすい</td>
+</tr>
+<tr>
+<td>CLI などでツール化</td>
+<td>入力も集計も最速</td>
+<td>作る前に習慣が定着していない</td>
+</tr>
+</tbody>
+</table>
+<p>まず作業中のメモに <code>[賭け]</code> の接頭辞で書き、週次の振り返りで grep して集める。続いてから専用化を考える。</p>
+<h3>賭けの書式</h3>
+<p>最小形（★）:</p>
+<pre class="hljs"><code>[賭け] build は型エラーで落ちる 70%
+[結果] 外れ / 落ちたのはリンタ。型は通っていた
+</code></pre>
+<p>根拠は省いてよい。記録の手間が続くかどうかを決めるので、確信度だけは残す。</p>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../think-before-asking-ai/">AIに聞く前に自分の見込みを書く</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>

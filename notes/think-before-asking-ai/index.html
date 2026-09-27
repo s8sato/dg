@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIに聞く前に自分の見込みを書く</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=think-before-asking-ai">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>think-before-asking-ai</code> <button type="button" class="copy-id" data-copy="think-before-asking-ai">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="think-before-asking-ai" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1790492488000">2026-09-27 07:01 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>AIに聞く前に自分の見込みを書く</h1>
+<p>AIに答えを出させる前に、自分の見込みを書く。後でAIの答えや現実と突き合わせ、外れの差分を学習材料に、当たりを実績にする。
+先に書く見込みは2種類あり、それぞれ別の実践になる。</p>
+<table>
+<thead>
+<tr>
+<th>先に書くもの</th>
+<th>問い</th>
+<th>実践</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>予測</td>
+<td>どうなるか</td>
+<td><a href="../predict-first-for-expertise-mastery-and-self-efficacy/">予測を先に書いて専門性と熟達と自己効力感を育てる</a></td>
+</tr>
+<tr>
+<td>基準</td>
+<td>何が良いか</td>
+<td><a href="../criteria-first-for-expertise-and-self-efficacy/">基準を先に書いて専門性と自己効力感を育てる</a></td>
+</tr>
+</tbody>
+</table>
+<h2>前提：生成は安く、自分の見込みは希少になった</h2>
+<ul>
+<li>答え・説明・試作品・練習問題・フィードバックの生成はほぼ無料になった。意図的練習のボトルネックだった「縁にある課題」と「即時のフィードバック」も、AIで手に入る</li>
+<li>希少になったのは、答えを見る前の自分の見込みと、どれが良いかを見分けて現実で通す力（<a href="../AI%E3%81%AE%E5%8F%B0%E9%A0%AD%E3%81%A7%E3%80%81%E9%96%8B%E7%99%BA%E3%83%BB%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E5%BD%B9%E5%89%B2%E3%81%AF%E3%81%A9%E3%81%93%E3%81%B8%E7%A7%BB%E3%82%8B%E3%81%8B/">AIの台頭で、開発・デザインの役割はどこへ移るか</a>）。AIに先に聞けば、見込みを立てる機会ごと消える。生成AIの支援は成果物を良くする一方で、学習の自己監視を弱めうる（<a href="https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13544" target="_blank" rel="noopener noreferrer">Fan et al., 2025</a>）</li>
+<li>AIと出した成果は、どこまでが自分の力か帰属できない。自己効力感の根拠にならない</li>
+</ul>
+<h2>4つの目標</h2>
+<table>
+<thead>
+<tr>
+<th>目標</th>
+<th>育ったと言える状態</th>
+<th>主に育てるもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>専門性</td>
+<td>領域内で結果を他人より正確に予測でき、AIの出力の誤り・凡庸さを根拠つきで指摘できる</td>
+<td>長い賭け、基準集</td>
+</tr>
+<tr>
+<td>熟達</td>
+<td>同じことを、より速く・少ない注意で・安定してできる</td>
+<td>短い賭け</td>
+</tr>
+<tr>
+<td>自己効力感</td>
+<td>「自分ならできる」という見込みが、実績と一致して高い</td>
+<td>当たった記録、効いた記録</td>
+</tr>
+<tr>
+<td>競争力</td>
+<td>その判断を他人が頼りにする（希少 × 可視）</td>
+<td>持ち場と公開</td>
+</tr>
+</tbody>
+</table>
+<h2>なぜ効くか</h2>
+<table>
+<thead>
+<tr>
+<th>根拠</th>
+<th>確度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生成効果・事前テスト：先に試みると、外れても後の学習が深まる</td>
+<td>高</td>
+</tr>
+<tr>
+<td>意図的練習：明確な目標と即時フィードバックが熟達を進める</td>
+<td>高</td>
+</tr>
+<tr>
+<td>自己効力感の最大の源泉は、自分に帰属できる達成経験（Bandura）</td>
+<td>高</td>
+</tr>
+<tr>
+<td>生成より識別が希少になった</td>
+<td>仮説</td>
+</tr>
+</tbody>
+</table>
+<h2>AIの役割を4つに限る</h2>
+<table>
+<thead>
+<tr>
+<th>役割</th>
+<th>使い方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出題者</td>
+<td>自分の縁にある課題・変種を作らせる</td>
+</tr>
+<tr>
+<td>採点者</td>
+<td>見込みを書いた後に、答え合わせと差分の説明をさせる</td>
+</tr>
+<tr>
+<td>反論者</td>
+<td>自分の判断の弱点を突かせる</td>
+</tr>
+<tr>
+<td>作業者</td>
+<td>自分で良し悪しを判定できる作業を肩代わりさせる</td>
+</tr>
+</tbody>
+</table>
+<p>禁止は1つだけ。見込みを書く前に答えを見ないこと。</p>
+<h2>持ち場と公開で競争力にする</h2>
+<ul>
+<li>持ち場: 事例を集め続ける狭い問いを1つ持つ。見込みが同じ問いに集まるほど、他人にない精度が溜まる</li>
+<li>公開: 賭けの成果や基準集の一部を記事にし、反論・相談を次の更新に使う。参照された回数が競争力の指標になる</li>
+</ul>
+<p>持ち場の問いの例:</p>
+<ul>
+<li>自分の職務領域: 「この種の設計判断は、半年後にどう評価されるか」</li>
+<li>技術選定: 「新しいツールが既存スタックを置き換える条件は何か」</li>
+<li>学び方そのもの: 「どの賭けの外れが、最も次の的中率を上げたか」</li>
+</ul>
+<p>選ぶ基準は、月に何度も見込みを立てられるほど事例が来ること、結果が数か月以内に分かること、他人がまだ体系的に集めていないこと。</p>
+<h2>リズム</h2>
+<table>
+<thead>
+<tr>
+<th>周期</th>
+<th>やること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>毎回</td>
+<td>賭ける、または基準を書く → 実行・参照 → 答え合わせ</td>
+</tr>
+<tr>
+<td>毎週</td>
+<td>賭け帳と基準集を見返し、外れの傾向から次週の課題を決める</td>
+</tr>
+<tr>
+<td>毎月</td>
+<td>AIなしで一課題を仕上げる</td>
+</tr>
+<tr>
+<td>四半期</td>
+<td>長い賭けを精算し、持ち場の問いを更新する。成果を公開し反応を得る</td>
+</tr>
+</tbody>
+</table>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../criteria-first-for-expertise-and-self-efficacy/">基準を先に書いて専門性と自己効力感を育てる</a></li><li><a href="../predict-first-for-expertise-mastery-and-self-efficacy/">予測を先に書いて専門性と熟達と自己効力感を育てる</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>
