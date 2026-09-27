@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本に時間をかける前に1時間で見極める</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=triage-a-book-before-investing-time">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>triage-a-book-before-investing-time</code> <button type="button" class="copy-id" data-copy="triage-a-book-before-investing-time">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="triage-a-book-before-investing-time" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1790493527000">2026-09-27 07:18 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>本に時間をかける前に1時間で見極める</h1>
+<p>学びたい本があるが、時間をかけるに値するか迷うときの手順。「なぜ」を書き、中身を予想し、30分試し読みして、予想との差分で判定する。合計1時間以内で済ませる。</p>
+<h2>1. 「なぜ」を1行で書く（5分）</h2>
+<pre class="hljs"><code>[なぜ] この本で〜という実課題／判断ができるようになりたい
+</code></pre>
+<p>書けなければ保留する。必要になるまで学ぶのを待ってよい（<a href="../%E4%BD%95%E3%82%92%E5%AD%A6%E3%81%B0%E3%81%AA%E3%81%84%E3%81%8B%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B/">何を学ばないかを決める</a>）。
+書けたら、それが以降の判定基準になる。</p>
+<h2>2. 目次を見る前に賭ける（5分）</h2>
+<pre class="hljs"><code>[賭け] この本の核心は〜だろう / 自分がまだ知らないのは〜 / 確信度 70%
+</code></pre>
+<p>この賭けが、本から得られるものの物差しになる（<a href="../predict-first-for-expertise-mastery-and-self-efficacy/">予測を先に書いて専門性と熟達と自己効力感を育てる</a>）。</p>
+<h2>3. 30分試し読みする</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PDFあり</th>
+<th>PDFなし</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全体像</td>
+<td>目次・序章・各章のまとめ</td>
+<td>目次・Kindle サンプル・出版社の紹介ページ</td>
+</tr>
+<tr>
+<td>核心</td>
+<td>AIに章ごとの主張を要約させ、「この本にしか書いていないことは何か」「手順1の課題に効く章はどれか」と聞く</td>
+<td>著者のブログ・講演・書評で主張をつかむ</td>
+</tr>
+<tr>
+<td>手応え</td>
+<td>効きそうな1章を実際に20分読む</td>
+<td>サンプルの範囲を20分読む</td>
+</tr>
+</tbody>
+</table>
+<p>AIの要約は判定のためだけに使う。要約で読んだ気にならない。</p>
+<h2>4. 判定する</h2>
+<table>
+<thead>
+<tr>
+<th>結果</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>賭けがほぼ当たった</td>
+<td>既知が多い。必要な章だけ拾い読みする</td>
+</tr>
+<tr>
+<td>外れた差分が手順1の課題に関わる</td>
+<td>読む価値がある。その章から読み始める</td>
+</tr>
+<tr>
+<td>20分のあいだに他のことをしたくなった</td>
+<td>やめる。完走に加点はない</td>
+</tr>
+</tbody>
+</table>
+<h2>読むと決めたら</h2>
+<ul>
+<li>通読せず、課題に効く章から読む</li>
+<li>予算とやめる条件を先に決める（例：週2時間 × 4週。3章読んで課題に効かなければ打ち切る）</li>
+<li>章ごとに結論を賭けてから読み、答え合わせする。外れた差分がその本から得た価値になる</li>
+<li>手順1・2の記録は、読書ノートの Notes にそのまま移す</li>
+</ul>
+</article>
+
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+</body>
+</html>
