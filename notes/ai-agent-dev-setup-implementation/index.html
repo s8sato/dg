@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIエージェントとの開発体制 実装</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=ai-agent-dev-setup-implementation">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ai-agent-dev-setup-implementation</code> <button type="button" class="copy-id" data-copy="ai-agent-dev-setup-implementation">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ai-agent-dev-setup-implementation" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1791087435000">2026-10-04 04:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>AIエージェントとの開発体制 実装</h1>
+<p><a href="../ai-agent-dev-setup-design/">設計</a>を実装する Claude Code の定義ファイル。
+正本は別リポジトリにあり、変更したらこのノートも合わせて更新する。</p>
+<h2>delegate-review スキル</h2>
+<p><code>skills/delegate-review/SKILL.md</code></p>
+<pre class="hljs"><code>---
+<span class="hljs-section">description: 引数の指示を分割して delegate-worker サブエージェントに並列で委任し、報告を待つあいだにレビュー観点を構築し、成果物のレビューを報告する
+---</span>
+
+<span class="hljs-section"># delegate-review</span>
+
+<span class="hljs-bullet">1.</span> 引数の指示を独立したサブタスクに分割し、各々を delegate-worker サブエージェントに並列で委任する
+<span class="hljs-bullet">   -</span> 独立したサブタスクに分割できないときは委任せず、自分で作業する
+<span class="hljs-bullet">   -</span> 委任文に目的・制約・成果物の形式・参照すべきパスを含める
+<span class="hljs-bullet">   -</span> 難しい作業では Agent ツールの model 引数で worker のモデルを上書きする
+<span class="hljs-bullet">   -</span> レビュー観点は worker に渡さない（検証の独立性を優先）
+<span class="hljs-bullet">2.</span> 報告を待つあいだ、指示からレビュー観点を構築する
+<span class="hljs-bullet">3.</span> 全報告の受領後、成果物を観点に沿ってレビューし、結果を成果物として報告する
+
+plan モードでは成果物を計画ファイルとし、delegate-worker には計画を報告させ、自身のレビューを反映して計画ファイルに書く
+</code></pre>
+<h2>delegate-worker サブエージェント</h2>
+<p><code>agents/delegate-worker.md</code></p>
+<pre class="hljs"><code>---
+name: delegate-worker
+description: delegate-review スキルから委任された作業を実行する
+model: sonnet
+<span class="hljs-section">effort: medium
+---</span>
+
+委任された作業を実行し、成果物を報告する。
+
+報告の形式:
+
+<span class="hljs-bullet">-</span> 結論
+<span class="hljs-bullet">-</span> 根拠
+<span class="hljs-bullet">-</span> 未確認事項
+<span class="hljs-bullet">-</span> 前提にした仮定
+
+事実と推測を区別して書く。
+</code></pre>
+<h2>advisor</h2>
+<p><code>/advisor</code> でモデルを選んで有効にする。設定ファイルはない。</p>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../ai-agent-dev-setup-design/">AIエージェントとの開発体制 設計</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+<script type="module" src="../../assets/highlight.mjs"></script>
+</body>
+</html>

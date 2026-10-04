@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIエージェントとの開発体制 設計</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=ai-agent-dev-setup-design">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ai-agent-dev-setup-design</code> <button type="button" class="copy-id" data-copy="ai-agent-dev-setup-design">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ai-agent-dev-setup-design" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1791087435000">2026-10-04 04:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>AIエージェントとの開発体制 設計</h1>
+<p><a href="../ai-agent-dev-setup-requirements/">要求</a>を満たすための、Claude Code での編成。
+ユーザーをつねに承認者に置き、タスクの種類で編成を切り替える。</p>
+<h2>1. 役割の割当</h2>
+<h3>D-01 ユーザーは承認者を担う（R-01, R-02）</h3>
+<ul>
+<li>ユーザーはどの編成でも承認者を担い、この役割は委任しない</li>
+<li>ユーザーは指示者を兼ねる</li>
+<li>AIの検証は承認者への報告であり、承認ではない</li>
+<li>指示が入れ子になっても、各段の結果はユーザーの承認で終わる</li>
+</ul>
+<h2>2. 編成</h2>
+<table>
+<thead>
+<tr>
+<th>編成</th>
+<th>ユーザー</th>
+<th>メイン</th>
+<th>advisor</th>
+<th>delegate-worker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>指示者＋承認者（作業の過程を追う）</td>
+<td>作業者</td>
+<td>検証者</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B</td>
+<td>指示者＋承認者（報告を見る）</td>
+<td>指示者＋検証者（裁定を担う）</td>
+<td>任意</td>
+<td>作業者</td>
+</tr>
+<tr>
+<td>A＋B</td>
+<td>指示者＋承認者</td>
+<td>B と同じ。決定では作業者</td>
+<td>検証者</td>
+<td>作業者（選択肢出し）</td>
+</tr>
+</tbody>
+</table>
+<h3>D-02 A：メインが作り、advisor が見る（R-08, R-10）</h3>
+<ul>
+<li>メインが作業者として成果物を作り、advisor が検証者として指摘する</li>
+<li>ユーザーは作業の過程を追う</li>
+</ul>
+<h3>D-03 B：メインが任せ、delegate-worker が作る（R-02, R-03, R-04, R-08, R-11）</h3>
+<ul>
+<li>指示は2段になる
+<ul>
+<li>ユーザー → メイン：ユーザーが指示者＋承認者</li>
+<li>メイン → delegate-worker：メインが指示者＋検証者、delegate-worker が作業者</li>
+</ul>
+</li>
+<li>メインは委任文の基準を決めた指示者として、delegate-worker との対立を裁く</li>
+<li>ユーザーはメインの報告を見て承認する</li>
+</ul>
+<h3>D-04 A＋B：選択肢は B で出し、決定は A で行う（R-09）</h3>
+<ul>
+<li>選択肢出しを delegate-worker に任せ、決定は文脈を持つメインが advisor の検証を受けて行う</li>
+<li>二重検証になるので、重要な成果物に限る</li>
+</ul>
+<h2>3. 編成の選択</h2>
+<h3>D-05 タスクの種類で編成を選ぶ（R-08, R-09, R-10, R-11, R-12）</h3>
+<table>
+<thead>
+<tr>
+<th>タスク</th>
+<th>編成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小さな編集・文章の推敲</td>
+<td>A</td>
+</tr>
+<tr>
+<td>独立サブタスクに分割できない</td>
+<td>A</td>
+</tr>
+<tr>
+<td>調査・比較・広い探索</td>
+<td>B</td>
+</tr>
+<tr>
+<td>大きな実装</td>
+<td>B＋worktree</td>
+</tr>
+<tr>
+<td>設計・判断</td>
+<td>A＋B</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 構成要素</h2>
+<h3>D-06 advisor（R-04）</h3>
+<ul>
+<li><code>/advisor</code> で有効にする</li>
+<li>メインの会話履歴全体を受け取って指摘する</li>
+<li>呼ぶ時機と、指摘を採るかどうかはメインが決める</li>
+</ul>
+<h3>D-07 delegate-review スキル（R-04, R-05, R-07, R-11, R-13）</h3>
+<p><a href="../ai-agent-dev-setup-implementation/">実装</a></p>
+<ul>
+<li>指示を独立したサブタスクに分け、delegate-worker に並列で委任する</li>
+<li>分割できない指示は委任せず、A に切り替える</li>
+<li>委任文には目的・制約・成果物の形式・参照すべきパスを含める</li>
+<li>難しい作業では、委任時に delegate-worker のモデルを上書きする</li>
+<li>報告を待つあいだに、指示から検証の観点を組み立てる。観点は delegate-worker に渡さない</li>
+<li>全報告を観点に沿って検証し、その要約をユーザーに報告する</li>
+</ul>
+<h3>D-08 delegate-worker サブエージェント（R-06, R-13）</h3>
+<p><a href="../ai-agent-dev-setup-implementation/">実装</a></p>
+<ul>
+<li>既定のモデルは sonnet、effort は medium</li>
+<li>報告は「結論／根拠／未確認事項／前提にした仮定」の形式とし、事実と推測を区別する</li>
+</ul>
+<h2>5. 既知の制約</h2>
+<ul>
+<li>A では、advisor が作業者と全履歴を共有するので、作業者の誤読もそのまま共有しうる</li>
+<li>A では、advisor の指摘を採るかどうかを作業者（メイン）が決めるので、作業者が自分への検証を裁くことになる</li>
+<li>A では、メインと advisor が同じモデルなら、advisor の主な効用は見直しの機会にとどまる</li>
+<li>B では、メインが指示者と検証者を兼ねるので、基準そのものの誤りは検証では見つからず、承認者が受け持つ</li>
+<li>B では、delegate-worker の生の報告はユーザーに表示されず、承認者は検証者の要約だけを見る</li>
+</ul>
+<h2>6. 追跡</h2>
+<p>◯は満たす、△は既知の制約により一部だけ満たす。</p>
+<table>
+<thead>
+<tr>
+<th>要求</th>
+<th>設計</th>
+<th>充足</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-01</td>
+<td>D-01</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-02</td>
+<td>D-01, D-03</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-03</td>
+<td>D-03</td>
+<td>△</td>
+<td>A では作業者が advisor の指摘の採否を決める</td>
+</tr>
+<tr>
+<td>R-04</td>
+<td>D-03, D-06, D-07</td>
+<td>△</td>
+<td>B では満たす。A は作業者と履歴を共有する</td>
+</tr>
+<tr>
+<td>R-05</td>
+<td>D-07</td>
+<td>△</td>
+<td>承認者は delegate-worker の生の報告を見ない</td>
+</tr>
+<tr>
+<td>R-06</td>
+<td>D-08</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-07</td>
+<td>D-07</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-08</td>
+<td>D-02, D-03, D-05</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-09</td>
+<td>D-04, D-05</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-10</td>
+<td>D-02, D-05</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-11</td>
+<td>D-03, D-05, D-07</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-12</td>
+<td>D-05</td>
+<td>◯</td>
+<td></td>
+</tr>
+<tr>
+<td>R-13</td>
+<td>D-07, D-08</td>
+<td>◯</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../ai-agent-dev-setup-implementation/">AIエージェントとの開発体制 実装</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+<script type="module" src="../../assets/highlight.mjs"></script>
+</body>
+</html>

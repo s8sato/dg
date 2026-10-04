@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIエージェントとの開発体制 要求</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<script>(function(){try{var t=localStorage.getItem("enastro:theme:v1");document.documentElement.dataset.theme=t||"sirius";}catch(e){}})();</script>
+</head>
+<body>
+<nav><a href="../../">All notes</a> <a href="../../graph/?focus=ai-agent-dev-setup-requirements">Graph view</a><button type="button" id="exploration-rewind-toggle" hidden>HISTORY</button></nav>
+<div id="exploration-bar" class="exploration-bar" data-search-index-href="../../search-index.json" hidden>
+<div id="exploration-drawer-scrim"></div>
+<div id="exploration-rewind-panel" hidden>
+<button type="button" id="exploration-drawer-close" aria-label="Close history">✕</button>
+<p id="exploration-storage-warning" class="exploration-warning" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-missing-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<p id="exploration-auto-unread-notice" class="exploration-notice" hidden><span class="exploration-icon" aria-hidden="true"></span><span data-text></span></p>
+<button type="button" id="exploration-return-to-now">Return to now</button>
+<button type="button" id="exploration-squash-here" disabled>Squash until here</button>
+<button type="button" id="exploration-reset-here" disabled>Reset to here</button>
+<ul id="exploration-history-list"></ul>
+</div>
+</div>
+<script type="module" src="../../assets/exploration.mjs"></script>
+<div id="theme-switcher" class="theme-switcher" hidden>
+<button type="button" id="theme-trigger" aria-haspopup="dialog" aria-controls="theme-dialog">Theme</button>
+<div id="theme-dialog" hidden></div>
+</div>
+<script type="module" src="../../assets/theme-switcher.mjs"></script>
+<p class="note-id"><code>ai-agent-dev-setup-requirements</code> <button type="button" class="copy-id" data-copy="ai-agent-dev-setup-requirements">Copy ID</button><span class="copy-id-feedback" aria-live="polite"></span> <button type="button" class="mark-read-button" data-mark-read="ai-agent-dev-setup-requirements" title="Mark as read" hidden>Mark as read</button></p>
+<p class="note-dates"><span class="date-group"><span class="date-label">Updated</span> <span class="date-value" data-modified="1791087435000">2026-10-04 04:17 UTC</span></span><span class="date-sep" data-read-sep hidden>·</span><span class="date-group" data-read-at hidden><span class="date-label">Read</span> <span class="date-value" data-read-value></span></span><span class="date-tz" data-tz></span></p>
+
+<article><h1>AIエージェントとの開発体制 要求</h1>
+<p>個人開発でAIエージェントに作業と検証を任せながら、成果物の品質と受け入れの責任を自分の手に残すための要求。</p>
+<h2>1. 目的</h2>
+<p>限られた注意で、AIエージェントが作った成果物の品質を保つ。
+成果物を受け入れる責任は、人が持ち続ける。</p>
+<h2>2. スコープ</h2>
+<ul>
+<li>対象：個人開発でAIエージェントと行う作業（コード、文書、調査、設計判断）</li>
+<li>対象外：複数人のチーム開発、人の承認を経ずに進むエージェントの自律運用</li>
+</ul>
+<h2>3. 用語</h2>
+<ul>
+<li><strong>主体</strong>：人、またはAIの各インスタンス。1つの主体が複数の役割を兼ねてよい</li>
+<li><strong>役割</strong>
+<ul>
+<li>指示者：入力を与えて作業を依頼する</li>
+<li>作業者：指示に従って成果物を作る</li>
+<li>検証者：基準に照らして成果物の問題を指摘する</li>
+<li>承認者：成果物を受け入れるかを決め、その結果に責任を負う</li>
+</ul>
+</li>
+<li><strong>入力</strong>：目的・基準・文脈</li>
+<li><strong>基準</strong>：成果物が満たすべき条件。指示に含めて作業者に渡す（<a href="../criteria-first-for-expertise-and-self-efficacy/">基準を先に書いて専門性と自己効力感を育てる</a>）</li>
+<li><strong>観点</strong>：検証者が基準をどう確かめるか。作業者には渡さない</li>
+<li><strong>裁定</strong>：作業者と検証者の見解が割れたときに決着をつける機能。役割ではなく、承認者または基準を決めた指示者が担う</li>
+<li><strong>ループ</strong>：指示 → 成果物 → 検証 → 差し戻し or 承認</li>
+</ul>
+<h2>4. 要求</h2>
+<h3>4.1 責任</h3>
+<ul>
+<li><strong>R-01 承認は人が行う</strong>：成果物の受け入れは人が決め、その責任も人が負う。AIの検証を承認に代えない（<a href="../ai-as-force-multiplier/">AI は道具であり、あなたは責任の引受人である</a>）</li>
+<li><strong>R-02 連鎖は人の承認で終わる</strong>：指示や検証が入れ子になっても（指示文を作る作業、検証の検証など）、連鎖の終端は人の承認とする</li>
+<li><strong>R-03 裁定は基準の持ち主が行う</strong>：作業者と検証者の対立は、承認者または基準を決めた指示者が裁く。作業者が自分への検証を裁かない</li>
+</ul>
+<h3>4.2 検証</h3>
+<ul>
+<li><strong>R-04 検証の独立性</strong>：検証者は、作業者と同じ前提や盲点を共有せずに成果物を見られる</li>
+<li><strong>R-05 承認の判断材料</strong>：承認者は、検証の結果とその根拠になった作業者の報告を確かめられる</li>
+<li><strong>R-06 報告の検証可能性</strong>：作業者の報告は事実と推測を分け、根拠・未確認事項・前提にした仮定を示す</li>
+</ul>
+<h3>4.3 指示</h3>
+<ul>
+<li><strong>R-07 指示の完結</strong>：作業者が指示だけで作業できるよう、指示は目的・基準・文脈を含む（<a href="../prompt-engineering-fundamentals/">プロンプトは文脈を与える技能である</a>）</li>
+</ul>
+<h3>4.4 効率</h3>
+<ul>
+<li><strong>R-08 注意の置き場所</strong>：人はタスクに応じて、作業の過程を追うか、報告だけを見るかを選べる</li>
+<li><strong>R-09 コストの釣り合い</strong>：委任と検証にかかる手間が、タスクの大きさと重要度に見合う</li>
+<li><strong>R-10 文脈の一貫性</strong>：小さく連続した作業は、文脈を切らずに進められる</li>
+<li><strong>R-11 並列化と文脈の分離</strong>：独立に分けられる作業は並列に進め、その作業の記録が主の文脈を埋めない</li>
+</ul>
+<h3>4.5 割り当て</h3>
+<ul>
+<li><strong>R-12 変更の隔離</strong>：大きな変更は、ほかの作業と干渉せず、差分として独立にレビューできる単位で進める</li>
+<li><strong>R-13 能力の適合</strong>：作業の難度に見合う能力の作業者に任せる</li>
+</ul>
+</article>
+<section class="backlinks"><h2>Backlinks</h2><ul><li><a href="../ai-agent-dev-setup-design/">AIエージェントとの開発体制 設計</a></li></ul></section>
+<script type="module" src="../../assets/copy-id.mjs"></script>
+<script type="module" src="../../assets/local-time.mjs"></script>
+<script type="module" src="../../assets/highlight.mjs"></script>
+</body>
+</html>
