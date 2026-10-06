@@ -456,8 +456,8 @@
     "id": "test",
     "title": "Idea Title",
     "tags": [],
-    "text": "Idea Title A brief summary of the idea. trait Repository { type K ; type V ; /// Description. fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt;; } struct RepositoryImpl ; impl Repository for RepositoryImpl { type K = u32 ; type V = String ; fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt; { unimplemented! () } } Item A detailed description of the idea. ../assets/public/images/sample-diagram.svg",
-    "modifiedAt": "2026-08-27 22:56 UTC"
+    "text": "Idea Title A brief summary of the idea. trait Repository { type K ; type V ; /// Description. fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt;; } struct RepositoryImpl ; impl Repository for RepositoryImpl { type K = u32 ; type V = String ; fn get (&amp; self , key: K) -&gt; Option &lt;&amp;V&gt; { unimplemented! () } } Item A detailed description of the idea. ../assets/public/images/sample-diagram.svg Excalidraw ../assets/public/handwritten/test.draw.svg",
+    "modifiedAt": "2026-10-06 06:22 UTC"
   },
   {
     "id": "tests-as-documentation",
